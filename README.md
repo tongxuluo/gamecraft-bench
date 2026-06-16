@@ -210,7 +210,8 @@ It does not attempt to measure whether a generated game is subjectively fun.
 
 ## Acknowledgement
 
-This work was supported by Major Frontier Exploration Program (Grant No. C10120250085) from the Shenzhen Medical Academy of Research and Translation (SMART), Shenzhen Medical Research Fund (B2503005), NSFC grant 72495131, the 1+1+1 CUHK-CUHK(SZ)-GDSTC Joint Collaboration Fund, Guangdong Provincial Key Laboratory of Mathematical Foundations for Artificial Intelligence (2023B1212010001), and the International Science and Technology Cooperation Center, Ministry of Science and Technology of China (under grant 2024YFE0203000).
+GameCraft-Bench builds on [Godot](https://github.com/godotengine/godot) as the game engine runtime and [Harbor](https://github.com/harbor-framework/harbor) as the benchmark and agent-execution harness.
+We thank the open-source communities behind these projects for making reproducible, end-to-end game-generation evaluation possible.
 
 ## Citation
 
@@ -221,7 +222,7 @@ If you find GameCraft-Bench useful, please cite us:
   title = {GameCraft-Bench: Can Agents Build Playable Games End-to-End in a Real Game Engine?},
   author = {Tongxu Luo and Rongsheng Wang and Jiaxi Bi and Chenming Xu and Zhengyang Tang and Jianlong Chen and Juhao Liang and Ke Ji and Shuqi Guo and Yuhao Du and Fan Bu and Wenyu Du and Xiaotong Zhang and Kyle Li and Shaobo Wang and Linfeng Zhang and Yuxuan Liu and Xin Lai and Chenxin Li and Yiduo Guo and Zhexin Zhang and Xinyuan Wang and Tianyi Bai and Ziniu Li and Benyou Wang},
   year = {2026},
-  url = {https://github.com/tongxuluo/GameCraft-Bench}
+  url = {https://github.com/tongxuluo/gamecraft-bench}
 }
 ```
 
