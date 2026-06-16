@@ -208,7 +208,7 @@ The verifier scores visual gameplay evidence; audio-dependent aspects are repres
 The benchmark measures whether an agent follows the game specification and realizes the requested mechanics, content, visual state, and presentation in an executable artifact.
 It does not attempt to measure whether a generated game is subjectively fun.
 
-## Acknowledgement
+## Acknowledgment
 
 GameCraft-Bench builds on [Godot](https://github.com/godotengine/godot) as the game engine runtime and [Harbor](https://github.com/harbor-framework/harbor) as the benchmark and agent-execution harness.
 We thank the open-source communities behind these projects for making reproducible, end-to-end game-generation evaluation possible.
