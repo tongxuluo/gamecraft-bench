@@ -1,0 +1,118 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The motorcycle has 2D physics with two wheels, suspension, and a rider body that leans. Throttle accelerates the rear wheel; brake slows it. Up/down keys lean the rider forward/backward, shifting centre of gravity and affecting climb ability and landing angle. The bike responds realistically to terrain slope. Score 0 if the bike has no physics, if leaning has no effect, or if there is no throttle/brake distinction. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "When the rider's body hits an obstacle or ground at a bad angle, they ragdoll off the bike with physics-driven limb movement. A Fault counter increments on each crash. The player respawns at the last checkpoint. The ragdoll is visually dramatic and physics-based (not a canned animation). Score 0 if there is no crash mechanic, if the rider does not ragdoll, or if there are no checkpoints. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A timer runs from level start to finish. Completing a level awards Gold/Silver/Bronze medals based on time thresholds. A Flawless star is awarded for zero-fault completions. Checkpoints (flags or markers) save progress within a level. Score 0 if there is no timer, if medals are missing, or if there are no checkpoints. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 20 levels organized into 4 difficulty tiers (Easy/Medium/Hard/Extreme). Each tier has visually distinct theming and progressively harder obstacles. Levels unlock sequentially within tiers; tiers unlock by earning enough medals. Score 0 if there are fewer than 20 levels, if there are fewer than 4 tiers, or if there is no unlock progression. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 6 distinct obstacle types with unique visual designs and physics interactions: ramps, loops, seesaws, swinging pendulums, explosive barrels, and crumbling platforms. Each obstacle requires a different riding technique to clear. Score 0 if there are fewer than 6 obstacle types, if they look identical, or if they all require the same approach. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Difficulty escalates clearly across tiers: Easy levels have gentle slopes and wide platforms; Extreme levels have near-vertical walls, tiny landing zones, and chained hazards. The player perceives a dramatic skill progression. Score 0 if all levels feel equally difficult, or if later tiers are not noticeably harder. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A level select grid shows all levels with medal status, best time, fault count, and flawless star. Total medals and stars are tracked and displayed. The player can see overall progress and which levels need improvement. Score 0 if there is no level select, if progress is not tracked, or if medal status is not shown. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The gameplay HUD shows: timer, fault counter, and checkpoint indicator. All elements are readable and non-overlapping at 1280x720. The timer is prominent and clearly counting. Score 0 if any core HUD element is missing or unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Physics state is visually communicated: the rider leans visibly, wheels compress on landing, the bike tilts on slopes, and ragdoll crashes show clear limb physics. The player can assess bike angle and rider position from any single frame. Score 0 if the bike appears static, if the rider does not lean, or if crashes have no physics visualization. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title -> Level select -> Play level -> Crash/respawn at checkpoint -> Complete level -> Medal award -> Return to level select -> Unlock next. The player can experience every node without restarting. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a play button that is interactive and transitions to level select, and uses a non-default background (industrial scene, motorcycle silhouette, or obstacle course) \u2014 not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element \u2014 motorcycle, rider, terrain, obstacles, background, UI panels \u2014 belongs to a single consistent visual language. The palette is grungy and industrial; no clashing styles or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "The motorcycle and rider are detailed sprites with visible wheels, frame, and rider limbs; obstacles are illustrated with distinct textures (metal, wood, explosive markings); terrain has textured surfaces; UI uses styled themed widgets. Score 0 if the bike is a solid-colour primitive, if obstacles are plain shapes, or if UI is unstyled defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: wheel rotation, rider lean, suspension compression, ragdoll physics, explosion particles, checkpoint activation, medal award popup, and scene transitions each play as smooth multi-frame tweens or physics simulations. No element snaps to its new state in a single frame. Transitions use fades or wipes. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The irreducible tactical loop is playable: the player can select a friendly unit, see a limited legal movement range highlighted on the grid, choose a legal destination, and watch the unit move to the chosen cell. Illegal clicks outside the range are rejected without corrupting state. Selecting a different unit or clicking the same unit again cancels the current selection. Score 0 if selecting and moving a unit is missing, scripted-only, or not controlled by player input. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Turn structure is complete and cyclical: after the player acts, an End Turn control advances to an enemy phase; enemies autonomously choose meaningful moves toward player units and attack when in range; control then returns to the player with action availability reset. Score 1 only if the full player turn -> enemy turn -> player turn cycle is visible and repeatable. Score 0 if enemies do not act, turns never switch back, or the game is effectively real-time. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Combat resolves through game state, not decoration: attacks require adjacency or a clearly indicated attack range, reduce persistent HP, can kill units, and remove dead units from blocking and targeting. Already-dead units cannot act or be targeted in subsequent turns. Score 1 only if HP loss, death, removal, and post-death state consistency are all observable. Score 0 if attacks are only visual effects, HP is absent, or units continue to function after death. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The match has enforceable win and loss conditions connected to the battle: eliminating all enemies produces victory, losing all player units produces defeat, gameplay halts on the result, and retry or return navigation works without relaunching. Score 1 only if both victory and defeat are reachable. Score 0 if the battle has no terminal state or result screens are static labels unrelated to game state. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The player's squad has meaningful depth: at least three controllable unit types or named characters are present, visually identifiable, and functionally different through HP, movement range, attack range, damage, or special ability. Score 1 only if the differences change tactical choices during battle. Score 0 if there is only one player unit type or if all units share identical stats and behavior. Score 0.5 at most if only labels or decorative differences distinguish units with no observable gameplay impact. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Enemy content has meaningful variety: at least three enemy types appear across available battles, with different silhouettes and different tactical behavior such as fast melee, high-HP brute, ranged attacker, or flanker. Score 1 only if the player must react differently to different enemy types. Score 0 if all enemies are clones or stat-identical placeholders. Score 0.5 at most if only labels or recolors distinguish enemy types with no behavioral difference. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "The game contains more than one tactical situation: at least two distinct battle layouts or scenario setups are reachable, with different obstacle placement, enemy composition, or starting positions. Score 1 only if the layouts change tactical decisions rather than merely changing background color. Score 0 if there is only one arena or if alternate stages are cosmetic duplicates. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "At least one additional tactical system beyond basic move-and-attack is present, such as terrain blockers or cover, environmental hazards, timed objectives, ability cooldowns, status effects, or consumable skills. It must interact with the core combat and be visible in play. Score 1 only if the extra system can affect decisions or outcomes. Score 0 if the game is only select, move, attack, end turn with no further tactical layer. Score 0.5 at most if only static decorative elements suggest a system that has no mechanical effect. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Battle readability is strong throughout gameplay: grid cells, walkable terrain, blocked terrain, friendly units, enemy units, selected unit, legal move cells, and attackable targets are all visually distinct at 1280x720. Score 1 only if a player can understand legal actions without guessing. Score 0 if key states blend together, overlays are missing, or placeholder shapes make sides and zones ambiguous. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Essential combat information is always readable during battle: every unit has visible HP or health bars, turn ownership is clear, spent/action-ready state is distinguishable, and the End Turn control is separated from the battlefield. Score 1 only if these are persistent and readable without opening hidden panels. Score 0 if HP, turn state, or action availability is missing or only appears momentarily. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Player actions produce durable feedback: selection highlight, move preview, movement interpolation, attack impact, hit reaction, death effect, and invalid action rejection each leave visible state changes across sampled frames. Score 1 only if feedback covers both successful and failed actions. Score 0 if actions snap silently or invalid input has no cue. Score 0.5 at most if only static text indicates state changes with no spatial or animated feedback. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "The interface stays legible under real play: HUD panels, buttons, unit labels, result overlays, and briefing text do not overlap, clip, hide the board, or use low-contrast text. Score 1 only if UI placement remains professional across title, briefing, battle, and result scenes. Score 0 if primary controls or state text collide, are unreadable, or look like debug overlays. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent dark-fantasy art direction: terrain, units, UI, effects, and backgrounds share one consistent visual language with a deliberate limited palette and high contrast. Score 1 only if the presentation looks like an authored vertical slice rather than a prototype. Score 0 if visible gameplay relies on raw ColorRect shapes, default Godot widgets, mismatched asset packs, or bright off-brief placeholder colors."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Battlefield and character art use real textured or illustrated assets: dungeon or ruin terrain has surface detail, units have recognizable silhouettes and faction identity, and enemies are not geometric primitives. Score 1 only if the player could plausibly inspect the screenshot as finished game art. Score 0 if the battlefield is a flat fill, tiles are untextured rectangles, or units are plain colored boxes or circles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "UI presentation is custom and themed: title screen, briefing, HUD panels, End Turn button, result screens, HP bars, and labels use styled panels, borders, fonts, icons, or frames that match the dark-fantasy tone. Score 1 only if no primary UI element reads as an unstyled default Label or Button. Score 0 if the UI is mostly default Godot controls or plain floating text. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and scene polish meet a shippable micro-game bar: movement, attack, hit, death, and scene transitions use multi-frame animation, tweening, particles, screen shake, fades, or equivalent authored motion. Score 1 only if animation polish is visible in every major interaction. Score 0 if major gameplay or scene transitions happen as single-frame snaps or hard cuts with no motion. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

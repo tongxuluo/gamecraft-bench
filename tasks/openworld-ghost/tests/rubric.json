@@ -1,0 +1,125 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5+M6)/6) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5", "M6"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player has at least three detection tools (EMF reader, thermal camera, spirit box) that can be switched between with a visible mode indicator. Each tool produces distinct visual feedback when near a ghost -- EMF pulses or beeps, thermal shows cold-spot overlays, spirit box displays text. Ghosts are invisible without equipment. Score 0 if there are fewer than 3 tools, if tools produce no feedback, or if ghosts are always visible without equipment. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "When enough evidence is collected, the ghost enters a hunt phase: it becomes aggressive, lights flicker or go out, and a visible hunt timer counts down. The player must use at least two defensive items (crucifix, salt circle, flashlight) to survive. Each defensive item produces a visible effect (glow, barrier, repulsion). Score 0 if there is no hunt phase, if defensive items do nothing visible, or if the timer is missing. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "An evidence board or journal tracks collected clues (EMF level, temperature reading, spirit response). The player can cross-reference clues to identify the ghost type before or during the hunt. Correct identification provides an advantage (weaker ghost, longer timer); incorrect identification makes the hunt harder (faster ghost, shorter timer). Score 0 if there is no evidence board, if clues are not tracked, or if identification has no gameplay effect. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The player has a sanity meter visible on the HUD that drops in darkness, when seeing ghost activity, or when near a ghost for too long. Low sanity causes observable hallucinations (false EMF readings, fake shadow sprites, screen distortion) and makes the ghost more aggressive. Light sources and safe rooms restore sanity. Score 0 if sanity is missing, if it never changes, or if low sanity has no observable effect on gameplay or visuals. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The player can move freely in 8 directions across the open-world town and enter/exit haunted locations without loading screens or broken transitions. Movement is smooth with visible walking animation. Entering a location triggers a transition effect (fade, door opening, fog thickening). Score 0 if the player cannot move freely, if locations are unreachable, or if transitions are broken. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M6",
+      "agg": "max",
+      "description": "The full ghost hunting loop is connected without restarting the executable: Title -> Enter Location -> Use Tools -> Collect Evidence -> Check Evidence Board -> Identify Ghost -> Hunt Phase -> Use Defensive Items -> Capture Ghost. Every transition is reachable through in-game UI. Score 0 if any transition in the chain is missing or broken, or if completing a hunt requires relaunching. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The world has at least four visually distinct haunted locations (abandoned mansion, haunted forest, old lighthouse, derelict hospital). Each location has a different tileset, colour palette, and atmospheric props that make it immediately recognisable. At least three locations are visitable during play. Score 0 if there are fewer than 4 locations or if all locations share an identical look. Score 0.5 at most if differences amount to a tint swap on the same art. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least four distinct ghost types exist with different behaviours and visual tells: poltergeist (throws objects), wraith (freezing breath, passes through walls), banshee (screams before attacking), shade (hides in darkness, afraid of light). Each type leaves different evidence patterns and requires different identification strategies. Score 0 if there are fewer than 4 ghost types or if all ghosts behave identically. Score 0.5 at most if ghosts differ only cosmetically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Detection tool variety: each of the three tools (EMF, thermal, spirit box) produces fundamentally different feedback -- EMF uses audio/pulse frequency, thermal uses colour overlays on the viewport, spirit box uses text/voice output. The tools respond differently to different ghost types, creating a deduction puzzle. Score 0 if all tools produce the same kind of feedback or if tools do not differentiate between ghost types. Score 0.5 at most if tools differ only in label text. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Each haunted location applies a distinct environmental modifier that changes investigation gameplay -- for example the mansion has creaking floors that alert the ghost, the forest has fog that limits visibility range, the lighthouse has wind that extinguishes light sources faster, the hospital has flickering power that disables tools intermittently. At least two such modifiers are observable during play. Score 0 if all locations play identically. Score 0.5 at most if a modifier is purely decorative with no effect on gameplay. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Defensive item variety: at least three distinct defensive items (crucifix, salt circle, flashlight) with different tactical uses -- one blocks ghost movement, one creates a safe zone, one repels or stuns. The items are visually distinct and their effects are observable during the hunt phase. Score 0 if there is only one defensive item or if all items produce the same effect. Score 0.5 at most if items differ only in name/label. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Core investigation state is readable at a glance through a HUD: the active tool indicator, sanity meter, collected evidence count, and current location name are placed in clear non-overlapping regions. Score 0 if the active tool or sanity meter is missing or hidden. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes. Score 1 requires the information to be presented through themed, styled UI with real assets."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "The scene is legible during gameplay: the player character, ghost manifestations, tool overlays, environmental hazards, and interactive objects are mutually distinguishable in colour/silhouette against the dark backgrounds. Tool feedback (EMF pulses, thermal overlays, spirit text) is readable without obscuring navigation. Score 0 if the player or tool feedback is hard to pick out, if ghost evidence is indistinguishable from the background, or if overlays obscure critical gameplay elements. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes. Score 1 requires the information to be presented through themed, styled UI with real assets."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Actions and events produce clear visible feedback: switching tools, detecting evidence, collecting a clue, opening the evidence board, identifying a ghost, entering hunt phase, using a defensive item, and capturing a ghost each show a visible state change (overlay appears, panel opens, flash, particles, screen shake). Score 0 if tool switching, evidence collection, or ghost capture happen with no visible feedback. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes. Score 1 requires the information to be presented through themed, styled UI with real assets."
+    },
+    {
+      "id": "V4",
+      "agg": "max",
+      "description": "A styled title screen is present with the game name, a way to start, and art that establishes the spooky/atmospheric tone (foggy graveyard, flickering lantern, haunted silhouette). Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes. Score 1 requires the information to be presented through themed, styled UI with real assets."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art coherence: the player, ghosts, locations, tools, evidence board, and UI belong to a consistent visual language, and each location reads as a coherent themed environment rather than mismatched parts or default Godot grey. The palette is dark and atmospheric throughout. Score 0 if the screen mixes incompatible styles, relies on unthemed placeholder rectangles, or looks like a blank default scene. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Character and object sprite quality: the player avatar, ghost sprites per type, and defensive items are real sprite art (illustrated, pixel-art, or hand-drawn), not solid-color rectangles or default Godot primitives. Ghost types are visually distinct from each other and the player character is recognisable. Score 0 if the avatar or ghosts are plain ColorRect/default shapes or indistinguishable colored blobs. Score 0.5 at most if sprites exist but lack detail or variety."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment and level art: locations use real textured or illustrated tiles with visible atmospheric detail (cracks, fog, shadows, broken furniture, overgrown vines), and the four locations are clearly different illustrated settings with unique props. Score 0 if locations are uniform color backgrounds, if terrain is plain untextured rectangles, or if locations are visually identical fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and atmosphere: EMF pulse effects, thermal overlay fades, spirit box text crawl, ghost movement and flickering, hunt phase light flicker, defensive item glow/barrier, sanity distortion effects, and location transitions use animation, tween, particles, or trails rather than instant snaps. Locations carry ambient life (swaying fog, flickering lights, drifting dust particles). HUD and UI chrome use styled themed widgets, not raw unstyled Godot defaults. Score 0 if all motion snaps with no easing/effects, or if nothing on screen ever animates during play. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

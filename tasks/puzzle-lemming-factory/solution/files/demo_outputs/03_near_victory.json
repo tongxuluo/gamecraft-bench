@@ -1,0 +1,14 @@
+{
+  "scenario": "near_victory",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30, "type": "wait"},
+    {"frame": 90, "type": "key_press", "keycode": "2"},
+    {"frame": 120, "type": "mouse_click", "button": "left", "x": 200, "y": 350},
+    {"frame": 200, "type": "wait"},
+    {"frame": 300, "type": "wait"},
+    {"frame": 400, "type": "wait"},
+    {"frame": 500, "type": "wait"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

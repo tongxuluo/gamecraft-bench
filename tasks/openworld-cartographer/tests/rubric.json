@@ -1,0 +1,31 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1","M2","M3"]},
+    {"name": "Content Depth", "items": ["D1","D2","D3","D4"]},
+    {"name": "Functional Visuals", "items": ["V1","V2"]},
+    {"name": "Presentation & Art", "items": ["A1","A2","A3","A4"]}
+  ],
+  "requirements": [
+    {"id": "M1", "agg": "max", "description": "The player freely explores a wilderness while fog of war hides unexplored terrain and clears permanently around their movement. The minimap must show explored versus unknown areas updating live. Score 0 if the map is fully visible from the start, if fog is a static overlay, or if reveal is only simulated in a separate panel."},
+    {"id": "M2", "agg": "max", "description": "Map drawing records discovered terrain types with distinct markers on a minimap or full map, and landmarks can be annotated through player interaction for added value. Score 0 if terrain types are not distinguished, if annotation is only a label, or if the map does not update from exploration."},
+    {"id": "M3", "agg": "max", "description": "Food, ink, rope, and health constrain exploration with visible counts and real consequences: food depletes, ink is spent on notes, rope enables cliff traversal, and danger can force retreat. Score 0 if supplies never change, if they are only decorative HUD values, or if running out has no effect."},
+    {"id": "D1", "agg": "max", "description": "At least four terrain types are visually and mechanically distinct, such as forest, mountain, river, cave, and ruins. Terrain should affect movement or required tools. Score 0 if terrain is a repeated tile set with labels, if all areas play identically, or if obstacles do not gate traversal."},
+    {"id": "D2", "agg": "max", "description": "The wilderness includes active dangers such as wildlife, cliffs, and quicksand that visibly damage or restrict the player, with health and healing constraints. Score 0 if dangers are decorative icons, if health never changes, or if all areas are equally safe."},
+    {"id": "D3", "agg": "max", "description": "Returning to town lets the player sell a completed map for credits based on explored area and annotations, then view or buy equipment upgrades. Score 0 if map value is fixed, if selling is only described, or if upgrades cannot be purchased with earned credits."},
+    {"id": "D4", "agg": "max", "description": "At least three equipment upgrades have clear gameplay effects, such as boots changing speed, compass previewing terrain, lantern revealing caves, or pack increasing supplies. Score 0 if upgrades are just listed or if their effects are not visible in play."},
+    {"id": "V1", "agg": "max", "description": "The cartography loop is playable as one connected expedition: depart town, reveal terrain, annotate a landmark, spend supplies, return, sell the map, and buy an upgrade. Score 0 if the loop is split into separate non-persistent scenes or if exploration does not affect map value."},
+    {"id": "V2", "agg": "max", "description": "The full game loop connects title, town departure, exploration, danger, map drawing, return, selling, upgrading, and deeper exploration without restarting. Score 0 if screens do not transition into one another or if player state resets between them."},
+    {"id": "A1", "agg": "max", "description": "The title screen uses a parchment, ink, quill, or wilderness-map composition with an interactive play button and visible transition into the expedition. Score 0 if it is a generic title over flat shapes."},
+    {"id": "A2", "agg": "mean", "description": "The visual style consistently supports cartography and naturalist exploration across terrain, map UI, town, hazards, and character. Score 0 if most objects are generic coloured primitives or reused panels with labels."},
+    {"id": "A3", "agg": "mean", "description": "Terrain, player, landmarks, dangers, and map interface are recognizable without labels, using parchment styling and terrain detail. Score 0 if the map is a plain grid, if terrain is uniform colour, or if landmarks are only text."},
+    {"id": "A4", "agg": "mean", "description": "Player movement, fog reveal, map ink filling, annotation, supply depletion, danger hits, town selling, and upgrades animate or update smoothly in gameplay. Score 0 if changes are instant toggles or static before/after panels."}
+  ]
+}

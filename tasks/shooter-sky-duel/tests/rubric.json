@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The plane moves with physics-based momentum: thrust accelerates, gravity pulls down, and turning has inertia. The player must manage energy state (speed vs altitude). Score 0 if movement is instant or grid-based with no physics. Score 0.5 at most if the plane moves but has no gravity or momentum effects. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The plane fires weapons in its facing direction, with projectiles that travel ballistically and destroy enemies on hit with visible feedback. Score 0 if the plane cannot fire or hits have no effect. Score 0.5 at most if firing works but projectiles are invisible or hits have no feedback. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Score milestones unlock new plane parts that can be equipped in a hangar screen, visibly changing the plane's appearance and performance. Score 0 if no unlock or customization system exists. Score 0.5 at most if unlocks exist but produce no visible change to the plane. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "A hangar or loadout screen allows equipping different parts (engine, wings, weapons) onto the plane with visible stat changes and weight/energy constraints. Score 0 if no customization screen exists. Score 0.5 at most if parts can be selected but have no visible stat or appearance effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The plane has a health or damage system with visible damage states, and destruction triggers a crash animation and sortie failure. Score 0 if the plane is invincible or destruction has no consequence. Score 0.5 at most if health exists but damage has no visual indication. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 6 sorties or missions with different sky environments, enemy compositions, and objectives. Score 0 if only one mission exists. Score 0.5 at most if missions differ only in enemy count with identical environments. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 4 distinct enemy aircraft types with different flight behaviors (dive bombers, circling aces, heavy gunships, fast interceptors). Score 0 if only one enemy type exists. Score 0.5 at most if enemies look different but fly identically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least 4 customizable part categories (engine, wings, weapons, armor) with multiple options per category offering meaningful tradeoffs. Score 0 if no parts exist. Score 0.5 at most if parts exist but offer no meaningful choice or tradeoff. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Boss encounters feature large aircraft with multiple turrets, distinct attack phases, and weak points that must be targeted. Score 0 if no bosses exist. Score 0.5 at most if a large enemy appears but has no phases or weak points. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A sortie debrief screen shows score, enemies destroyed, accuracy, damage taken, and any new unlocks earned. Score 0 if missions end abruptly with no summary. Score 0.5 at most if only a single score number is shown. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Normal startup shows a styled hangar or title screen with the plane displayed, a sortie-select control, and aviation-themed imagery. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse text on a blank background. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The flow connects hangar to sortie selection to aerial combat to debrief without restarting the executable. Score 0 if major transitions are missing. Score 0.5 at most if transitions exist but break visually. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "The HUD clearly shows speed/altitude indicators, health, ammo, score, and objective status in readable non-overlapping regions. Score 0 if the player cannot determine flight state. Score 0.5 at most if information is present but overlapping or unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Player actions produce visible feedback: thrust shows exhaust, hits show sparks, enemy destruction shows explosions, damage shows smoke trails, and stalls show warning indicators. Score 0 if actions happen silently. Score 0.5 at most if only one feedback type exists. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Art direction is coherent across hangar, sky environments, aircraft, HUD, and menus with a consistent aviation palette and style. Score 0 if mostly default controls or mismatched placeholders dominate. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The player plane, enemy aircraft, projectiles, clouds, and environmental elements use real sprite art with distinct designs. Score 0 if primary gameplay elements are unstyled rectangles. Score 0.5 at most if sprites exist but are inconsistent in style. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Animation brings the sky to life: plane banking animations, exhaust trails, cloud parallax, explosion sequences, and damage smoke effects. Score 0 if all elements are static. Score 0.5 at most if only one element animates. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI panels use styled themed widgets with aviation instruments, framed panels, or custom fonts rather than raw Godot defaults. Score 0 if all UI is default Label/Button. Score 0.5 at most if some panels are styled but others remain raw defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

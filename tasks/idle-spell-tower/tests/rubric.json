@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Mana generates automatically over time from tower floors. A large mana counter is always visible and ticks up continuously without player input. The player can click a crystal or button to manually generate mana bursts with a visible click effect. Score 0 if mana does not accumulate automatically, if there is no visible counter, or if the idle generation rate is always zero."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The player spends mana to build new tower floors, each with a specific function (mana generator, spell lab, auto-caster). Building a floor visually adds it to the tower cross-section. Each floor type has a distinct appearance. At least three floor types exist. Score 0 if floors cannot be built, if building has no visual effect on the tower, or if fewer than 3 floor types exist."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A prestige system exists: when the tower reaches maximum height, the player can collapse it and rebuild with permanent bonuses (faster mana generation, higher max floors, better spells). The prestige shows the bonus to be gained. After prestige, the tower resets to one floor. Score 0 if there is no prestige mechanic, if resetting grants no bonus, or if there is no indication of prestige benefit."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "A spell research tree exists: the player spends mana and time to research spells. Each spell has a distinct effect and visual. Researched spells can be assigned to auto-caster floors. At least four spells are researchable. Score 0 if there is no research system, if spells have no distinct effects, or if fewer than 4 spells exist."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Auto-caster floors fire spells at approaching monsters without player input. Monsters approach the tower base and are defeated by spells. Defeating monsters yields mana crystals that boost income. Casters have visible spell projectile animations. Score 0 if there are no auto-casters, if there are no monsters, or if spell casting has no visual effect."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Exponential scaling exists: floor costs grow exponentially, mana generation scales multiplicatively with upgrades, and numbers grow large enough to require abbreviation. Each prestige cycle reaches higher numbers faster. Score 0 if growth is linear, if numbers never scale significantly, or if prestige does not accelerate progression."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The tower visually grows taller as floors are added, with the view scrolling or scaling to accommodate. Each floor is visible as a distinct section of the tower. The tower's visual height represents actual progression. At least five floors can be built before prestige. Score 0 if the tower does not visually grow, if floors are not individually visible, or if fewer than 5 floors can be built."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full idle loop is connected: Generate mana, build floors, research spells, auto-cast at monsters, earn crystals, grow tower, prestige, rebuild stronger. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, tower management, mana generation, floor building, spell research, monster defence, prestige, enhanced restart. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in an arcane or magical font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (wizard tower against starry sky, magical particles) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — tower floors, spells, monsters, crystals, UI panels — belongs to a single consistent magical/arcane visual language. The palette is mystical purples and blues with mana-glow highlights; no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: the tower uses textured or illustrated surfaces per floor type; spells have distinct visual effects; monsters are recognisable sprites; UI elements (mana counter, research tree, buttons) use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if the tower is a uniform colour fill, if spells have no visual, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: mana generation particles, floor construction, spell casting, monster approach and defeat, prestige collapse, and tower growth each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

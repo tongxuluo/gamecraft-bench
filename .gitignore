@@ -1,0 +1,50 @@
+# Bytecode / caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Build artifacts
+*.egg-info/
+build/
+dist/
+
+# Harbor job outputs (regenerated on every run)
+jobs/
+
+# Local sandbox dirs (LocalSubprocessEnvironment)
+sandboxes/
+.gamecraft-bench-sandboxes/
+gamecraft-bench-jobs/
+
+# Asset library (downloaded by scripts/fetch_assets.py, ~500 MB)
+assets/library/
+
+# OpenGameArt asset library (downloaded by scripts/fetch_oga_assets.py)
+assets/library-oga/
+
+# Local Claude/IDE workspace state
+.claude/
+.vscode/
+.idea/
+
+# Project planning docs (kept locally; not part of the public release)
+proposal.md
+worklog.md
+CLAUDE.md
+pipeline.md
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Local environment overrides (template is .env.example, checked in)
+.env
+.env.local
+.envrc

@@ -1,0 +1,108 @@
+{
+  "score_formula": "BUILD * (3*((M1+M2+M3+M4+M5)/5) + 7*((D1+D2+D3+D4+D5)/5) + 3*((V1+V2+V3)/3) + 7*((A1+A2+A3+A4+A5)/5)) / 20",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "Headless launch exits 0 without fatal errors; this 0/1 gate multiplies the rest."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3", "M4", "M5"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4", "D5"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2", "V3"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4", "A5"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player moves a wizard, chooses a card, spends visible mana, and casts a legal line/cone/area spell. Scripted card showcases or shape-only targeting mockups cap at 0.5."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "At least two spells change terrain mechanically, such as fire burning forest, ice freezing water, or lightning chaining through metal. Text descriptions or color swaps without tactical effect score 0."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Wizard position changes spell origin, range, direction, line of sight, or area coverage, and the opponent moves/casts under similar constraints. Static or mostly scripted opponents cap at 0.5."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Terrain destruction or transformation changes later movement, blocking, cover, chaining, or targeting. Cosmetic flashes or label-only terrain state score 0."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The loop connects title, deck selection, turn duel, HP defeat, result screen, and rematch/menu navigation. Static showcase flow or missing victory/defeat paths cap at 0.5."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least five spells differ by element, cost, pattern, effect, and tactical role. Name/color/damage-only card differences cap at 0.5."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least four terrain types are visually distinct and mechanically different. Text overlays, color-only squares, or same-behavior terrain cap at 0.5."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "The AI spends mana, moves, casts, targets, and reacts to terrain or danger. Narrated AI or random/static behavior scores 0."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Deck-building lets the player choose from a larger collection, and progression unlocks usable cards. Static card lists without duel impact score 0."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "At least two arena layouts create different movement, targeting, and spell-use decisions. Cosmetic layout changes or menu-only variants cap at 0.5."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "HUD clearly shows both HP bars, mana, turn, spell hand, card costs, and selected card without overlap. Plain text/debug counters cap at 0.5."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The arena clearly shows terrain, wizards, legal movement, targeting shapes, and transformed/destroyed tiles. Flat grids/text-labeled cells cap at 0.5."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Movement, casting, mana/HP changes, terrain transformation, invalid casts, and victory/defeat produce visible feedback. Text messages or primitive flashes cap at 0.5."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has cohesive arcane-duel art direction across arena, cards, effects, HUD, menus, and results. Primitive or draw_text-heavy screens score 0."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Wizards and spell effects use authored sprites, particles, or illustrated/pixel-art forms. Rectangles, letters, icons, or basic colored shapes score 0."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Terrain and destruction states use textured authored arena art with readable material detail. Uniform colored squares or featureless grids score 0."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Cards, HUD, deck selection, and results use themed UI chrome, icons, fonts, and frames. Rectangle/text or default-control UI scores 0."
+    },
+    {
+      "id": "A5",
+      "agg": "mean",
+      "description": "Movement, casting, impacts, terrain changes, damage reactions, turn transitions, and ambient magic use deliberate animation/effects. Static scenes or single-frame swaps score 0."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "scenario": "level_1",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30, "type": "wait"},
+    {"frame": 60, "type": "key_press", "keycode": "1"},
+    {"frame": 90, "type": "mouse_click", "button": "left", "x": 200, "y": 350},
+    {"frame": 150, "type": "key_press", "keycode": "2"},
+    {"frame": 180, "type": "mouse_click", "button": "left", "x": 260, "y": 350},
+    {"frame": 240, "type": "key_press", "keycode": "3"},
+    {"frame": 270, "type": "mouse_click", "button": "left", "x": 320, "y": 350},
+    {"frame": 330, "type": "key_press", "keycode": "4"},
+    {"frame": 360, "type": "mouse_click", "button": "left", "x": 380, "y": 350},
+    {"frame": 420, "type": "key_press", "keycode": "1"},
+    {"frame": 450, "type": "mouse_click", "button": "left", "x": 440, "y": 350},
+    {"frame": 500, "type": "wait"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

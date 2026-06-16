@@ -1,0 +1,14 @@
+{
+  "scenario": "parlor",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 90,  "type": "mouse_click", "button": "left", "x": 133, "y": 213},
+    {"frame": 150, "type": "mouse_click", "button": "left", "x": 303, "y": 213},
+    {"frame": 210, "type": "mouse_click", "button": "left", "x": 473, "y": 213},
+    {"frame": 300, "type": "wait"},
+    {"frame": 360, "type": "mouse_click", "button": "left", "x": 1165, "y": 51},
+    {"frame": 480, "type": "wait"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

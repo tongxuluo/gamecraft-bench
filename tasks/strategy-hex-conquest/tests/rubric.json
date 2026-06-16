@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4+A5)/5))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "Headless launch exits 0 without fatal errors; this 0/1 gate multiplies the rest."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4", "A5"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The game uses a hex grid where units move tile-by-tile with visible movement costs varying by terrain type (plains cheap, forests slow, mountains impassable). Clicking a unit highlights reachable hexes. 0 if movement is not hex-based, if terrain has no effect on movement, or if reachable tiles are not shown. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Cities generate income each turn shown as a gold counter that increases at turn start. The player spends gold to recruit units at owned cities; attempting to recruit without sufficient gold fails with a clear cue. 0 if there is no income system, if cities do not generate gold, or if units can be recruited for free. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Fog of war hides tiles beyond unit vision range. Moving units reveals adjacent hexes. Enemy units and cities are invisible until within vision range. 0 if the entire map is always visible, if fog is only cosmetic, or if enemy positions are always known. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Combat occurs when a unit attacks an adjacent enemy. Both units exchange damage based on stats, terrain defense bonus, and unit type. The losing unit is removed with visible feedback; the winner remains with reduced HP. 0 if there is no combat, if combat has no visible outcome, or if terrain provides no defensive bonus. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The full game loop connects: title -> faction select -> map play with turns -> victory/defeat -> rematch or title. Capturing all cities or destroying all enemy units triggers victory; losing all own units or cities triggers defeat. Each outcome shows a styled result screen. 0 if any transition is missing, if win/loss conditions are unreachable, or if returning requires relaunching. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least two factions are selectable before the game, each with a visible name, distinct color scheme, and at least one gameplay difference (unit roster, income bonus, or starting position advantage). 0 if there is no faction choice or if factions are purely cosmetic. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least three distinct unit types are recruitable (e.g., infantry, cavalry, siege) with different sprites, movement ranges, attack values, and tactical roles. 0 if only one unit type exists or if types share identical stats and appearance. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "The map contains at least three terrain types (plains, forest, mountain or equivalent) that are visually distinct and mechanically different in movement cost or defense bonus. 0 if terrain is uniform or if different-looking tiles have identical mechanical effect. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The AI opponent actively recruits units, moves them toward objectives, attacks player units, and captures undefended cities. The AI grows stronger over time and does not remain passive. 0 if there is no AI opponent, if the AI never moves or attacks, or if the AI is trivially static. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Cities can be captured by moving a unit onto an enemy or neutral city, visibly changing its ownership flag and redirecting its income. At least four cities exist on the map creating meaningful territory control decisions. 0 if cities cannot change hands or if there are fewer than four capturable locations. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The HUD shows current gold, turn number, and selected unit info (type, HP, movement remaining) in clear non-overlapping regions. The player can always tell whose turn it is and what resources are available. 0 if gold, turn, or unit info is missing or hidden. Full credit needs themed UI with real assets; plain text/unstyled/raw-shape readability caps at 0.5."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The hex grid is clearly rendered with distinct tile borders, terrain types are visually distinguishable, fog-covered areas look different from revealed areas, and unit ownership is obvious at a glance. 0 if hexes are indistinguishable, if terrain types look identical, or if player and enemy units cannot be told apart. Full credit needs themed UI with real assets; plain text/unstyled/raw-shape readability caps at 0.5."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Actions produce visible feedback: selecting a unit highlights it and shows move range, moving animates the unit across hexes, combat shows damage numbers or effects, capturing a city shows ownership change, and turn end is clearly signaled. 0 if actions produce no visible state change. Full credit needs themed UI with real assets; plain text/unstyled/raw-shape readability caps at 0.5."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art coherence: hex tiles, units, cities, fog, UI panels, and result screens belong to a consistent medieval-war visual language with a coherent palette. 0 if the screen mixes incompatible styles or reads as plain default Godot grey. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Unit sprites are real illustrated or pixel-art military figures, not colored rectangles or default shapes. Different unit types and factions are visually distinct. 0 if units are plain ColorRect or indistinguishable blobs. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Terrain tiles use real textured or illustrated hex art with surface detail (grass texture, tree sprites, mountain peaks). Cities are illustrated structures distinct from terrain. 0 if terrain is uniform colored hexagons or if cities are plain circles. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI use styled themed widgets with custom panels, icon buttons, and themed fonts. The faction select, recruit menu, and result screens have authored chrome, not raw default Godot controls. 0 if primary UI elements are unstyled defaults. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    },
+    {
+      "id": "A5",
+      "agg": "mean",
+      "description": "Animation and atmosphere: unit movement, combat hits, city capture, fog reveal, and turn transitions use animation or tween rather than instant snaps. The map has ambient life (swaying trees, drifting clouds, or pulsing cities). 0 if all events snap instantly with no motion. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    }
+  ]
+}

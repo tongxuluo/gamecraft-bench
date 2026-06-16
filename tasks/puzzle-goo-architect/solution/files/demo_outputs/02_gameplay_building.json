@@ -1,0 +1,28 @@
+{
+  "scenario": "level1",
+  "duration_frames": 540,
+  "events": [
+    {"frame": 30, "type": "wait"},
+    {"frame": 60, "type": "mouse_down", "button": "left", "x": 50, "y": 20},
+    {"frame": 75, "type": "mouse_move", "x": 620, "y": 540},
+    {"frame": 90, "type": "mouse_up", "button": "left", "x": 620, "y": 540},
+    {"frame": 120, "type": "mouse_down", "button": "left", "x": 50, "y": 20},
+    {"frame": 135, "type": "mouse_move", "x": 640, "y": 500},
+    {"frame": 150, "type": "mouse_up", "button": "left", "x": 640, "y": 500},
+    {"frame": 180, "type": "mouse_down", "button": "left", "x": 50, "y": 20},
+    {"frame": 195, "type": "mouse_move", "x": 660, "y": 460},
+    {"frame": 210, "type": "mouse_up", "button": "left", "x": 660, "y": 460},
+    {"frame": 240, "type": "mouse_down", "button": "left", "x": 50, "y": 20},
+    {"frame": 255, "type": "mouse_move", "x": 630, "y": 420},
+    {"frame": 270, "type": "mouse_up", "button": "left", "x": 630, "y": 420},
+    {"frame": 300, "type": "mouse_down", "button": "left", "x": 50, "y": 20},
+    {"frame": 315, "type": "mouse_move", "x": 650, "y": 380},
+    {"frame": 330, "type": "mouse_up", "button": "left", "x": 650, "y": 380},
+    {"frame": 360, "type": "mouse_down", "button": "left", "x": 50, "y": 20},
+    {"frame": 375, "type": "mouse_move", "x": 640, "y": 340},
+    {"frame": 390, "type": "mouse_up", "button": "left", "x": 640, "y": 340},
+    {"frame": 420, "type": "wait"},
+    {"frame": 480, "type": "wait"},
+    {"frame": 540, "type": "wait"}
+  ]
+}

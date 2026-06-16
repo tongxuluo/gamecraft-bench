@@ -1,0 +1,39 @@
+[project]
+name = "gamecraft-bench"
+version = "0.1.0"
+description = "End-to-end Godot 2D game generation benchmark for coding agents"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "GameCraft-Bench contributors" },
+]
+keywords = ["benchmark", "godot", "cli-agents", "game-generation", "harbor"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "harbor>=0.7.1",
+    "pytest>=8.0",
+    "pytest-json-ctrf>=0.5.0",
+    "anthropic>=0.40.0",
+    "openai>=1.55.0",
+    "google-genai>=0.3.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["gamecraft_bench"]
+
+[tool.pytest.ini_options]
+testpaths = ["tasks"]
+# Only collect files explicitly named test_outputs.py inside task dirs;
+# avoids pytest scanning vendored Harbor task templates etc.
+python_files = ["test_outputs.py"]

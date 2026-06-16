@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player character accelerates over time while grounded, building speed continuously. Momentum is preserved through jumps and wall-jumps. Hard collisions or landings reduce speed. The physics feel weighty and momentum-driven. Score 0 if movement is instant-velocity with no acceleration. Score 0.5 at most if acceleration exists but momentum is not preserved through jumps. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Wall-jumping is present and preserves horizontal momentum — jumping off a wall while moving fast launches the player further than a standing wall-jump. The mechanic rewards speed maintenance. Score 0 if no wall-jump exists. Score 0.5 at most if wall-jump exists but does not interact with momentum. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Gold pieces are collectible throughout levels. A key item must be collected to unlock the exit door. The exit door only opens when the key is held. Score 0 if no collectibles or key-gate mechanic exists. Score 0.5 at most if collectibles exist but the exit has no gate condition. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "A countdown timer per level creates urgency. Failing the timer or falling into a void restarts the level instantly. The timer is visible and ticking during gameplay. Score 0 if no timer or time pressure exists. Score 0.5 at most if a timer displays but has no consequence when it expires. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Level completion awards a rating based on time remaining and gold collected. The rating (stars, grade, or score) is displayed on the level-complete screen and on the level-select grid. Score 0 if no rating system exists. Score 0.5 at most if completion is binary with no performance grading. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 20 distinct levels are present across multiple labs, each with unique platform layouts that test momentum mechanics differently. Score 0 if fewer than 10 levels exist. Score 0.5 at most if levels exist but layouts are trivially similar. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 4 distinct environmental elements are introduced across labs (ice surfaces, conveyor belts, bounce pads, gravity zones, wind tunnels, moving walls, etc.) each changing how momentum behaves. Score 0 if only basic platforms exist. Score 0.5 at most if elements exist but do not meaningfully affect momentum physics. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Multiple labs (at least 4) organize levels into themed groups, each introducing a new environmental element. Labs unlock sequentially. Score 0 if no lab/world organization exists. Score 0.5 at most if labs exist but introduce nothing new. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Gold placement rewards momentum-preserving routes — some gold is only reachable by maintaining high speed through complex sequences. Optional gold creates risk/reward decisions between safe paths and fast paths. Score 0 if gold is only on obvious paths. Score 0.5 at most if some gold is off-path but does not require momentum skill to reach. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A level-select grid shows all levels organized by lab with completion status, rating, and best time visible per level. An overall stats screen shows total gold and completion percentage. Score 0 if no level select or stats exist. Score 0.5 at most if selection exists but shows no performance data. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows the game name and a level-select grid organized by lab with thematic art. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The game flow connects title -> level select -> gameplay -> level complete -> back to select without restarting. Score 0 if transitions are missing. Score 0.5 at most if flow exists but is broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "During gameplay, the timer, gold count, key status, and speed indicator are visible in a clear HUD. Score 0 if no HUD is displayed. Score 0.5 at most if HUD exists but is incomplete or overlaps gameplay. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: player, platforms, environmental elements, gold, key, and exit are all clearly distinguishable. Score 0 if elements blend together. Score 0.5 at most if visuals are dominated by raw shapes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, levels, UI, and environmental elements — a consistent minimalist laboratory aesthetic with clean lines and unified palette. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Level environments use real sprite or tile art for platforms, walls, environmental elements, and the player — not plain ColorRect fills. Different labs have visually distinct themes. Score 0 if environments are uniform color fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: timer, gold counter, level select grid, rating display, and completion screens use styled themed widgets — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: the player has a speed-dependent run animation or trail, gold collection sparkles, wall-jumps produce impact particles, the timer pulses when low, and level completion has a celebratory effect. Score 0 if all state changes snap silently. Score 0.5 at most if animation is minimal. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

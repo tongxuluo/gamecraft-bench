@@ -1,0 +1,136 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4+A5)/5))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "A food counter is permanently visible and changes during battle. Spending food to send a creature subtracts its cost; attempting to send a creature whose cost exceeds current food fails with a clear cue (disabled button, red flash, or message). Score 0 if there is no visible food counter, if food never changes, if creatures can be sent without consuming food, or if an unaffordable action still produces a creature. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The player sends creatures out of their den and those creatures move autonomously across a side-on lane toward the enemy den. Spawned creatures are mobile units advancing through intermediate positions across sampled frames, not static placements or teleporting icons. Score 0 if creatures never advance, if the player cannot send units, if units teleport between points, or if units exist only as HUD numbers with nothing moving on the lane. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Opposing creatures engage in combat when they meet: they stop or slow, HP decreases, attacks produce visible feedback (flashes, projectiles, damage numbers, HP bar changes), and a creature at 0 HP is removed with a real effect (fade, shrink, particle burst). The front line visibly shifts toward whichever side is winning. Score 0 if opposing creatures pass through one another, if combat is only a background number change, if HP does not decrease, or if hits and deaths have no visible feedback. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "A growth or evolution track (XP bar, era meter, or tier counter) is visible and advances from combat or time. Reaching a threshold evolves the kingdom to a new era that unlocks stronger creatures or visibly upgrades the den. At least one evolution step is observable. Score 0 if there is no growth system, if the track never advances, if advancing unlocks nothing new, or if evolution is only a label with no gameplay change. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The full loop is connected without restarting the executable: title -> kingdom selection -> battle -> result -> new battle or title. Victory is reached by destroying the enemy den; defeat by the player's den being destroyed. Each outcome ends on a styled result screen with an unambiguous win/loss message and a way to play again. Score 0 if any transition is missing, if either outcome is unreachable, or if returning from a result screen requires relaunching. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "Before battle the player chooses among at least three kingdoms/factions, each shown with a visible name and a distinct gameplay temperament. The choice affects gameplay through at least two observable differences such as creature roster, costs, food economy, evolution path, or battle tempo. Score 0 if there is no selection step, if there are fewer than three kingdoms, or if differences are purely cosmetic. Score 0.5 at most if only labels or decorative elements distinguish the factions with no gameplay difference. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The player can field at least three distinct creature types that are visually different (different sprite or silhouette, not just recolor) AND functionally different, including at minimum a front-line blocker, a ranged attacker, and an economy gatherer, each shown with its food cost. Score 0 if there is only one creature type, if all types share an identical sprite differing only by tint, or if all types have the same cost and behavior. Score 0.5 at most if only labels or static icons distinguish types with no observable role difference during battle. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "The computer opponent actively fields its own creatures and grows more dangerous as the battle progresses (more units or stronger units over time). Enemy creatures are visually distinguishable from the player's side. Score 0 if there is no enemy force, if the enemy never spawns, or if enemy creatures are indistinguishable from the player's. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Later-era creatures unlocked through evolution are meaningfully stronger and visually grander than opening-era creatures, and at least two clearly different power tiers are observable. Evolution expands the roster or role combinations rather than only increasing a hidden number. Score 0 if all creatures are equivalent regardless of era, if no stronger units are ever unlocked, or if tiers differ only by a number with no visual or tactical change. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "During battle the player can read three pieces of info at a glance: current food, evolution/era progress, and both dens' remaining health. The three are placed in distinct, non-overlapping HUD regions. Score 0 if any of the three is missing or hidden behind a click, or if they overlap into one cluttered cluster. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The battle scene has clear visual zoning: player creatures, enemy creatures, and the two dens are mutually distinguishable so the player tells sides apart at a glance; the battlefield and HUD/UI panels occupy framed, non-overlapping regions. Score 0 if friendly and enemy creatures share the same color and shape, if the two dens are indistinguishable, or if HUD widgets float over the battlefield with no visible separator. Score 0.5 at most if only labels or text distinguish sides with no color or shape difference. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Actions produce feedback that persists across multiple sampled frames: sending a creature shows it appear and begin moving; combat shows hit/damage feedback; evolving shows a state change (era label, den upgrade, new creature); and an unaffordable action shows a clear refusal. Score 0 if any of these moments leaves no observable state change across sampled frames. Score 0.5 at most if only static text or disconnected labels indicate state changes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art coherence: creatures, dens, battlefield, terrain, UI panels, icons, and effects belong to a consistent, lively-but-fierce animal-war visual language with a coherent palette. Score 0 if the screen mixes incompatible styles, relies on unthemed placeholder rectangles for primary elements, or reads as plain default Godot grey. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Creature sprite quality: player and enemy creatures are represented by real sprite art (illustrated, pixel-art, or hand-drawn animals/monsters), not solid-color rectangles or default Godot primitives, and different creature types and tiers are visually distinct. Score 0 if any in-battle creature is a plain ColorRect or default shape, or if creatures are indistinguishable colored blobs."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Battlefield and den art: the lane uses real textured or illustrated terrain (grass, dirt, jungle, savanna) with visible surface detail, and each den is a real illustrated structure distinct from the terrain. Score 0 if the battlefield is a uniform color background, if the terrain is plain ColorRect, or if the dens are solid-color blocks with no surface treatment."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD chrome and UI styling: the food counter, evolution meter, den-health displays, creature spawn buttons, and result screens use styled themed widgets (custom panel backgrounds, icon buttons, illustrated frames, or themed StyleBox), not raw unstyled Godot defaults, and numeric counters use a custom or styled font. Score 0 if any primary HUD element is an obviously unstyled default Godot widget, or if chrome treatments differ wildly between screens. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A5",
+      "agg": "mean",
+      "description": "Animation and atmosphere: creature movement, attacks, deaths, evolution, food/HP changes, and result transitions use animation, tween, particles, or shake rather than instant snaps, and the battlefield carries ambient life (drifting particles, swaying flora, or a pulsing den). Score 0 if all important events snap instantly with no motion, or if nothing on screen animates across the sampled frames. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

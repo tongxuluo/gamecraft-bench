@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player character falls continuously downward. Pressing fire shoots a projectile beneath the character, destroying soft blocks and providing upward recoil that slows the fall. The recoil is visible and affects trajectory. Score 0 if no downward shooting or recoil exists. Score 0.5 at most if shooting exists but provides no movement effect or recoil is imperceptible. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A combo system tracks consecutive enemy/block kills without landing. The combo counter is visible and multiplies gem value. Landing on a platform resets the combo. Score 0 if no combo system exists. Score 0.5 at most if a counter exists but has no effect on scoring or resets incorrectly. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The player has a health system — touching enemies, spikes, or the top of the screen costs health. Reaching zero health ends the run with a game-over screen. Score 0 if the player is invincible or death has no consequence. Score 0.5 at most if health exists but damage sources are absent or game-over is not implemented. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The descent is procedurally generated — each run produces a different arrangement of platforms, enemies, and hazards. No two runs are identical in layout. Score 0 if levels are static and hand-crafted with no variation. Score 0.5 at most if some randomness exists but the overall structure is always the same. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Shop platforms appear periodically during descent offering purchasable upgrades (weapon spread, fire rate, health, shield) for collected gems. At least 3 distinct upgrade options are available. Score 0 if no shop or upgrade system exists. Score 0.5 at most if a shop appears but offers fewer than 3 options or purchases have no observable effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 3 distinct enemy types appear during descent with different movement patterns (horizontal drifters, vertical bouncers, chasers). Different enemies require different avoidance or attack strategies. Score 0 if only one enemy type exists or no enemies are present. Score 0.5 at most if enemies exist but all behave identically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Multiple block/terrain types exist: soft blocks (destroyable), hard blocks (indestructible), hazard blocks (spikes), and gem blocks (drop currency). Each type is visually distinct and behaves differently. Score 0 if only one block type exists. Score 0.5 at most if types exist but are not visually distinguishable or behave the same. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Depth tiers change the environment theme and difficulty — deeper sections have denser hazards, faster scroll speed, and different visual themes. At least 3 distinct depth tiers are observable. Score 0 if the environment never changes with depth. Score 0.5 at most if changes are only cosmetic with no difficulty increase. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The shop offers at least 3 mechanically distinct upgrade categories (weapon modifications, defensive options, utility) that visibly change gameplay after purchase. Score 0 if upgrades are cosmetic only or fewer than 3 categories exist. Score 0.5 at most if upgrades exist but their effects are not observable in gameplay. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A game-over screen shows depth reached, gems collected, max combo achieved, enemies killed, and a retry button. Results reflect actual run performance. Score 0 if no results screen exists. Score 0.5 at most if results are generic with no performance data. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows the game name, high score, and Start button with thematic art before gameplay begins. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse or mostly placeholder text. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The game flow connects title -> descent gameplay -> shop encounters -> game over -> retry/title without restarting. All transitions are smooth. Score 0 if transitions are missing or require relaunch. Score 0.5 at most if flow exists but is broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "During gameplay, health, gem count, combo counter, and depth meter are visible in a clear HUD that does not obstruct the play area. Score 0 if no HUD is displayed. Score 0.5 at most if HUD exists but overlaps play area or is unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: player, projectiles, enemies, blocks, gems, and hazards are all clearly distinguishable against the background. Score 0 if elements blend together. Score 0.5 at most if visuals are dominated by raw shapes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, descent shaft, enemies, blocks, shop, and UI — a consistent vertical-descent aesthetic with unified palette and visual hierarchy. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The descent environment uses real sprite or tile art for blocks, enemies, backgrounds, and the player — not plain ColorRect fills. Different depth tiers have visually distinct themes. Score 0 if environments are uniform color fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: health display, gem counter, combo indicator, shop interface, and game-over screen use styled themed widgets — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: shooting produces muzzle flash and recoil motion, enemies explode on death, combo counter pulses on increment, gems sparkle, and the shop has transition animations. Score 0 if all state changes snap silently. Score 0.5 at most if animation is minimal. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Turn-based card combat: the player draws cards each turn, has limited energy to spend, and plays attack cards to deal damage or skill cards to gain block. Cards are dragged or clicked to play them. Energy cost is shown on each card and deducted on play. The turn ends when the player clicks an end-turn button. Score 0 if combat is not turn-based, if there is no energy system, or if cards cannot be played interactively. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Enemies display their intent before the player's turn: an icon or text shows whether they will attack (with damage number), buff themselves, or debuff the player. The player uses this information to decide whether to attack or defend. Block absorbs incoming damage and resets each turn. Score 0 if enemy intent is hidden, if there is no block mechanic, or if the player cannot react to enemy plans. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "After combat, the player chooses 1 of 3 offered cards to add to their deck (or skips). Cards have rarities (Common/Uncommon/Rare) with distinct visual borders or colours. A branching map shows the path through the act with different node types (combat, elite, shop, rest, event). The player chooses their route. Score 0 if there is no card reward, if there is no map, or if the path is linear with no choice. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 3 character classes with different starting decks, card pools, and signature mechanics. Each class has a unique portrait and thematic identity. The player selects their class before starting a run. Score 0 if there is only one class, if classes share the same cards, or if there is no class selection. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 20 distinct cards across the card pool with different effects (damage, block, draw, buff, debuff, multi-hit, conditional). Each card has a name, energy cost, description, and rarity. Cards feel mechanically distinct from each other. Score 0 if there are fewer than 20 cards, if cards are functionally identical, or if card text is missing. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Relics (passive items) modify rules and are displayed in a relic bar. At least 5 distinct relics exist with unique effects. Elite enemies always drop a relic. Relics have tooltip descriptions on hover. Score 0 if there are no relics, if fewer than 5 exist, or if relics have no visible display. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The run spans at least 3 acts, each ending with a boss that has unique mechanics and multi-phase patterns. Bosses are visually distinct from regular enemies with larger sprites and special attack animations. Defeating the final boss wins the run with a victory screen. Score 0 if there is only one act, if bosses behave like regular enemies, or if there is no victory condition. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The combat screen clearly shows: player health, enemy health, player energy, hand of cards (readable text), enemy intent icons, block amount, and relic bar. All elements are non-overlapping and readable at 1280x720. Score 0 if any core element is missing or unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Card play produces visible effects: attack cards show damage numbers and hit animations on the enemy; block cards show a shield icon appearing on the player; buffs/debuffs show status icons. The player can assess the board state from any single frame. Score 0 if card play has no visual feedback, or if damage/block is not animated. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title -> Class select -> Map navigation -> Combat -> Card reward -> Shop/rest -> Boss -> Victory or death. The player can experience every node without restarting. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a play button that is interactive and transitions to class select, and uses a non-default background (dark tower, fantasy landscape, or card artwork) \u2014 not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element \u2014 cards, enemies, map nodes, UI panels, relics \u2014 belongs to a single consistent visual language. The palette is dark fantasy themed; no clashing styles or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Cards have illustrated art, borders, and readable text; enemies have distinct detailed sprites; the map uses themed node icons; UI panels and buttons use styled widgets with custom fonts; relics have unique icons. Score 0 if cards are plain text boxes, if enemies are solid-colour primitives, or if UI is unstyled defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: card draw, card play, damage numbers, enemy attack animations, block shield appearance, status effect application, map transitions, and screen changes each play as smooth multi-frame tweens or sprite animations. No element snaps to its new state in a single frame. Transitions use fades or slides. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

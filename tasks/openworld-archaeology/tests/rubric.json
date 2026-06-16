@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player selects between at least three excavation tools (brush, trowel, pickaxe) and uses them to remove material from a dig site. Each tool removes layers at a different speed or precision. The active tool is indicated on screen and switching is immediate. Score 0 if there are fewer than 3 tools, if tools cannot be switched, or if all tools behave identically. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Dig sites have visible layers that peel away as the player excavates -- colour, texture, or opacity changes as depth increases. Artefacts are hidden at specific depths and emerge gradually (partial reveal before full extraction). Score 0 if layers are invisible, if depth has no visual representation, or if artefacts appear instantly without gradual uncovering. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Symbol puzzles gate access to sealed chambers: the player manipulates elements (matching symbols, rotating rings, or tracing patterns) and a correct solution triggers a visible unlock -- a door slides open, a passage is revealed, or a seal breaks. Score 0 if there are no puzzles, if puzzles have no interactive solution mechanic, or if solving produces no visible result. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Environmental hazards threaten the player at dig sites: at least two distinct hazard types (sandstorms, collapsing floors, oxygen depletion, avalanches) that reduce health or force retreat. A health or safety gauge is visible and depletes on hazard contact. Score 0 if there are no hazards, if hazards have no gameplay effect, or if there is no health/safety system. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The full loop is connected without restarting the executable: title -> explore world -> excavate at site -> discover artefact -> return to museum -> earn research -> unlock new content. Every transition is reachable through in-game UI. Score 0 if any transition in the chain is missing or broken. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The world spans at least four visually distinct dig-site biomes (desert temple, jungle ruin, underwater site, mountain tomb) each with its own palette, terrain texture, and environmental identity. The player can travel freely between them. Score 0 if there are fewer than 4 biomes, if biomes are indistinguishable, or if travel between them is blocked. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least six distinct artefact types exist (e.g., pottery shards, golden idols, stone tablets, jewellery, bone fragments, ancient coins) with different sprites and a rarity system (common through legendary). Each artefact has a short historical description viewable on discovery. Score 0 if there are fewer than 6 artefact types, if artefacts share a single sprite, or if rarity/descriptions are absent. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "A museum or base camp displays collected artefacts on shelves or pedestals with labels. The player can view their collection organized by culture, era, or rarity. Research points earned from discoveries unlock new dig sites or improved tools. Score 0 if there is no museum/collection screen, if artefacts are not displayed after collection, or if research points have no unlock effect. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Each biome applies a distinct environmental hazard that changes how excavation plays -- sandstorms obscure vision in the desert, floors collapse in the jungle, oxygen depletes underwater, avalanches threaten in the mountains. At least two different hazard behaviours are observable. Score 0 if all biomes share identical hazards or if hazards are purely cosmetic. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Puzzle variety: at least two distinct puzzle types exist across sites (symbol matching, ring rotation, pattern tracing, sequence recall) that require different player interactions to solve. Score 0 if there is only one puzzle type or if all puzzles are identical. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Core game state is readable at a glance through a HUD: current tool, health/safety gauge, collected artefact count or research points, and active biome/site name are placed in clear non-overlapping regions. Score 0 if the tool indicator or health gauge is missing or hidden. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "The dig scene is legible during excavation: layers, tool cursor, emerging artefact edges, and hazard warnings are mutually distinguishable in colour and silhouette. The player can tell what depth they are at and where artefacts might be. Score 0 if layers are indistinguishable, if the tool cursor is invisible, or if artefact edges blend into the background. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Actions and events produce clear visible feedback: tool strikes show particle/dust effects, layer removal animates, artefact discovery triggers a highlight or glow, puzzle solutions produce a door-opening animation, and hazard hits flash or shake the screen. Score 0 if excavation, discovery, puzzle solving, or hazard contact happen with no visible feedback. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "max",
+      "description": "A styled title screen is present with the game name, a way to start, and art that establishes the archaeological/mysterious tone. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art coherence: the player, dig sites, artefacts, tools, museum, and UI belong to a consistent visual language with an earthy, ancient palette. Each biome reads as a coherent themed environment rather than mismatched parts or default Godot grey. Score 0 if the screen mixes incompatible styles, relies on unthemed placeholder rectangles, or looks like a blank default scene. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Character and object sprite quality: the player avatar, artefacts, tools, and puzzle elements are real sprite art (illustrated, pixel-art, or hand-drawn), not solid-color rectangles or default Godot primitives. Different artefact types and tool types are visually distinct. Score 0 if the avatar or artefacts are plain ColorRect/default shapes or indistinguishable colored blobs. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment and level art: dig-site terrain, layer textures, and per-biome backdrops use real textured or illustrated art with surface detail (cracks, carvings, moss, coral). The biomes are clearly different illustrated settings. Score 0 if sites are uniform color backgrounds, if layers are plain untextured rectangles, or if biomes are visually identical fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and atmosphere: layer removal, artefact reveal, puzzle piece movement, chamber door opening, hazard effects, and museum arrangement each play as smooth multi-frame tweens or sprite animations -- no element snaps to its new state in a single frame. Scene transitions use a brief fade or slide rather than an instant cut. The world carries ambient life (drifting sand, swaying vines, bubbling water, falling snow). HUD and UI use styled themed widgets, not raw unstyled Godot defaults. Score 0 if all motion snaps with no easing/effects, or if nothing on screen ever animates during play. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

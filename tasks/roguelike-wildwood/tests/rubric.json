@@ -1,0 +1,160 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5+M6)/6) + 0.35*((D1+D2+D3+D4+D5+D6)/6) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4+A5)/5))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Exploration unfolds on a branching node-map leading deeper into the forest. Unvisited nodes show partial clues (tracks, smoke, glitter, disturbed brush) that help the player infer risk before committing. The map shows current position, reachable choices, and forward depth. Score 0 if there is no map or route choice, if the player walks a single forced path, if every node is fully revealed in advance, or if node choice is pure random with no clue system. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Beast encounters resolve in clearly turn-based combat where the player chooses from several distinct skills, then the beast acts on a separate visible turn. The screen shows whose turn it is, both health pools, and at least one combat resource or cooldown that constrains skill use. Score 0 if combat is not turn-based, if the hero has only one usable action, if no resource constrains skill use, or if health is not visible during the fight. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The hero's health persists across the entire run (carried between nodes, never reset for free) and reaching zero ends the run in permanent death. Damage taken earlier raises the stakes of later nodes. Score 0 if health refills automatically between every encounter, if death is impossible, or if running out of health does not end the run. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "A roguelite meta-layer persists between runs via save: entering the forest costs a consumable ticket, gold earned during runs is banked at a home base, and banked resources survive closing and reopening the game. On death the player returns to camp minus a ticket but keeps banked gold. Score 0 if there is no entry cost, if nothing is banked between runs, if the home base is identical regardless of past runs, or if there is no save persistence across launches. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "A run resolves in victory (reaching the heart of the wood and overcoming its guardian) or defeat (health reaches zero). Each outcome ends on a styled result screen with an unambiguous message, a payout or consequence, and a way to continue. Score 0 if either outcome is unreachable, if the result screen is plain unstyled floating text with no panel, or if the run continues underneath the result. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M6",
+      "agg": "max",
+      "description": "The full loop is connected without restarting the executable: title -> camp -> enter forest -> node map -> encounters -> run result -> back to camp -> enter again. Every transition is reachable through in-game UI. Score 0 if any transition is missing or broken, or if returning from a result or re-entering the forest requires relaunching the application. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The forest contains at least four distinct beast types that are visually different (different sprite or silhouette, not recolor) and behave differently in combat — e.g. a fast wolf, an armored bear, a venomous serpent, a swarming pack. Different beasts demand different tactical responses. Score 0.5 at most if only labels or stat numbers distinguish beasts with no visual or behavioral difference. Score 0 if there are fewer than four distinct beasts or if every beast has identical stats and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Some trail nodes are traps or hazards that spring an effect (damage, negative status, lost gold) distinct from a normal beast fight. Trap nodes have a readable hint before commitment (disturbed brush, bones, warning marks) so avoiding or accepting danger feels like a decision. Score 0.5 at most if only labels or decorative text indicate traps with no actual gameplay effect. Score 0 if there are no traps/hazards, if hazards have no effect on the player, or if every node is either safe or plain combat. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Treasure chests and traders yield functional items or relics that reshape how the hero fights — weapons, gear, or passive charms with effects such as bonus damage, regeneration, status resistance, or new skills — and at least two mechanically distinct items are obtainable beyond health potions. Acquiring one produces visible feedback and a persistent inventory state. Score 0.5 at most if only labels or static text describe items with no observable gameplay effect. Score 0 if loot is only healing, if items have no gameplay effect, or if there is no inventory. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Combat features lingering status effects (poison, bleed, guard, stun, or similar). Applying one creates a visible icon or counter on the affected combatant, and on subsequent turns it produces a concrete consequence (health tick, reduced damage, skipped action). At least two different status types exist with both application feedback and clear consequence. Score 0.5 at most if only labels or decorative icons appear with no observable consequence. Score 0 if combat has no statuses or if statuses never visibly change the fight. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "The hero's skill kit has depth and growth: at least three distinct skills with visibly different roles (basic strike, costed burst, guard/heal, cleanse, bleed attack), and gaining a relic or item during the run changes how the player fights through new buttons, altered damage, or different resource costs. Score 0.5 at most if only labels or stat numbers indicate growth with no observable combat change. Score 0 if the hero never has more than two real options, if skills are identical damage buttons with different names, or if growth never connects to combat. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D6",
+      "agg": "max",
+      "description": "The node map offers at least four distinct node kinds beyond plain combat — such as treasure, campfire, trader, trap, elite, and boss — each resolving through its own themed interaction. Node kinds have distinct clue language or visual hints before reveal, then distinct resolution after reveal. Score 0.5 at most if only labels distinguish node types with no distinct interaction. Score 0 if the only node type is combat, if there are fewer than four distinct kinds, or if different icons all lead to the same generic outcome. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Core state is readable at a glance: health, combat resource, gold, entry tickets, and run depth each displayed in a clear non-overlapping HUD region appropriate to the current screen (camp, map, or combat). Score 0.5 at most if only disconnected text labels show state with no styled readout. Score 0 if any of health, resource, or run progress is missing or hidden behind a click, or if readouts overlap into one cluttered cluster. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The map and combat screens are legible and zoned: the node map clearly shows nodes, connections, current position, and which choices are unknown vs revealed; the combat screen clearly shows the hero, the beast, both health pools, active statuses, and available skills. UI panels do not bleed into the play area. Score 0.5 at most if only labels or decorative elements indicate structure with no spatial clarity. Score 0 if the map is unreadable, if combatants are not clearly laid out, or if HUD widgets float over the scene with no separation. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Actions and events produce clear feedback: using a skill, taking or dealing damage, a status being applied, a trap springing, gaining an item, entering a node, and win/death transitions each show a visible state change (moving numbers, changing bars, flashes, panel transitions). Score 0.5 at most if only static text acknowledges events with no visual change. Score 0 if important events happen with no visible feedback or state change. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "max",
+      "description": "Controls and interactions are operable: the player can select nodes on the map, choose skills in combat, navigate camp options, and access inventory without confusion. Clickable elements look clickable, selected items are highlighted, and disabled options are visually distinct. Score 0.5 at most if only labels indicate interactivity with no visual affordance. Score 0 if the player cannot tell what is clickable or how to navigate. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art coherence: the forest, trail nodes, camp, hero, beasts, items, and UI belong to a consistent hushed-and-mysterious woodland visual language with a coherent earthy palette (greens, browns, dappled golds). The game reads as a watchful forest roguelike, not a spreadsheet over a flat grid. Score 0 if the screen mixes incompatible styles, relies on unthemed placeholder rectangles for primary elements, or reads as plain default Godot grey. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Character and beast sprite quality: the hero and the various beasts are real sprite art (illustrated, pixel-art, or hand-drawn), not solid-color rectangles or default Godot primitives, and different beast types and the hero are visually distinct and recognisable. Score 0 if the hero or any in-combat beast is a plain ColorRect or default shape, or if beasts are indistinguishable colored blobs."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment and map art: the forest backdrop, node-map trail, node icons or clue markers (tracks, smoke, campfire glow, treasure glints, trap warnings), and home camp use real textured or illustrated art with surface detail. The map feels like an explorable forest route, not a rough graph on an empty background. Score 0 if the map and environment are uniform color fills, if node markers are plain ColorRect dots, or if the camp is an unstyled blank screen."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI chrome: health/resource bars, gold and ticket readouts, skill buttons with icons, status-effect icons, inventory display, and camp/result screens use styled themed widgets — custom panels, icon buttons, illustrated frames, or themed StyleBox — not raw unstyled Godot defaults, and numeric text uses a custom or styled font. Score 0 if primary UI elements are obviously unstyled default Godot widgets or if chrome treatments differ wildly between screens. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A5",
+      "agg": "mean",
+      "description": "Animation and atmosphere: skill strikes, hits, deaths, status ticks, trap springs, item pickups, node transitions, and result screens use animation, tween, particles, or shake rather than instant snaps, and the forest carries ambient life (drifting light, swaying foliage, flickering campfire). Score 0 if all important events snap instantly with no motion, or if the game feels visually static during play. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

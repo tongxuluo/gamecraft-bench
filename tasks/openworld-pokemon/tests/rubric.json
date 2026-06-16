@@ -1,0 +1,98 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3", "M4"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4", "D5"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2", "V3"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Entering tall grass or a designated wild area triggers a wild creature encounter with a visible transition effect (screen flash, zoom, dim/fade, or shake) leading into a turn-based battle scene. The player can choose Attack, Throw Capture Ball, or Flee, and each choice produces a visible consequence (attack animation, ball arc, or return to overworld). Score 0 if encounters switch instantly with no transition, if there is no encounter mechanic, or if action buttons are decorative and clicking them does nothing. Score 0.5 at most if the encounter exists but uses only labels or text with no animated transition or visible combat feedback."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The turn-based battle UI shows both combatants' HP bars with current/max values, level numbers, and at least two distinct skill buttons. Clicking a skill triggers a visible attack animation (attacker moves, flashes, or emits a projectile) and the opponent's HP bar depletes with an animated transition, not an instant number jump. Score 0 if HP is not displayed, if fewer than two skills exist, if clicking a skill does nothing, or if the attack produces no animated motion. Score 0.5 at most if the battle UI exists but uses only programmatic shapes or solid-color fills instead of real sprite/texture assets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The player can throw a capture ball at a wild creature: the ball travels visibly from the player side to the target (not an instant snap), plays a shake/wobble animation, and shows clear text feedback ('Caught!' or 'It broke free!'). A successfully captured creature joins the player's roster. Score 0 if there is no capture mechanic, if the ball instantly appears on the target, or if there is no shake animation or feedback text. Score 0.5 at most if the capture mechanic exists but is demonstrated only in a static scenario without sustained gameplay integration."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "After defeating a wild creature or NPC trainer, the player's creature gains experience points: an XP bar fills visibly, and when the threshold is reached the level number increments with a visible level-up effect (flash, popup, or particle burst). Score 0 if there is no XP system, if defeating an opponent grants no experience, or if leveling produces no visual feedback. Score 0.5 at most if XP is only a text label that changes without any animated bar fill or level-up effect."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The open-world map has at least three visually distinct regions (e.g., grassy fields, a town, and a mountain/water barrier area). Each region has a different terrain texture or colour so the boundary is readable at 1280x720. The player can move freely in 8 directions across all accessible regions. Score 0 if the map has fewer than 3 regions, if the player cannot move freely, or if regions are indistinguishable solid-colour fills. Score 0.5 at most if regions exist but use only programmatic shapes or uniform ColorRect fills instead of textured/illustrated tiles."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Wild encounters include at least three visually different creature species (different shapes, colours, or sprites) that appear across the world. Creatures vary in level and at least two species have different stat profiles or move sets that affect battle strategy. Score 0 if all wild creatures look identical, if only one species exists, or if species differ only by name/colour with identical behaviour. Score 0.5 at most if multiple species exist visually but behave identically in battle with no mechanical difference."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "The map contains at least two interactive NPCs visible as distinct sprites (not solid-colour rectangles): a trainer who initiates a forced battle (flee disabled) and a healer who fully restores squad HP. Interacting with an NPC opens a styled dialog panel with a border, background, or portrait frame. Score 0 if there are no NPCs, if NPCs are plain shapes, if the dialog is unstyled raw text, or if NPC interactions have no gameplay effect. Score 0.5 at most if NPCs exist but their interactions are only decorative text with no state change (no healing, no battle triggered)."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "At least one region is initially locked (blocked by a river, gate, or mountain). Defeating the gym leader or obtaining a badge unlocks that region with clear visual feedback (the blocker disappears, a bridge lowers, or a path opens). The unlocked region contains new content (different creatures, terrain, or challenges). Score 0 if there is no locked region, no unlock condition, or no visual feedback when unlocking. Score 0.5 at most if the lock/unlock exists but the unlocked region contains no new content or is visually identical to existing regions."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "The player can build a squad of at least two captured creatures and swap between them during battle or from a menu. Each creature in the squad retains its own HP, level, and XP independently. Score 0 if the player can only use one creature, if there is no swap mechanic, or if captured creatures disappear after capture. Score 0.5 at most if squad management exists as labels only with no visible effect on battle (e.g., swapping does not change the active combatant sprite or stats)."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full game loop is connected: Title -> Explore -> Encounter/Battle -> Return to Explore -> NPC Interaction -> Defeat Gym Leader -> Unlock Region. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken (e.g., battle cannot return to world map, or defeating the leader does not unlock the region). Score 0.5 at most if the loop exists but requires manual scene restarts or has dead-end states that force the player to quit."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "Battle state is readable at a glance: both combatants' HP bars, level numbers, active creature name, and available action buttons (Attack, Capture, Flee) are clearly visible without overlap at 1280x720. The currently selected action is highlighted or indicated. Score 0 if HP, level, or action buttons are missing, or if critical UI elements overlap and obscure each other. Score 0.5 at most if the information is present but uses raw unstyled Godot Label/Button defaults with no visual hierarchy or grouping."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Overworld state is readable: the player character's position is clear, tall grass areas are visually distinct from safe ground, NPC locations are visible, and the locked region barrier is obvious. Region boundaries and interactive elements read clearly at 1280x720 without requiring guesswork. Score 0 if the player cannot distinguish grass from safe ground, if NPCs blend into terrain, or if the locked barrier is invisible. Score 0.5 at most if readability depends on labels or text markers rather than visual design (colour, texture, shape differentiation)."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a 'Start Adventure' or 'Play' button that is interactive (clicking it transitions to the game world), and uses a non-default background (landscape artwork, sky scene, or illustrated world map) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the title screen exists but uses only solid-colour rectangles or default Godot widgets with no authored visual design."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — terrain tiles, creature sprites, NPC avatars, HUD panels, buttons — belongs to a single consistent visual language (e.g., all pixel-art, all hand-drawn cartoon, all flat-icon). The palette is bright and cheerful with no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if creatures and terrain are obviously unthemed placeholder shapes (solid-colour rectangles, default Godot primitives). Score 0.5 at most if the game uses programmatic shapes (ColorRect, Polygon2D, StyleBoxFlat, solid-color fills) as primary visual elements instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: the world map uses textured or illustrated tiles with visible surface detail that reads clearly at 1280x720; characters, creatures, and NPCs are distinct recognisable sprites (not plain coloured rectangles); HUD panels, skill buttons, dialog boxes, and capture-ball button use styled, themed widgets — custom panel backgrounds, icon buttons, illustrated frames, or rounded buttons — not raw unstyled Godot Label/Button/ColorRect defaults. Score 0 if the map is a uniform colour fill, if units are solid-colour primitives, or if any primary HUD or dialog element is an obviously unstyled default Godot widget. Score 0.5 at most if assets are coherent but entirely programmatic shapes with no illustrated or pixel-art textures."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: world-map movement, encounter transition, attack motion, capture-ball shake, HP bar depletion, level-up popup, and region-unlock feedback each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions (title->world, explore->battle, battle->explore) use a brief fade, zoom, or slide rather than an instant cut. Score 0 if any of these gameplay moments is instantaneous, or if scene transitions are hard cuts with no tween. Score 0.5 at most if transitions exist but are limited to a single generic fade with no variety or context-appropriate effects."
+    }
+  ]
+}

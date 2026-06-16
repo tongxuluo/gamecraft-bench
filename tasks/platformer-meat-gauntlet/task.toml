@@ -1,0 +1,33 @@
+schema_version = "1.2"
+artifacts = []
+
+[task]
+name = "gamecraft-bench/platformer-meat-gauntlet"
+description = "Generate a die-and-retry speed platformer with saw blades, replay ghost, and 50+ levels in Godot 4"
+keywords = ["godot", "platformer", "speed", "die-retry", "ghost", "2d"]
+[[task.authors]]
+name = "GameCraft-Bench Team"
+
+[metadata]
+
+[verifier]
+timeout_sec = 1800.0
+
+[verifier.env]
+
+[agent]
+timeout_sec = 7200.0
+
+[environment]
+build_timeout_sec = 600.0
+os = "linux"
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0
+allow_internet = true
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

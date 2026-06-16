@@ -1,0 +1,118 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The vehicle has 2D physics: wheels grip terrain with visible suspension compression, the chassis tilts with slope angle, and momentum carries over crests. The player controls gas and brake with visible acceleration/deceleration. Up/down keys tilt the vehicle mid-air to adjust landing angle. Score 0 if the vehicle has no physics simulation, if it does not tilt on slopes, or if there is no mid-air rotation control. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A fuel gauge depletes as the player drives and is displayed prominently. Running out of fuel stops the vehicle and ends the run. Fuel canisters appear along the route and refill the gauge when collected with a visible pickup effect. The tension between speed (burning fuel faster) and conservation creates meaningful decisions. Score 0 if there is no fuel system, if fuel is unlimited, or if fuel pickups are absent. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Coins scatter along the terrain and are collected on contact with a pickup animation. Distance is tracked as a persistent high score. The run ends when fuel runs out or the vehicle lands on its roof (crash). A crash produces a visible destruction or flip animation. Score 0 if there are no coins, if distance is not tracked, or if crashes have no visual feedback. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 4 terrain environments (countryside hills, moon surface, arctic ice, desert dunes) with distinct visual themes and different physics properties (friction, gravity). Each environment has unique terrain shapes and background art. Score 0 if there are fewer than 4 environments, if they look identical, or if physics does not vary between them. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 3 different vehicle types (jeep, motorcycle, monster truck) with visibly different sprites and distinct handling characteristics (speed, grip, fuel efficiency, weight). Vehicles are selectable from a garage screen. Score 0 if there is only one vehicle, if vehicles look identical, or if they handle the same. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "A garage/upgrade system lets the player spend coins on vehicle improvements: engine power, fuel capacity, suspension, tyre grip. At least 4 upgrade categories exist with multiple levels each. Upgrades produce visible performance improvements. Score 0 if there is no upgrade system, if fewer than 4 categories exist, or if upgrades have no perceptible effect. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A persistent leaderboard shows best distance per stage. Beating a personal record triggers a celebration effect. Stages unlock by reaching distance milestones on previous stages. Score 0 if there is no leaderboard, if records are not tracked, or if there is no unlock progression. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The gameplay HUD shows: fuel gauge, distance counter, coin count, and current speed indicator. All elements are readable and non-overlapping at 1280x720. The fuel gauge is prominent enough to create tension as it depletes. Score 0 if any core HUD element is missing or unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Vehicle physics are visually communicated: suspension compresses on landing, wheels spin proportionally to speed, the vehicle tilts on slopes, and mid-air rotation is smooth. The player can assess vehicle state from any single frame. Score 0 if the vehicle appears static regardless of terrain, or if physics states have no visual representation. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title -> Stage/vehicle select -> Drive -> Run ends -> Results (distance, coins) -> Garage upgrades -> Next run. The player can experience every node without restarting. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (rugged terrain, vehicle mid-jump, or sunset landscape) \u2014 not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element \u2014 vehicle sprites, terrain tiles, background layers, coins, UI panels \u2014 belongs to a single consistent visual language. The palette is colourful and adventurous; no clashing styles or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Vehicles are detailed recognisable sprites with visible wheels and chassis; terrain uses textured or illustrated surfaces with hills and detail; backgrounds have parallax layers with scenery; UI elements use styled themed widgets. Score 0 if vehicles are solid-colour primitives, if terrain is a flat line, or if UI is unstyled defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: wheel rotation, suspension bounce, vehicle tilt, coin pickup sparkle, fuel canister collection, crash/flip animation, and scene transitions each play as smooth multi-frame tweens or sprite animations. No element snaps to its new state in a single frame. Transitions use fades or slides. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player character runs and jumps with tight, responsive controls. Movement is frame-precise with no input lag. The character can change direction mid-air. Score 0 if movement is sluggish, unresponsive, or absent. Score 0.5 at most if movement exists but feels floaty or imprecise. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Hazards (spinning saw blades, spikes, retracting obstacles) kill the player instantly on contact. Respawn is near-instantaneous with no loading screen or menu — death and retry form a seamless sub-second loop. Score 0 if hazards do not kill or respawn requires menu interaction. Score 0.5 at most if death exists but respawn takes more than a second or breaks flow. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A replay ghost of the best successful run plays back as a translucent afterimage when re-entering a cleared level. The ghost follows the exact path and timing of the recorded run. Score 0 if no ghost replay system exists. Score 0.5 at most if a ghost appears but does not accurately replay the previous run or is not visually distinct from the player. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Each level is a single screen with a clear start point and goal. Reaching the goal completes the level and records completion time. The level-select grid shows completion status. Score 0 if levels have no clear goal or completion state. Score 0.5 at most if goals exist but completion is not tracked or levels are not individually selectable. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "A global death counter persists across the entire game and is visible on the level-select screen. Per-level completion times are tracked and displayed. Score 0 if no tracking exists. Score 0.5 at most if only one metric is tracked or display is hidden. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 20 distinct levels are present across multiple worlds, with unique layouts that test different platforming skills. Levels within a world share a theme but vary in structure. Score 0 if fewer than 10 levels exist or all share identical layouts. Score 0.5 at most if levels exist but are trivially similar. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 3 distinct hazard types are present (saw blades, spikes, retracting platforms, crumbling blocks, moving obstacles) each with different timing and avoidance patterns. Score 0 if only one hazard type exists. Score 0.5 at most if hazards exist but behave identically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Multiple worlds (at least 3) with distinct visual themes and new hazard introductions. Completing all levels in a world unlocks the next. Score 0 if only one world exists. Score 0.5 at most if worlds exist but are visually identical or introduce nothing new. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Difficulty escalates clearly within and across worlds — early levels teach mechanics gently, later levels demand precise timing and complex sequences. The final levels in each world are noticeably harder. Score 0 if difficulty is flat or random. Score 0.5 at most if some escalation exists but is inconsistent. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A world-completion or game-completion results screen shows total deaths, total time, and per-level best times. Results reflect actual gameplay performance. Score 0 if no results exist. Score 0.5 at most if results are generic with no performance data. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows the game name, a level-select grid, and the global death counter before gameplay begins. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse or mostly placeholder text. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The game flow connects title -> level select -> gameplay -> level complete -> back to select without restarting. All transitions are smooth and reachable through in-game UI. Score 0 if transitions are missing or require relaunch. Score 0.5 at most if flow exists but is broken or confusing. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "During gameplay, the current level timer, death flash feedback, and goal indicator are clearly visible without obstructing the play area. Score 0 if no gameplay feedback is visible. Score 0.5 at most if feedback exists but overlaps play area or is unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: player, hazards, platforms, goal, and background layers are all clearly distinguishable. Saw blades look different from spikes which look different from safe platforms. Score 0 if elements blend together. Score 0.5 at most if visuals are dominated by raw shapes or feel assembled rather than designed. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, levels, hazards, character, ghost, and UI — a consistent speed-platformer aesthetic with bold contrast and unified palette. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Level environments use real sprite or tile art for platforms, hazards, backgrounds, and the player character — not plain ColorRect fills. Different worlds have visually distinct themes. Score 0 if environments are uniform color fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: level select grid, death counter, timer, completion screens use styled themed widgets — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: death produces a burst or shake, the ghost has a translucent trail effect, saw blades spin visibly, and level completion has a celebratory animation. Score 0 if all state changes snap silently. Score 0.5 at most if animation is minimal. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

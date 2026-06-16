@@ -1,0 +1,118 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player inputs 4-beat rhythm patterns using timed key presses to issue commands to their squad. A rhythm bar at the bottom shows the beat timing. Each command (march, attack, defend, charge) has a distinct input pattern. Visual feedback shows per-beat accuracy (perfect, good, miss). Score 0 if there is no rhythm input, if commands are issued by single button presses without timing, or if there is no accuracy feedback. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Command execution power scales with input accuracy: perfect timing triggers a Fever version with bonus effects (extra damage, wider shield, faster movement), while poor timing produces a weak or failed execution. The squad visibly responds differently to perfect vs poor commands (enthusiastic animation vs stumbling). Score 0 if timing accuracy has no effect on command power, or if there is no visual difference between perfect and poor execution. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Enemies advance from the right in waves. Different enemy types require different counter-commands: shielded enemies need Charge to break through, ranged enemies need Defend to block volleys, swarms need Attack for area damage. The player must read enemy types and choose the appropriate command. Score 0 if enemies do not advance, if all enemies are countered by the same command, or if there is no strategic choice in command selection. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 4 distinct command types with different rhythm patterns and battlefield effects. Each command has a unique visual execution animation and sound cue. The player must learn and memorize each pattern. Score 0 if there are fewer than 4 commands, if commands share the same pattern, or if they produce identical effects. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 4 visually distinct enemy types with different behaviours, sprites, and counter-strategies. Enemy waves combine multiple types requiring the player to prioritize commands. Later waves introduce elite or armoured variants. Score 0 if there are fewer than 4 enemy types, if all enemies look the same, or if they all require the same counter. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "An upgrade system between missions lets the player improve unit stats (attack, defence, speed) or unlock new command patterns with more complex rhythms. At least 6 upgrades are available. Upgrades produce visible changes in combat effectiveness. Score 0 if there is no upgrade system, if fewer than 6 upgrades exist, or if upgrades have no visible effect. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "At least one boss encounter with a unique rhythm disruption mechanic (interfering beats, tempo changes, or pattern-breaking attacks). The boss has a distinct large sprite and multi-phase health bar. The fight feels climactic compared to regular waves. Score 0 if there is no boss, if the boss behaves like regular enemies, or if there is no rhythm disruption mechanic. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The rhythm bar clearly shows beat timing with a moving indicator or pulsing markers. The player can see exactly when to press each beat. Command input accuracy is shown per-beat with colour-coded feedback. Score 0 if the rhythm bar is missing, if beat timing is unclear, or if per-beat feedback is absent. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "The battlefield is readable: the player's squad on the left and enemies on the right with clear health indicators, unit type identification, and command execution animations. The player can assess the tactical situation from any single frame. Score 0 if units are indistinguishable, if health is not shown, or if the battlefield layout is confusing. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen -> Select mission -> Input commands rhythmically -> Watch squad execute -> Win or lose wave -> Upgrade between missions. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (battlefield scene, marching troops, or war drums) \u2014 not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element \u2014 squad units, enemies, battlefield terrain, rhythm bar, UI panels \u2014 belongs to a single consistent visual language. The palette is bold and military-themed; no clashing styles or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Unit sprites, enemy sprites, battlefield backgrounds, and UI elements use authored art with visible detail. Squad members are recognisable animated characters; enemies have distinct designs per type; the rhythm bar is styled and themed; terrain has textured surfaces. Score 0 if units are solid-colour primitives, if the battlefield is a plain fill, or if UI elements are unstyled defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: command execution animations, unit movement, enemy advance, hit effects, Fever mode activation, and scene transitions each play as smooth multi-frame tweens or sprite animations. No element snaps to its new state in a single frame. Transitions between screens use fades or slides. Score 0 if actions are instantaneous, or if transitions are hard cuts with no tween. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

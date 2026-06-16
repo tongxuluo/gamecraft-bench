@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4+A5)/5))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "Headless launch exits 0 without fatal errors; this 0/1 gate multiplies the rest."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4", "A5"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Sunlight drops periodically onto the lawn and the player clicks to collect it into a visible resource counter. Plants cost sunlight to place; attempting to place without enough sun fails with a clear cue. 0 if there is no sun economy, if sun is never collected, or if plants are free. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Plants are placed on a grid of lanes by dragging from a toolbar. Each plant occupies one cell and cannot overlap. Plants remain stationary and perform their function automatically (shooting, blocking, producing sun). 0 if plants cannot be placed on a grid, if placement is not lane-based, or if plants do nothing after placement. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Enemies march from the right edge toward the left in lanes. They advance steadily, attack plants they encounter, and reaching the left edge causes a loss condition. Enemies have HP that decreases from plant attacks. 0 if enemies do not advance, if they ignore plants, or if reaching the edge has no consequence. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Enemies arrive in distinct waves with increasing difficulty. A wave indicator shows current wave and total waves. Defeating all waves in a level triggers victory. 0 if enemies arrive continuously with no wave structure or if there is no win condition. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The full loop connects: title -> level select/adventure map -> gameplay -> victory/defeat -> return to map. Victory unlocks the next level. Defeat allows retry. 0 if any transition is missing or if progression is absent. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least four distinct plant types exist with different sprites and roles: a shooter, a sun producer, a wall/blocker, and at least one specialty plant (area damage, slow, or instant-kill). 0 if fewer than three types exist or if types are visually identical. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least three distinct enemy types exist with different sprites and behaviors: a basic walker, an armored type that resists damage, and a fast type that moves quickly. 0 if only one enemy type exists or if types behave identically. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "An adventure map or level select shows at least five playable levels with visible progression (locked/unlocked states, star ratings, or path connections). Later levels introduce new enemy types or conditions. 0 if there is only one level or no progression structure. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The lawn grid has at least five lanes and enough columns for meaningful placement strategy. Lane independence means enemies in one lane do not affect another unless a plant has cross-lane abilities. 0 if there are fewer than three lanes or if the grid is too small for tactical choice. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "New plant types are unlocked through level progression, expanding the player's toolkit over time. The player selects a loadout of available plants before each level. 0 if all plants are available from the start with no unlock system or if there is no loadout selection. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The HUD shows current sunlight count, wave progress, and available plants with their costs in clear non-overlapping regions. The player always knows what they can afford and how many waves remain. 0 if sun count, wave info, or plant costs are missing. Full credit needs themed UI with real assets; plain text/unstyled/raw-shape readability caps at 0.5."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The lawn grid is clearly rendered with visible lane divisions. Plants, enemies, and projectiles are mutually distinguishable. The toolbar and play area are visually separated. 0 if lanes are invisible, if plants and enemies look identical, or if UI overlaps gameplay. Full credit needs themed UI with real assets; plain text/unstyled/raw-shape readability caps at 0.5."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Actions produce visible feedback: collecting sun shows it fly to the counter, placing a plant shows it appear on the grid, shooting shows projectiles traveling, enemy damage shows HP reduction, and enemy death shows a removal effect. 0 if actions produce no observable change. Full credit needs themed UI with real assets; plain text/unstyled/raw-shape readability caps at 0.5."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art coherence: lawn, plants, enemies, projectiles, UI, and result screens belong to a consistent garden-defense visual language with a bright, lively palette. 0 if the screen mixes incompatible styles or reads as plain default Godot grey. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Plant and enemy sprites are real illustrated or pixel-art characters with distinct silhouettes and personality. Different types are immediately recognizable. 0 if plants or enemies are plain colored shapes. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "The lawn uses real textured grass tiles with row variation, and the background shows a house or fence establishing the setting. 0 if the lawn is a uniform green rectangle or if there is no background context. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI use styled themed widgets: plant cards have illustrated frames with sun costs, the adventure map has themed nodes, and result screens have authored chrome. 0 if UI elements are unstyled Godot defaults. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    },
+    {
+      "id": "A5",
+      "agg": "mean",
+      "description": "Animation and atmosphere: plants animate when attacking, enemies walk with movement cycles, projectiles travel visibly, sun floats down, and deaths have effects. The lawn has ambient life (swaying plants, drifting clouds). 0 if all elements are static with no animation. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    }
+  ]
+}

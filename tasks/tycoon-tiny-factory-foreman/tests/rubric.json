@@ -1,0 +1,142 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player places belts on a grid to create paths that carry materials from sources toward machines and output bins. Placed belts visibly connect tiles and define a route. Score 0 if there is no spatial placement, if belts are pre-built with no player agency, or if materials move without any conveyor infrastructure. Score 0.5 at most if belts exist only as labels or static decorations that do not carry items. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Materials visibly move along belts from source toward machines or bins over multiple frames, with smooth or stepped motion that conveys flow. Score 0 if resources teleport, remain static, or are represented only by counters. Score 0.5 at most if movement is implied by number changes but no item sprite travels the path. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "At least one machine transforms an input material into a different output product with visible processing feedback such as a progress bar, animation, or state change on the machine sprite. Score 0 if machines are decorative and do not alter item state. Score 0.5 at most if transformation happens but with no visible processing indication. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "A sorter, splitter, or route-control element visibly sends different item types to different destinations or changes the path based on player configuration. Score 0 if all items follow one fixed path regardless of type or control. Score 0.5 at most if routing exists only as a text label or menu with no spatial effect on item flow. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Orders, timers, or deadlines create production pressure: the player must fulfill specific product requests before time expires, and missing a deadline has visible consequences such as lost coins, a warning, or a failed order marker. Score 0 if production has no goals, no time constraint, and no success/failure feedback. Score 0.5 at most if a timer is shown but expiry has no consequence. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least three distinct materials or products are present with different icons or colours, and at least two recipe relationships connect them (e.g., ore becomes plate, plate becomes gear). Score 0 if all items are identical or only one material exists. Score 0.5 at most if multiple colours appear but no transformation chain links them. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least two functionally different machine types are available that accept different inputs or produce different outputs, giving the player a reason to route materials to specific machines. Score 0 if only one machine type exists or all machines behave identically. Score 0.5 at most if machines differ only by label with no gameplay distinction. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "An upgrade or planning layer offers at least three choices such as belt speed, machine efficiency, storage capacity, new recipes, or sorter automation, and selecting one visibly changes subsequent play. Score 0 if there is no upgrade or planning system. Score 0.5 at most if upgrades are listed but selecting one produces no observable change. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Multiple orders or rounds escalate in complexity, requiring longer chains, more products, tighter deadlines, or simultaneous fulfillment. Score 0 if the same single order repeats indefinitely. Score 0.5 at most if orders vary only in quantity with no new routing or recipe challenge. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A result or summary screen reports fulfilled orders, missed orders, coins earned, and offers retry or title navigation. Score 0 if the game ends abruptly or loops without summary. Score 0.5 at most if only a single generic message appears with no metrics from the session. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Normal startup shows a styled title screen with the game name, a clear Start control, and factory-themed imagery such as belts, machines, crates, or a workshop floor. Score 0 if the game starts directly in gameplay or uses raw default UI with no theme. Score 0.5 at most if a title exists but is sparse text on a blank background with no authored scene. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The flow connects title or scenario to factory floor to production play to upgrade or result screen without restarting the executable. Score 0 if a major transition is missing or controls become stuck. Score 0.5 at most if transitions exist but require manual workarounds or break visually. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "The HUD clearly shows active orders, required products, timer or shift status, produced count, and coins or score in readable non-overlapping regions. Score 0 if the player cannot tell what to produce or whether the line is working. Score 0.5 at most if information is present but overlapping, truncated, or unreadable at 1280x720. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Player actions and state changes produce visible feedback: placing a belt shows it on the grid, a machine starting shows processing, an order fulfilled flashes or updates, a jam or failure triggers a warning. Score 0 if changes happen silently with no visual cue. Score 0.5 at most if feedback is limited to console text or a single generic indicator. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Art direction is coherent across title, factory floor, belts, machines, items, HUD, upgrades, and result screens with a consistent palette, typography, and iconography. Score 0 if mostly default controls or mismatched placeholders dominate. Score 0.5 at most if visuals are dominated by primitive shapes, raw controls, or assembled-looking layouts with no unifying style. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Belts, machines, sorters, and material items use real sprite art or carefully composed procedural visuals that read as factory equipment, not plain rectangles or default Godot primitives. Score 0 if primary gameplay elements are unstyled ColorRects. Score 0.5 at most if sprites exist but are inconsistent in style or resolution."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Animation and motion bring the factory to life: belts move or pulse, items travel smoothly, machines show processing cycles, sorters animate their routing, and warnings draw attention with flashes or shakes. Score 0 if all state changes snap silently with no animation. Score 0.5 at most if only one element animates while the rest are static. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI panels use styled themed widgets with icons, framed panels, or custom fonts rather than raw unstyled Godot defaults. Score 0 if all UI is obviously default Label/Button with no theming. Score 0.5 at most if some panels are styled but others remain raw defaults, breaking visual consistency. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

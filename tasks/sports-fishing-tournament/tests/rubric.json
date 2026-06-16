@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player casts a line and plays a reel mini-game with tension management when a fish bites. A tension meter shows line stress; too much tension snaps the line, too little lets the fish escape. The player alternates reeling and releasing to land the catch. Score 0 if there is no casting mechanic, if there is no tension management, or if fish are caught instantly without a mini-game."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A gear selection system exists: the player chooses rod, line, and lure before fishing. Different gear suits different conditions and species. Gear affects casting distance, line strength, and fish attraction. A tackle shop interface shows available equipment. Score 0 if there is no gear selection, if gear has no gameplay effect, or if there is no shop interface."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Weather changes during gameplay (sunny, overcast, rainy) and affects fish behaviour: different species are active in different weather. A visible weather indicator shows current conditions. Weather transitions are visible in the environment. Score 0 if weather never changes, if weather has no effect on fish, or if there is no weather indicator."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least three distinct lakes exist with different characteristics: a shallow pond (easy, small fish), a deep reservoir (medium, varied species), and a mountain stream (hard, rare fish). Each lake has a unique visual style and fish population. Score 0 if there are fewer than 3 lakes, if lakes look identical, or if fish populations are the same everywhere."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "A tournament bracket system exists: the player competes against AI opponents to catch the most total weight within a time limit. Advancing requires outperforming opponents. A bracket display shows matchups and results. Score 0 if there is no tournament, if there are no opponents, or if there is no bracket display."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least five distinct fish species exist with different appearances, sizes, weights, and habitats. A catch screen shows species name, weight, and lake record. Bigger fish fight harder in the reel mini-game. Score 0 if there are fewer than 5 species, if all fish look identical, or if size does not affect difficulty."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A species logbook tracks all caught fish with records for largest catch per species. Rare species appear only in specific lakes under specific weather conditions. Completing the logbook unlocks bonus content. Score 0 if there is no logbook, if rare species do not exist, or if conditions do not affect species availability."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full fishing loop is connected: Select gear, choose lake, cast line, wait for bite, play reel mini-game, land fish, view catch details, update logbook. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, tournament bracket, gear selection, lake fishing, catch fish, tournament results, advance bracket, buy better gear. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a rustic or outdoors font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (lakeside dawn scene or fishing imagery) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — lakes, fish, gear, UI panels, weather effects — belongs to a single consistent outdoor/nature visual language. The palette is natural greens and blues; no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: lakes use textured or illustrated water surfaces; fish are distinct recognisable sprites per species; gear items have detailed icons; UI elements use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if water is a uniform colour fill, if fish are solid-colour primitives, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: casting arc, line tension, fish fighting, reel mechanics, weather transitions, catch celebration, and tournament results each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

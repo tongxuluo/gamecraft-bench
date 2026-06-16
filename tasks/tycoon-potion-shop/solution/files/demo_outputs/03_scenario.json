@@ -1,0 +1,12 @@
+{
+  "scenario": "customers",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 120, "type": "mouse_click", "button": "left", "x": 500, "y": 300},
+    {"frame": 240, "type": "mouse_click", "button": "left", "x": 700, "y": 400},
+    {"frame": 360, "type": "wait"},
+    {"frame": 480, "type": "mouse_click", "button": "left", "x": 640, "y": 550},
+    {"frame": 600, "type": "wait"}
+  ]
+}

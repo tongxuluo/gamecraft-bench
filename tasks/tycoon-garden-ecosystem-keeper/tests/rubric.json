@@ -1,0 +1,130 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "A tile or bed system supports planting different species and shows soil, plant type, growth stage, and occupied state changing during replay. Score 1 requires player planting or garden management to alter the board. Score 0 if plants are decorative only. Score 0.5 at most if the grid is static, unreadable, or purely labels."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Watering, mulching, pruning, or care actions visibly change moisture, growth, health, or yield over time. Score 1 requires an action-response loop where the player acts and the garden state updates accordingly. Score 0 if care actions have no effect. Score 0.5 at most if effects are hidden or cosmetic only."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Ecosystem interactions such as pollinators, pests, companion planting, soil health, or water features visibly affect plants, score, or objectives. Score 1 requires an interaction with observable consequence, such as pests damaging a crop or pollinators improving yield. Score 0 if the game is simple click-to-grow with no interactions. Score 0.5 at most if interactions are text-only or decorative."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Weather, seasons, limited actions, drought, pests, or resource scarcity create tradeoffs that force prioritization. Score 1 requires scarcity or events to visibly constrain the player. Score 0 if every plant can always be perfected without cost. Score 0.5 at most if pressure exists but has no visible consequence on garden state."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least five plant, habitat, or seed types exist with distinct needs, growth patterns, yields, or ecosystem roles. Score 1 requires mechanical distinctions that affect gameplay decisions. Score 0 if all plants are identical. Score 0.5 at most if variety is only name or icon without gameplay impact."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Pollinators, pests, beneficial insects, habitats, or wildlife have visible movement or state changes and affect plant outcomes. Score 1 requires non-plant ecosystem actors to influence gameplay. Score 0 if no non-plant ecosystem actors exist. Score 0.5 at most if they are decorative only with no mechanical effect."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Progression introduces seasons, new seeds, habitats, upgrades, objectives, or harder events that change decisions during play. Score 1 requires escalation that affects player strategy. Score 0 if the same garden state repeats without change. Score 0.5 at most if progression is text-only or limited to preloaded scenarios."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Success and failure results reflect prior garden state with metrics such as biodiversity, harvest, health, or restoration progress. Both outcomes exist and differ meaningfully. Score 1 requires results to vary based on player performance. Score 0 if results are missing. Score 0.5 at most if only one generic outcome exists or metrics are static."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Tiles, plants, moisture levels, pests, pollinators, selected tool, weather indicator, and goal progress are readable at 1280x720 without overlap or ambiguity. Score 1 requires all garden-relevant information to be simultaneously legible. Score 0 if critical game state is hidden or unreadable. Score 0.5 at most for dense overlapping UI where key information is obscured."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Player actions produce immediate visible feedback: clicking a tile highlights it, planting shows the seed appear, watering changes soil appearance, tool selection is indicated. Score 1 requires clear cause-and-effect between input and screen change. Score 0 if clicks produce no visible response. Score 0.5 at most if feedback is limited to log text or subtle state changes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Growth progression, pollination events, pest damage, weather effects, and goal progress are communicated visually through sprite changes, color shifts, icons, or indicators. Score 1 requires the player to see ecosystem state changes without reading logs. Score 0 if changes happen silently. Score 0.5 at most if feedback is only text labels."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Urgency states such as drought stress, pest infestation, wilting, or low biodiversity are visually distinct from healthy states through color, animation, icons, or positional cues. Score 1 requires problems to be scannable at a glance without reading text. Score 0 if all tiles look identical regardless of health. Score 0.5 at most if distinction relies solely on small text or numbers."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Garden art direction is coherent across plants, beds, insects, tools, HUD, weather, and results at a publishable vertical-slice standard. Score 1 requires consistent palette, typography, iconography, spacing, and visual hierarchy. Score 0 if dominated by primitive shapes or default engine UI. Score 0.5 at most for sparse generic visuals without a unified style. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Plants and habitats have designed silhouettes, sprites, or icons that communicate species and growth stage visually. Score 1 requires authored plant art that feels intentional. Score 0 if all identity is plain text. Score 0.5 at most if visuals are mostly labels with minimal graphical distinction. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "The garden composition feels authored with paths, props, soil textures, water features, borders, and seasonal atmosphere. Score 1 requires spatial composition that reads as a living garden. Score 0 if the board is empty or purely abstract. Score 0.5 at most for generic grid layouts without environmental character. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Title screen, menus, transitions, and result screens are polished with themed art, consistent styling, and smooth navigation. Score 1 requires these frames to feel part of the same authored product as gameplay. Score 0 if no title or result screen exists. Score 0.5 at most for raw unstyled screens with default controls. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

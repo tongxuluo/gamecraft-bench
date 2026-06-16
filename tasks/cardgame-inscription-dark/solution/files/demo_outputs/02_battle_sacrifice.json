@@ -1,0 +1,23 @@
+{
+  "scenario": "battle1",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 60,  "type": "mouse_click", "button": "left", "x": 170, "y": 650},
+    {"frame": 90,  "type": "mouse_click", "button": "left", "x": 340, "y": 430},
+    {"frame": 130, "type": "mouse_click", "button": "left", "x": 310, "y": 650},
+    {"frame": 160, "type": "mouse_click", "button": "left", "x": 540, "y": 430},
+    {"frame": 200, "type": "mouse_click", "button": "left", "x": 450, "y": 650},
+    {"frame": 230, "type": "mouse_click", "button": "left", "x": 740, "y": 430},
+    {"frame": 270, "type": "mouse_click", "button": "left", "x": 590, "y": 650},
+    {"frame": 290, "type": "mouse_click", "button": "left", "x": 340, "y": 460},
+    {"frame": 310, "type": "mouse_click", "button": "left", "x": 540, "y": 460},
+    {"frame": 340, "type": "mouse_click", "button": "left", "x": 940, "y": 430},
+    {"frame": 380, "type": "mouse_click", "button": "left", "x": 1120, "y": 505},
+    {"frame": 450, "type": "wait"},
+    {"frame": 500, "type": "mouse_click", "button": "left", "x": 170, "y": 650},
+    {"frame": 530, "type": "mouse_click", "button": "left", "x": 540, "y": 430},
+    {"frame": 560, "type": "mouse_click", "button": "left", "x": 1120, "y": 505},
+    {"frame": 600, "type": "wait"}
+  ]
+}

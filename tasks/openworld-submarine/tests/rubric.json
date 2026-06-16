@@ -1,0 +1,31 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1","M2","M3"]},
+    {"name": "Content Depth", "items": ["D1","D2","D3","D4"]},
+    {"name": "Functional Visuals", "items": ["V1","V2"]},
+    {"name": "Presentation & Art", "items": ["A1","A2","A3","A4"]}
+  ],
+  "requirements": [
+    {"id": "M1", "agg": "max", "description": "The player pilots a recognizable submarine freely through a 2D ocean cross-section with directional input, visible depth changes, pressure zones, depth meter, and hull gauge. Score 0 if the sub teleports, if depth does not affect the display or HUD, or if the submarine is only a labelled icon."},
+    {"id": "M2", "agg": "max", "description": "Sonar is an active system: player input sends expanding pulse rings that reveal hidden terrain, wrecks, caves, or creatures, while passive sonar shows moving contacts. Score 0 if the ocean is already fully visible, if sonar is just a static circle, or if pings reveal nothing new."},
+    {"id": "M3", "agg": "max", "description": "Oxygen depletes while submerged, changes warning state as it gets low, and can be refilled by surfacing or reaching air pockets. Running out should cause a blackout, forced ascent, or cargo loss. Score 0 if oxygen is static, if depletion is only text, or if there is no failure consequence."},
+    {"id": "D1", "agg": "max", "description": "The ocean includes at least three discoverable location types with distinct interaction: wrecks for salvage, caves for rare minerals, and coral or creature habitats for research. Score 0 if locations are identical markers, if they cannot be interacted with, or if rewards do not change state."},
+    {"id": "D2", "agg": "max", "description": "Depth pressure has real gameplay consequences: crossing the rated depth creates warnings, hull stress, and potential damage, while hull upgrades increase safe depth. Score 0 if the player can dive indefinitely, if hull never changes, or if pressure is only a background gradient."},
+    {"id": "D3", "agg": "max", "description": "At least three submarine upgrades are purchasable with salvage credits and visibly change gameplay, such as hull rating, oxygen capacity, sonar range, cargo hold, or headlight. Score 0 if upgrades are only listed or do not affect subsequent dives."},
+    {"id": "D4", "agg": "max", "description": "The ocean has distinct depth layers with unique visuals, content, and risk: shallow reef, mid-depth kelp or wreck zone, and deep abyss with bioluminescence or high pressure. Score 0 if the ocean is visually uniform or if depth layers do not change encounters."},
+    {"id": "V1", "agg": "max", "description": "The exploration loop is playable as one connected dive: leave surface, use sonar, discover a location, collect salvage, manage oxygen and pressure, surface, sell salvage, and upgrade. Score 0 if these steps are separate showcase states or if salvage and upgrades do not persist."},
+    {"id": "V2", "agg": "max", "description": "The full game loop connects title, dive launch, navigation, discovery, resource danger, surfacing, upgrading, and deeper repeat dives without restart. Score 0 if menus do not return to play or if state resets between sections."},
+    {"id": "A1", "agg": "max", "description": "The title screen uses a deep-ocean or bioluminescent composition with an interactive play button and visible transition to the dive. Score 0 if it is a generic title over simple shapes."},
+    {"id": "A2", "agg": "mean", "description": "The visual style coherently supports ocean depth, submarine exploration, wrecks, creatures, sonar, and HUD. Score 0 if the game relies on labels and flat primitives to identify most objects."},
+    {"id": "A3", "agg": "mean", "description": "The submarine, wrecks, caves, coral, creatures, depth layers, and HUD are recognizable without labels, with visual detail appropriate to underwater exploration. Score 0 if the sub is a plain oval/rectangle, if the ocean is a uniform fill, or if contacts are only text."},
+    {"id": "A4", "agg": "mean", "description": "Sub propulsion, sonar pulses, reveal effects, oxygen warnings, pressure damage, salvage pickup, surfacing, and upgrade feedback animate over time. Score 0 if these events are instant toggles, blinking labels, or static before/after panels."}
+  ]
+}

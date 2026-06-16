@@ -1,0 +1,13 @@
+{
+  "scenario": "combat",
+  "duration_frames": 540,
+  "events": [
+    {"frame": 30, "type": "wait"},
+    {"frame": 90, "type": "mouse_click", "button": "left", "x": 150, "y": 485},
+    {"frame": 180, "type": "wait"},
+    {"frame": 240, "type": "mouse_click", "button": "left", "x": 150, "y": 485},
+    {"frame": 360, "type": "wait"},
+    {"frame": 420, "type": "mouse_click", "button": "left", "x": 150, "y": 485},
+    {"frame": 540, "type": "wait"}
+  ]
+}

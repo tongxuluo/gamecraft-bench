@@ -1,0 +1,118 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "A persistent beat indicator (pulsing icon, metronome bar, or bouncing marker) shows the current rhythm. The player moves on the grid by pressing a direction key in time with the beat. Perfect-timing inputs flash gold and move the character smoothly; off-beat inputs show a different colour and cause a stumble animation with a wasted turn. Score 0 if there is no beat indicator, if movement is not grid-based, or if timing has no effect on movement success. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Attacking an adjacent enemy on-beat deals full damage with a visible hit effect (slash, flash, particles). Off-beat attacks deal reduced damage with a weaker visual. Enemies have distinct rhythm patterns: they telegraph attacks on specific beats with a wind-up animation, and the player must move or block on the correct beat to avoid damage. Score 0 if attacks have no timing component, if enemies have no rhythmic patterns, or if there is no visual distinction between on-beat and off-beat hits. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Defeated enemies drop gold or equipment. Equipment (weapons, armour) can be collected and visibly changes the player's attack pattern or sprite. A shop or chest between floors offers purchasable upgrades. At least 3 different equipment items exist with distinct gameplay effects. Score 0 if enemies drop nothing, if there is no equipment system, or if equipment has no visible effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 4 visually distinct enemy types with different rhythm behaviours: varying attack frequencies, movement patterns, and telegraph timings. Each enemy type has a unique sprite and animation set. The player must adapt their rhythm strategy to each enemy type. Score 0 if there are fewer than 4 enemy types, if enemies all behave identically, or if enemy types are not visually distinguishable. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The dungeon has at least 3 distinct floor themes (e.g., crypt, cavern, fortress) with different tile sets, background art, and enemy compositions. Floors are procedurally arranged or hand-crafted with visible variety. Score 0 if there is only one visual theme, if floors look identical, or if there are fewer than 3 distinct environments. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least one boss encounter exists with a multi-beat attack pattern that differs from regular enemies. The boss has a unique large sprite, a health bar, and telegraphs a sequence of attacks the player must dodge rhythmically. The boss fight feels climactic and distinct from normal combat. Score 0 if there is no boss, if the boss behaves like a regular enemy, or if the boss has no multi-beat pattern. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Difficulty escalates across floors: later floors have faster tempos, more complex enemy patterns, or tighter timing windows. The player perceives a clear progression in challenge. At least 5 distinct floor levels are playable. Score 0 if difficulty is flat throughout, if there are fewer than 5 floors, or if later floors feel identical to early ones. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The HUD displays: current beat indicator with timing feedback, player health, current floor number, and gold count. All elements are readable and non-overlapping at 1280x720. The beat indicator is prominent and always visible during gameplay. Score 0 if any core HUD element is missing or if the beat indicator is not clearly visible. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Timing feedback is immediate and clear: perfect hits produce a distinct visual reward (gold flash, particle burst), good hits show a lesser effect, and misses show a negative indicator (red flash, stumble). The player can assess their timing quality from any single frame during an action. Score 0 if there is no timing feedback, or if perfect and missed hits look identical. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen -> Enter dungeon -> Move and fight on beat -> Collect loot -> Descend floors -> Fight boss -> Victory or death. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (dungeon scene, torchlit corridor, or illustrated artwork) \u2014 not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element \u2014 dungeon tiles, player character, enemies, items, UI panels \u2014 belongs to a single consistent visual language (e.g., all pixel-art, all hand-drawn, all flat-vector). The palette is dark and atmospheric; no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: dungeon floors use textured or illustrated tiles with visible detail; the player character is a recognisable animated sprite; enemies have distinct sprites per type; the beat indicator and HUD use styled, themed widgets. Score 0 if the dungeon is a uniform colour fill, if the player is a solid-colour primitive, or if primary UI elements are obviously unstyled default widgets. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: beat pulses, movement transitions, attack slashes, enemy telegraphs, hit effects, loot pickups, and floor transitions each play as smooth multi-frame tweens or sprite animations \u2014 no element snaps to its new state in a single frame. Scene transitions use a brief fade or wipe rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

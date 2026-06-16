@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player tunes a frequency dial (slider or knob) to find distress signals hidden in static. When a signal locks, visual static clears and a transcript or audio indicator appears. The dial has a continuous range with signals at specific frequencies. Score 0 if there is no tuning mechanic, if signals are found without player input, or if there is no visual feedback when a signal locks."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A triangulation system exists: signals provide coordinates that the player places as pins on a map. Connecting three or more pins from related signals reveals a source location and advances the story. The map visually updates with each pin placed. Score 0 if there is no map, if signals do not provide coordinates, or if placing pins has no effect."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A battery gauge depletes over time while the radio operates. The player can reduce power (dimming room, limiting scan range) to conserve. If power dies, the room goes dark with a visible blackout effect. Batteries are replenished by solving signal puzzles. Score 0 if there is no battery system, if power never depletes, or if depletion has no consequence."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least five distinct distress signals exist, each with unique content (different voices, situations, coordinates). Signals tell a connected story when triangulated together. Each signal has distinct transcript text or audio character. Score 0 if there are fewer than 5 signals, if signals are identical, or if they do not form a connected narrative."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "A jamming entity periodically interferes: the screen distorts, the radio emits unsettling visual noise, and the player must quickly retune to escape. Failing to escape the jamming causes battery drain and screen corruption. Jamming intensity increases over time. Score 0 if there is no jamming mechanic, if jamming has no visual effect, or if it never escalates."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "The radio station environment reacts to story progress: the window shows increasingly disturbing shapes, objects in the room shift position between signals, and the lighting changes. At least three distinct environmental changes occur as the story advances. Score 0 if the environment never changes, if there are no horror elements in the room, or if fewer than 3 changes occur."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Story progression has a clear arc with a beginning, escalation, and climax. The final signal reveals the nature of the threat. Multiple signals must be triangulated in sequence to reach the ending. A progress indicator shows investigation completion. Score 0 if there is no story arc, if the game has no ending, or if there is no progress tracking."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full investigation loop is connected: Tune radio, lock signal, read transcript, place pin on map, triangulate location, advance story. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, radio station, scan frequencies, triangulate signals, manage battery, resist jamming, reach conclusion. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a flickering or distressed font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (static noise, dark radio imagery) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — radio equipment, map, room, UI panels, static effects — belongs to a single consistent dark, isolated visual language. The palette is dim with radio-glow highlights; no clashing bright colours or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: the radio station uses detailed illustrated or textured surfaces; radio equipment looks functional with dials and displays; the map is styled as a real document; UI elements use themed widgets — not raw unstyled Godot defaults. Score 0 if the room is a uniform colour fill, if equipment is a solid-colour primitive, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: dial tuning, signal lock, static effects, jamming distortion, pin placement, battery depletion, and environmental horror changes each play as a smooth multi-frame tween or effect — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

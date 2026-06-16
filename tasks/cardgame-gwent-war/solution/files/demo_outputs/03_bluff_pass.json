@@ -1,0 +1,16 @@
+{
+  "scenario": "battle_pass",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 60,  "type": "mouse_click", "button": "left", "x": 65, "y": 685},
+    {"frame": 90,  "type": "mouse_click", "button": "left", "x": 400, "y": 410},
+    {"frame": 150, "type": "wait"},
+    {"frame": 180, "type": "mouse_click", "button": "left", "x": 160, "y": 685},
+    {"frame": 210, "type": "mouse_click", "button": "left", "x": 400, "y": 510},
+    {"frame": 270, "type": "wait"},
+    {"frame": 330, "type": "mouse_click", "button": "left", "x": 1200, "y": 685},
+    {"frame": 450, "type": "wait"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

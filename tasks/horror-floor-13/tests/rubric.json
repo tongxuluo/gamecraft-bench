@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player operates an elevator by selecting floor numbers from a panel. The elevator moves between floors with a visible motion indicator (floor counter changing, shaft view scrolling). Doors open and close with animation when arriving at a floor. Score 0 if there is no floor selection, if the elevator does not visibly move, or if doors do not animate."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Passengers enter the elevator and request specific floors via speech bubbles or text. The player must choose whether to comply with requests by selecting the requested floor or a different one. Passenger reactions change based on the player's choice. Score 0 if there are no passengers, if passengers make no requests, or if choices have no visible consequence."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The elevator malfunctions progressively: lights flicker, buttons rearrange positions, the indicator shows wrong floors, or the elevator goes to unselected floors. Malfunctions increase in frequency as the game progresses. The player must adapt to unreliable controls. Score 0 if the elevator never malfunctions, if malfunctions have no visual effect, or if controls always work perfectly."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least five distinct floor vignettes exist, each showing a unique horror scene when doors open (infinite hallway, frozen office, floorless ballroom, flooded basement, mirror room). Each floor has a distinct visual theme and brief interactive element. Score 0 if there are fewer than 5 floors, if floors look identical, or if there is no interaction on any floor."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least three distinct passenger types exist with different appearances and behaviours: normal passengers, unsettling passengers (wrong features, flickering), and hostile passengers (make threatening requests). Each type has a unique sprite. Score 0 if there are fewer than 3 passenger types, if all passengers look identical, or if none are unsettling."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Player choices affect the building's state: delivering passengers to wrong floors or refusing requests causes the building to grow more hostile (new impossible floors appear, elevator descends toward floor 13). A visible corruption or descent indicator tracks this. Score 0 if choices have no consequence, if the building never changes, or if there is no tracking indicator."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Multiple endings exist based on cumulative player choices. Floor 13 serves as the climax with different outcomes depending on how passengers were handled. At least two distinct endings are reachable. Score 0 if there is only one ending, if floor 13 does not exist, or if choices do not affect the outcome."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full elevator loop is connected: Receive passenger, hear request, select floor, ride elevator, doors open to vignette, passenger reacts, new passenger enters. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, elevator operation, passenger management, floor visits, escalating malfunctions, reach floor 13, ending. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in an art-deco or brass-styled font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (elevator panel, dark shaft, or building facade) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — elevator interior, floor vignettes, passengers, UI panels — belongs to a single consistent dark art-deco or gothic visual language. The palette is moody with brass and shadow; no clashing bright colours or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: the elevator interior uses detailed textured surfaces; passengers are recognisable distinct sprites; floor vignettes have illustrated backgrounds; UI elements use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if the elevator is a uniform colour fill, if passengers are solid-colour primitives, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: door opening/closing, elevator movement, passenger entry/exit, malfunction effects, floor vignette reveals, and ending sequences each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "shop",
+  "duration_frames": 420,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 90,  "type": "mouse_click", "button": "left", "x": 240, "y": 250},
+    {"frame": 150, "type": "wait"},
+    {"frame": 210, "type": "mouse_click", "button": "left", "x": 590, "y": 250},
+    {"frame": 270, "type": "wait"},
+    {"frame": 330, "type": "mouse_click", "button": "left", "x": 1075, "y": 570},
+    {"frame": 420, "type": "wait"}
+  ]
+}

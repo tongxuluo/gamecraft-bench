@@ -1,0 +1,18 @@
+{
+  "scenario": "fuel_low",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 60,  "type": "mouse_click", "button": "left", "x": 820, "y": 474},
+    {"frame": 120, "type": "mouse_click", "button": "left", "x": 100, "y": 554},
+    {"frame": 180, "type": "mouse_click", "button": "left", "x": 820, "y": 74},
+    {"frame": 240, "type": "mouse_click", "button": "left", "x": 300, "y": 554},
+    {"frame": 300, "type": "key_press", "keycode": "LEFT"},
+    {"frame": 340, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 380, "type": "key_down", "keycode": "SPACE"},
+    {"frame": 440, "type": "key_up", "keycode": "SPACE"},
+    {"frame": 480, "type": "mouse_click", "button": "left", "x": 820, "y": 274},
+    {"frame": 540, "type": "mouse_click", "button": "left", "x": 480, "y": 554},
+    {"frame": 600, "type": "wait"}
+  ]
+}

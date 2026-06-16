@@ -1,0 +1,93 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4", "D5"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2", "V3"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Resource gathering works: the player approaches a resource node (tree, stone, bush), presses an interact key or clicks, and the resource is consumed — the node visibly changes or disappears, and the player's inventory count increases with on-screen feedback. Score 0 if there are no interactable resources, if interacting does nothing, or if no inventory feedback is shown. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Crafting is functional: the player opens a crafting panel, selects a recipe that requires gathered materials, and crafts an item. The materials are deducted from inventory and the crafted item appears in the player's possession or is placed in the world. At least two distinct recipes exist with different material requirements. Score 0 if there is no crafting system, if recipes cannot be completed, or if crafting does not consume materials. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Survival pressure exists: at least one status bar (hunger, thirst, or temperature) drains over time and reaching a critical threshold causes visible consequences — health loss, movement penalty, screen vignette, or damage. The player must actively counteract the drain by consuming food, standing near a campfire, or using a crafted item. Score 0 if no status bar drains, if hitting zero has no consequence, or if there is no way to restore the bar. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The world has at least three visually distinct biomes (e.g., grassy plains, dense forest, rocky terrain or water). Each biome uses different ground textures, props, and color palettes so boundaries are visible at 1280x720. The player can move freely in 8 directions across all biomes. Score 0 if there are fewer than 3 biomes, if biomes are indistinguishable, or if the player cannot move freely between them. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least three distinct resource types exist (e.g., wood from trees, stone from outcrops, food from bushes), each with a different sprite and found in different biomes or map areas. Gathering each type produces a different material used in different recipes. Score 0 if there is only one resource type, if all resources look identical, or if resources are not tied to crafting. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least three crafting recipes produce functionally different items: one provides warmth or light (campfire), one provides shelter or healing, and one improves gathering efficiency or combat ability (tool/weapon). Each crafted item has a distinct gameplay effect beyond cosmetic difference. Score 0 if fewer than 3 recipes exist, or if crafted items have no distinct gameplay effects. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A day-night cycle visibly changes the world: daytime is bright and safe, night darkens the environment with reduced ambient light or a dark overlay, and gameplay conditions change at night (faster survival drain, reduced visibility radius, or increased danger). The cycle progresses automatically without player input. Score 0 if there is no day-night cycle, if night looks identical to day, or if night has no gameplay effect. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Placed structures persist in the world and provide functional benefits: a campfire emits visible light and warmth (slows temperature drain or extends safe radius at night), a shelter restores health or blocks environmental damage when the player is inside. The player can place at least two different structure types. Score 0 if structures cannot be placed, if placed objects have no gameplay effect, or if only one structure type exists. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The HUD is readable during play: survival status bars (hunger/thirst/temperature), inventory counts, and a day counter or time indicator are visible in stable, non-overlapping UI regions at 1280x720. The player can always tell their current survival state at a glance. Score 0 if any core status indicator is missing, hidden, or overlaps other UI. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Gathering and crafting feedback is clear: interacting with a resource shows a visible response (particle, animation, or node removal), inventory updates are immediate and readable, and crafting success is communicated with a clear visual or textual confirmation. The player never wonders whether an action succeeded. Score 0 if actions produce no visible feedback, or if inventory changes are invisible. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full survival loop is connected: Title -> Explore -> Gather Resources -> Craft Items -> Place Structures -> Survive Night -> New Day. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent art direction: title screen, wilderness biomes, crafting panel, HUD, and placed structures share a consistent visual style and earthy palette evoking a survival-in-nature tone. Screenshots read as an authored vertical slice. Score 0 if the game relies on raw ColorRect shapes, default Godot grey controls, mismatched asset packs, or bright placeholder colors with no unifying theme. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Environment art is finished: terrain tiles have texture or surface detail, biomes look like real places (grass with variation, forest canopy, rocky ground), and boundaries between biomes are integrated into the art rather than hard color edges. Score 0 if the map is flat fills, plain rectangles, or uniform color. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Character, resource, and structure sprites are real game art: the player avatar is a recognisable sprite with idle/walk animation, resource nodes (trees, rocks, bushes) are distinct illustrated objects, and placed structures (campfire, shelter) have authored sprites with detail. Score 0 if characters are plain boxes/circles, if resources are solid-color primitives, or if structures are untextured rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "UI and motion polish meet a shippable bar: title screen, crafting panel, status bars, gathering feedback, day-night transitions, and structure placement all use custom styling and multi-frame animation or tweening. No element snaps to its new state in a single frame; scene transitions use fades, slides, or wipes rather than instant cuts. Score 0 if major screens use naked default widgets or hard-cut without authored motion. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

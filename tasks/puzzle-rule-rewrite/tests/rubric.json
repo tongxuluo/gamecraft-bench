@@ -1,0 +1,100 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3)/3))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Word-blocks are pushable on a tile grid: the player moves with arrow keys and pushes adjacent word-blocks one tile in the movement direction. Blocks stop at walls and cannot overlap. Score 0 if blocks are not pushable or movement is free-form rather than grid-based. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Rule sentences form dynamically: when noun, verb, and property blocks are aligned horizontally or vertically in valid sentence order (e.g., NOUN IS PROPERTY), the rule activates and changes object behavior in real-time. Breaking the alignment deactivates the rule. Score 0 if rules are static or blocks do not form functional sentences. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Properties change object behavior: at minimum STOP (blocks movement), WIN (triggers level completion on contact), PUSH (makes object pushable), YOU (assigns player control), and DEFEAT (kills the player) are implemented and functional. Score 0 if fewer than three properties work or properties have no observable effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The YOU property can be reassigned: forming a new NOUN IS YOU sentence transfers player control to that object type, and the previous player object becomes inert. Multiple objects of the same noun type all become player-controlled simultaneously. Score 0 if the player avatar is fixed and cannot be reassigned. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The game contains at least 20 distinct levels with different grid layouts, word-block placements, and puzzle solutions. Levels are grouped into worlds or chapters. Score 0 if fewer than 5 levels exist. Score 0.5 if 5-19 levels exist but lack meaningful variety. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Complexity escalates across the campaign: early levels use one rule sentence, mid levels require breaking and reforming multiple rules, and late levels involve conditional chains, transformation (NOUN IS NOUN), or paradox resolution. Score 0 if all levels have the same difficulty. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least 6 distinct noun types exist as both word-blocks and corresponding objects (e.g., WALL/wall, FLAG/flag, ROCK/rock, SKULL/skull, KEY/key, WATER/water), each with unique visual identity. Score 0 if fewer than 3 noun types exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "An undo system allows stepping back through move history without limit, and a level reset option restores the initial state. Both are accessible during gameplay without restarting the application. Score 0 if no undo or reset exists. Score 0.5 if only reset exists without per-move undo. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Active rules are visually indicated: word-blocks forming a valid sentence glow, highlight, or connect with visual links so the player can see which rules are currently in effect. Score 0 if active and inactive rules look identical. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "The grid is readable at 1280x720: walls, floor, objects, and word-blocks are all visually distinct. Word-block text is legible and categorized by color or style (nouns, verbs, properties each have a distinct look). Score 0 if elements blend together or text is unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Title screen, level select, and completion screens are present with styled navigation. The player can see level progression and return to completed levels. Score 0 if the game starts directly in gameplay with no navigation. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent minimalist-whimsical art direction: grid tiles, objects, word-blocks, backgrounds, and UI share a consistent visual language with deliberate color choices and clean composition. Score 0 if visuals are raw default controls or unthemed rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Objects and word-blocks use real authored sprites or illustrated assets: each noun type has a recognizable icon, word-blocks have styled backgrounds with readable typography, and the grid has textured tiles. Score 0 if everything is plain colored rectangles with raw text. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Rule activation, movement, and level completion have polished animation: blocks slide smoothly, rule formation triggers visual feedback, level completion has a celebration effect, and transitions between screens are animated. Score 0 if all state changes are instant snaps. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

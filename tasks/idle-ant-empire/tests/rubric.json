@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Resources (food) accumulate automatically over time based on the number of gatherer ants assigned. A visible resource counter ticks up continuously without player input. The player can also click to manually boost gathering with a visible click effect. Score 0 if resources do not accumulate automatically, if there is no visible counter, or if the idle generation rate is always zero."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The player assigns ants to different roles using sliders or buttons: gatherers (food), builders (dig chambers), soldiers (defence), nurses (hatch eggs). Changing allocation immediately affects production rates shown in the UI. At least three distinct roles exist. Score 0 if there is no role assignment, if allocation has no effect on production, or if fewer than 3 roles exist."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A prestige system exists: when the colony reaches a threshold size, the player can reset and gain permanent multipliers (queen fertility, gathering speed, defence strength). The prestige button shows the bonus to be gained. After prestige, the colony restarts with enhanced base rates. Score 0 if there is no prestige mechanic, if resetting grants no bonus, or if there is no indication of prestige benefit."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "Unlockable ant types with special abilities exist: leaf-cutters (bonus food), fire ants (defence), flying ants (exploration), mega-ants (multiplied production). Each type has a distinct sprite and unlock condition. At least three special ant types exist. Score 0 if there are no unlockable ant types, if types have no distinct abilities, or if fewer than 3 types exist."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The colony view shows visible chambers that expand as the player builds: nursery, food storage, queen's chamber, and tunnels. New chambers are purchasable and appear visually in the colony cross-section. At least three distinct chamber types exist. Score 0 if there is no colony view, if chambers are not visible, or if fewer than 3 chamber types exist."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Seasonal challenges periodically threaten the colony: rain floods tunnels (need builders), predators attack (need soldiers), winter reduces food (need stockpiles). Each challenge requires a specific response. Surviving grants bonus resources. At least two distinct challenge types exist. Score 0 if there are no challenges, if challenges have no consequence, or if fewer than 2 types exist."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Exponential scaling exists: costs and production rates grow exponentially. Upgrades provide multiplicative bonuses. Numbers grow large enough to require abbreviation (K, M, B). The progression curve provides a satisfying sense of growth across multiple prestige cycles. Score 0 if growth is linear, if numbers never scale significantly, or if there is no sense of exponential progression."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full idle loop is connected: Assign workers, generate resources, spend on chambers/upgrades, unlock ant types, grow colony, prestige, restart stronger. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, colony management, resource generation, upgrades, challenges, prestige, enhanced restart. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in an earthy or nature-themed font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (underground tunnels with ants, colony cross-section) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — colony chambers, ants, resources, UI panels, challenge events — belongs to a single consistent visual language. The palette is earthy browns and greens; no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: the colony uses textured or illustrated tunnel surfaces; ants are recognisable sprites per type; chambers have distinct visual identities; UI elements (counters, sliders, buttons) use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if tunnels are uniform colour fills, if ants are solid-colour dots, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: ant movement between chambers, resource collection, chamber construction, prestige reset, challenge events, and number counter ticking each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

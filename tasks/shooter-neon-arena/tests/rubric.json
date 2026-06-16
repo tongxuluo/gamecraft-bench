@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player ship moves freely in all directions within a bounded arena using twin-stick controls (one axis for movement, another for aiming/firing). Score 0 if the ship is static or only moves in one axis. Score 0.5 at most if movement exists but aiming is locked to movement direction. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A score multiplier increases with consecutive kills within a time window and resets to 1x when the player takes damage, visibly displayed and affecting score gain. Score 0 if no multiplier system exists. Score 0.5 at most if a multiplier is shown but never resets or has no effect on scoring. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Waves of enemies spawn at arena edges with escalating count and variety, with clear wave-start indicators. Score 0 if enemies appear randomly with no wave structure. Score 0.5 at most if waves exist but have no escalation or announcement. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "A bomb ability clears all enemies and projectiles on screen with a dramatic visual effect, limited to a small stock replenished by pickups. Score 0 if no bomb exists. Score 0.5 at most if a clear ability exists but is unlimited or has no visual payoff. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The player has limited lives; taking damage from enemies or projectiles costs a life with visible death and respawn animation. Score 0 if the player is invincible or has no life system. Score 0.5 at most if lives exist but death has no visual feedback. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 3 distinct arenas with different layouts, wall configurations, and hazard placements that force different movement strategies. Score 0 if only one arena exists. Score 0.5 at most if arenas differ only in color with identical layouts. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 5 distinct enemy types with different movement behaviors (rushing, circling, splitting, shielded, shooting) and visual designs. Score 0 if only one enemy type exists. Score 0.5 at most if enemies differ visually but behave identically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Between-wave upgrade prompts offer at least 4 distinct weapon modifications (spread, fire rate, piercing, homing, extra bombs) that visibly change combat. Score 0 if no upgrades exist. Score 0.5 at most if upgrades are listed but produce no observable gameplay change. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Boss encounters appear every few waves with multi-phase attack patterns distinct from regular enemies. Score 0 if no bosses exist. Score 0.5 at most if a large enemy appears but has no distinct phases or patterns. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A game-over screen shows final score breakdown including multiplier stats, highest chain, waves survived, and arena-specific performance. Score 0 if the game ends abruptly with no summary. Score 0.5 at most if only a single score number is shown. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Normal startup shows a styled title screen with the game name, arena selection, and neon-geometric themed imagery. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse text on a blank background. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The flow connects title to arena selection to gameplay to upgrade prompts to game-over without restarting the executable. Score 0 if major transitions are missing. Score 0.5 at most if transitions exist but break visually or require workarounds. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "The HUD clearly shows score, multiplier, lives, bomb stock, and wave number in readable non-overlapping regions. Score 0 if the player cannot determine game state. Score 0.5 at most if information is present but overlapping or unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Player actions produce visible feedback: firing shows projectile trails, kills trigger explosions, multiplier changes flash, damage shows hit effects, and bombs have screen-wide visual payoff. Score 0 if actions happen silently. Score 0.5 at most if only one feedback type exists. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Art direction is coherent across title, arenas, enemies, HUD, and menus with a consistent neon-geometric palette and style. Score 0 if mostly default controls or mismatched placeholders dominate. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The player ship, enemies, projectiles, and arena elements use real sprite art or carefully composed visuals with distinct silhouettes. Score 0 if primary gameplay elements are unstyled rectangles. Score 0.5 at most if sprites exist but are inconsistent in style. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Animation brings the arena to life: enemy movement animations, explosion particles, projectile trails, multiplier pulse effects, and arena hazard animations. Score 0 if all elements are static. Score 0.5 at most if only one element animates. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI panels use styled themed widgets with glowing borders, custom fonts, or neon-styled elements rather than raw Godot defaults. Score 0 if all UI is default Label/Button. Score 0.5 at most if some panels are styled but others remain raw defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

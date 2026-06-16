@@ -1,0 +1,160 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5+D6+D7)/7) + 0.15*((V1+V2+V3+V4+V5)/5) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4",
+        "V5"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player can launch a ball into a bounded table and the ball moves continuously with visible velocity, bounces from walls, rails, and table objects, and can drain or be lost. Score 0 if the ball is static, teleports between scripted positions, ignores table boundaries, or is only a decorative animation. Score 0.5 at most if only labels, decorative elements, or static screenshots demonstrate the feature without playable ball physics. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The player has responsive left and right flipper or paddle controls that can redirect the ball and keep it in play. Flippers visibly move on input and affect ball trajectory. Score 0 if there is no player-controlled ball interaction after launch, if controls are purely cosmetic, or if a static paddle catches every ball automatically. Score 0.5 at most if only labels, decorative elements, or static UI demonstrate the feature without interactive flipper physics. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Ball collision with at least three distinct table object classes produces materially different responses: walls bounce, bumpers kick, bricks crack or break, lanes redirect, spinners spin, gates open or block. Score 0 if collisions are absent, all objects behave identically, or every collision is indistinguishable. Score 0.5 at most if only labels, decorative elements, or disconnected static scenes demonstrate the feature. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The table has brick-breaker or target-bank objectives with visible cleared, cracked, disabled, or health states. Hits award score or progress and change the board state. Score 0 if targets never change, if the board is only a decorative background, or if score changes without visible contact. Score 0.5 at most if only labels or static screenshots demonstrate the feature without observable state changes during play. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "A submitted replay demonstrates a sustained playable loop: launch, flipper interaction, multiple collisions, target clearing or objective progress, score feedback, and either ball loss recovery or chamber/reward progression occur in one continuous table session. Score 0 if evidence is limited to isolated static screens or disconnected scripted showcases. Score 0.5 at most if the loop depends mainly on scenario jumps, labels, or pre-authored state changes rather than playable ball physics. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "Across demos, the game includes at least six distinct table elements or target types with at least four visible in one playable table. Examples: normal bricks, armored bricks, drop targets, bumpers, lanes, spinners, switches, gates, portals, locks, jackpot holes, rails, hazards, or boss targets. Score 0 if the table has only walls and one repeated block type. Score 0.5 at most if the variety is mostly labels, color swaps, menu text, or one-at-a-time demonstrations that do not affect play. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The game presents multiple chambers or table layouts with rising difficulty: changed target patterns, new mechanisms, hazards, objectives, or tighter ball-management pressure. Score 0 if every chamber uses the same layout and target values with no progression. Score 0.5 at most if progression is shown only in text, scenario names, or a larger score number without visible board-structure changes. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least three interactive table mechanisms are present and triggerable: switches opening gates, spinners charging multipliers, portals changing ball position, locks starting multiball, rails redirecting the ball, or jackpot holes launching the ball back. Mechanisms must be readable before and after activation with animation, state changes, and game consequences. Score 0 if mechanisms are absent or decorative. Score 0.5 at most if only labels or static UI demonstrate the feature. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The game offers a relic choice or reward screen with at least three selectable relics, each with name, icon or portrait, and concise rule text. Score 0 if relics are absent, if there are fewer than three choices, or if the reward is only a continue button. Score 0.5 at most if only labels, decorative elements, or static placeholder UI demonstrate the feature without selectable relic cards. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Selecting or collecting a relic visibly changes later gameplay and persists in an active relic row or loadout. Examples: changed ball count, ball speed, trail damage, magnetic pull, piercing, paddle size, bumper charge, gravity, scoring echo, or lane behavior. Score 0 if relics are cosmetic or reset immediately. Score 0.5 at most if the effect is described in text but not visible during table play. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D6",
+      "agg": "max",
+      "description": "At least three relics affect play in functionally different ways across demos or one run. Score 0 if all relics are generic score multipliers or if only one relic actually works. Score 0.5 at most if differences are mostly text descriptions or small numeric changes without observable physics, targeting, scoring, or table-interaction consequences. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D7",
+      "agg": "max",
+      "description": "A boss table, final lock, or special chamber introduces a rule that changes decision-making beyond a higher score target: armored boss plates, timed shields, gravity pulses, cursed bumpers, locked lanes, hazard drains, or required mechanism sequences. Score 0 if the boss is only the same table with more hit points. Score 0.5 at most if the boss rule is shown only as text or a label without visible table elements and feedback. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full game flow is connected without restarting: title screen with game name and start action leads to playable table, then to relic choice or reward, then to later table or result. Score 0 if major transitions are missing, broken, or only accessible through debug scenarios. Score 0.5 at most if only labels, decorative elements, or disconnected static scenes demonstrate the flow. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "Victory and defeat are both represented by styled result screens or overlays that halt table play and offer retry or return-to-title navigation. Score 0 if either result is missing, unstyled, or gameplay continues under the result. Score 0.5 at most if only labels or raw default Godot UI demonstrate the feature. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "During table play, readability is strong at 1280x720: ball, flippers, targets, bumpers, mechanisms, hazards, relic effects, and drain are distinguishable and do not overlap incoherently with HUD. Score 0 if important play elements are hidden, tiny, or visually ambiguous. Score 0.5 at most if the scene is sparse, generic, or mostly communicated through debug-style UI. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Impact feedback is visible across multiple frames: ball trails, hit sparks, score popups, bumper pulses, brick cracks, screen shake, flipper motion, target flashes, or particle bursts make collisions easy to follow. Score 0 if hits snap with no feedback or if all changes are invisible until a number updates. Score 0.5 at most if feedback is mostly text or a single-frame flash. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V5",
+      "agg": "mean",
+      "description": "Menus, relic cards, HUD panels, result screens, and table overlays are readable and non-overlapping at 1280x720, including long relic names and rule text. Score 0 if values disappear behind the playfield, text is too small to judge, or buttons are ambiguous. Score 0.5 at most if the UI is dominated by raw default controls or debug labels. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art direction is coherent and original across title, table, targets, ball, relics, HUD, boss, and results. Score 0 if most visible elements are default shapes, raw controls, mismatched asset packs, or copied lookalike UI. Score 1 requires strong visual harmony: consistent palette, typography, iconography, line weight, spacing, animation timing, and effects across gameplay and UI. Score 0.5 at most when visuals are dominated by primitive shapes, noisy color choices, or layouts that feel assembled rather than art-directed. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The pinball table itself feels authored: rails, glass/table surface, flippers, bumpers, brick banks, lanes, mechanisms, drain, and background details are arranged as a deliberate arcade board rather than loose objects on a blank canvas. Score 0 if the table is mostly empty or uses only unstyled rectangles. Score 0.5 at most when table visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Relics and target objects look like designed game pieces with icons, frames, rarity or energy treatment, readable active states, and consistent visual language. Score 0 if relics and targets are only text labels or raw buttons. Score 0.5 at most if relic identity is mostly communicated through text. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and visual polish support the run: ball motion is smooth, flippers animate, target hits and relic effects have multi-frame VFX, relic choice and chamber transitions have motion, and impact/reward cues are reinforced through particles, pulses, score bursts, or screen treatment. Score 0 if all important changes snap instantly or remain static. Score 0.5 at most when feedback is minimal, purely textual, or visually inconsistent. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

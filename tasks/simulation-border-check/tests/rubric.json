@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Travelers present documents that the player can drag, inspect, and compare against a rulebook on the desk workspace. Score 0 if no document inspection exists. Score 0.5 at most if documents appear but cannot be manipulated or compared. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The player stamps documents APPROVE or DENY, and incorrect decisions result in citations that reduce end-of-day pay. Score 0 if there is no approval/denial mechanic or no consequence for errors. Score 0.5 at most if stamps exist but errors have no financial impact. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Each day has a time limit and pay is per-person processed, creating speed-vs-accuracy tension. Score 0 if there is no time pressure or pay-per-person system. Score 0.5 at most if a timer exists but has no effect on earnings. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "End-of-day shows earnings vs family expenses (rent, heat, food, medicine), and the player must allocate limited funds to keep the family alive. Score 0 if no family/expense system exists. Score 0.5 at most if expenses are shown but have no consequence on gameplay. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Moral choice events present dilemmas (bribes, helping refugees, reporting corruption) that affect story progression and have visible consequences. Score 0 if no moral choices exist. Score 0.5 at most if choices appear but have no visible consequence on the narrative. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "Rules change each day with at least 10 days of escalating complexity: new document types, new checks (photo match, expiration, permits, vaccinations). Score 0 if rules never change. Score 0.5 at most if rules change but fewer than 5 distinct rule sets exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 4 distinct document types (passport, work permit, vaccination card, entry ticket) with different fields to verify. Score 0 if only one document type exists. Score 0.5 at most if documents differ only in title with identical fields. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Travelers have varied appearances, nationalities, and stories, with at least 3 story-event characters who recur across days. Score 0 if all travelers are identical. Score 0.5 at most if travelers vary but no recurring characters or story exists. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Multiple ending conditions based on accumulated choices: compliance ending, resistance ending, escape ending, and family-loss ending. Score 0 if only one ending exists. Score 0.5 at most if endings are mentioned but choices do not actually branch. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "An end-of-day report shows people processed, citations received, earnings, expenses paid, and family status with narrative text. Score 0 if days end abruptly with no summary. Score 0.5 at most if only earnings are shown with no other metrics. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Normal startup shows a styled title screen with the game name and bleak checkpoint-themed imagery. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse text on a blank background. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The flow connects title to day-start briefing to inspection gameplay to end-of-day report to story events without restarting the executable. Score 0 if major transitions are missing. Score 0.5 at most if transitions exist but break visually. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "The workspace clearly shows the desk with document inspection area, rulebook reference, stamps, and queue indicator in readable non-overlapping regions. Score 0 if the player cannot determine what to check or how to act. Score 0.5 at most if elements are present but overlapping or unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Player actions produce visible feedback: stamping shows ink effect, discrepancies can be highlighted, citations flash warnings, and travelers react to decisions. Score 0 if actions happen silently. Score 0.5 at most if only one feedback type exists. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Art direction is coherent across title, desk workspace, documents, travelers, reports, and story screens with a consistent bleak bureaucratic palette and style. Score 0 if mostly default controls or mismatched placeholders dominate. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Documents, traveler portraits, desk elements, stamps, and rulebook pages use real illustrated art with distinct designs. Score 0 if primary elements are unstyled rectangles. Score 0.5 at most if art exists but is inconsistent in style. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Animation adds life: documents slide onto desk, stamps press with weight, travelers approach and leave, pages turn, and citations appear with emphasis. Score 0 if all elements are static. Score 0.5 at most if only one element animates. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "UI panels use styled themed widgets with bureaucratic framing, typewriter fonts, or period-appropriate styling rather than raw Godot defaults. Score 0 if all UI is default Label/Button. Score 0.5 at most if some panels are styled but others remain raw defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

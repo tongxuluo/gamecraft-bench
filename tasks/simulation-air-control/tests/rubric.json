@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player draws flight paths for aircraft by clicking and dragging waypoints, and planes follow the drawn paths toward their assigned runways. Score 0 if no path-drawing mechanic exists. Score 0.5 at most if paths can be drawn but planes do not follow them. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Proximity warnings flash when two aircraft get too close, and actual collisions result in failure with visible crash effects. Score 0 if no collision detection exists. Score 0.5 at most if warnings appear but collisions have no consequence. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Aircraft enter from screen edges at different speeds with callsigns and destination indicators, requiring the player to manage multiple simultaneous routes. Score 0 if only one plane appears at a time. Score 0.5 at most if multiple planes exist but have no destination assignments. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Successfully landing planes on their correct runway earns points, while planes leaving the screen without landing or crashing loses lives. Score 0 if no scoring or failure system exists. Score 0.5 at most if points are earned but there is no failure condition. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Weather events (fog, storms, crosswinds) dynamically affect gameplay by closing runways, creating no-fly zones, or altering plane behavior. Score 0 if no weather system exists. Score 0.5 at most if weather is mentioned but has no gameplay effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 3 distinct airports with different runway configurations, surrounding terrain, and traffic patterns. Score 0 if only one airport exists. Score 0.5 at most if airports differ only in name with identical layouts. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 4 distinct aircraft types (small prop, commercial jet, cargo, helicopter) with different speeds and handling characteristics. Score 0 if only one aircraft type exists. Score 0.5 at most if types differ only in color with identical behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Between-level upgrades offer at least 4 options: additional runways, weather radar, speed-control commands, expanded airspace, or emergency landing pads. Score 0 if no upgrade system exists. Score 0.5 at most if upgrades are listed but produce no observable change. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "At least 12 levels with escalating traffic density, new aircraft types, weather complexity, and tighter timing requirements. Score 0 if difficulty never increases. Score 0.5 at most if levels increase only in plane count with no new challenges. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A level summary shows planes landed, near-misses, efficiency rating, and any weather events handled. Score 0 if levels end abruptly with no summary. Score 0.5 at most if only planes landed is shown. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Normal startup shows a styled title screen with the game name, control-tower themed imagery, and airport selection. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse text on a blank background. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The flow connects title to airport/level selection to radar gameplay to level summary without restarting the executable. Score 0 if major transitions are missing. Score 0.5 at most if transitions exist but break visually. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "The radar view clearly shows aircraft positions, callsigns, drawn paths, runway assignments, and weather zones in readable non-overlapping regions. Score 0 if the player cannot determine aircraft state. Score 0.5 at most if information is present but overlapping or unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Player actions produce visible feedback: path drawing shows the route, proximity warnings flash and pulse, successful landings celebrate, weather changes animate in, and crashes show impact effects. Score 0 if actions happen silently. Score 0.5 at most if only one feedback type exists. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Art direction is coherent across title, radar view, aircraft, runways, weather effects, and menus with a consistent aviation-control palette and style. Score 0 if mostly default controls or mismatched placeholders dominate. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Aircraft, runways, terminal buildings, weather icons, and terrain features use real sprite art with distinct designs readable at radar scale. Score 0 if primary elements are unstyled rectangles. Score 0.5 at most if art exists but is inconsistent in style. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Animation brings the airspace to life: planes move smoothly along paths, weather drifts across the map, proximity warnings pulse, landing sequences animate, and radar sweeps. Score 0 if all elements are static. Score 0.5 at most if only one element animates. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI panels use styled themed widgets with radar-screen aesthetics, aviation fonts, or control-panel styling rather than raw Godot defaults. Score 0 if all UI is default Label/Button. Score 0.5 at most if some panels are styled but others remain raw defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

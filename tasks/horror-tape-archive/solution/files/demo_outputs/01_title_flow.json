@@ -1,0 +1,9 @@
+{
+  "duration_frames": 360,
+  "events": [
+    {"frame": 60,  "type": "wait"},
+    {"frame": 120, "type": "mouse_click", "button": "left", "x": 640, "y": 400},
+    {"frame": 240, "type": "wait"},
+    {"frame": 360, "type": "wait"}
+  ]
+}

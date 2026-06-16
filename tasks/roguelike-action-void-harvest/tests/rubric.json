@@ -1,0 +1,142 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5+M6)/6) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3)/3))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player character moves responsively with keyboard input (WASD and/or arrow keys) inside a scrolling or bounded arena, with smooth multi-frame movement and collision or clamping that prevents leaving the playable area. Score 0 if the player is static, moves only by mouse clicks, teleports between positions, or can leave the arena bounds. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Enemies continuously spawn from outside the visible area or from arena-edge spawners, move toward the player, and appear in groups large enough to create survivor-like pressure. At least two enemy types with different silhouettes and behavior differences are visible. Score 0 if enemies are hand-placed only, do not pursue, spawn on top of the player, or are all identical. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Weapons fire automatically without requiring the player to click each attack. At least one weapon targets or aims independently while the player moves. Projectiles, pulses, mines, drones, beams, or other attack effects visibly damage enemies and reduce enemy HP. Score 0 if attacks require manual button-mashing, weapon effects are invisible, or enemies do not visibly take damage. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Defeated enemies drop collectible XP gems/shards or equivalent pickups that remain visible in the arena, move toward or are collected by the player, and increase a permanently visible XP/level meter. Score 0 if there are no pickups, XP increases without a visible collectible, or the XP/level state is hidden. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "When the XP meter fills, gameplay pauses or visibly slows and a styled level-up overlay presents at least three upgrade choices with names, icons, and short effect text. Selecting an upgrade immediately changes gameplay in an observable way (new weapon, more projectiles, stat change) that persists after the overlay closes. Score 0 if leveling is automatic with no choice, fewer than three choices appear, or the selected upgrade has no visible effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M6",
+      "agg": "max",
+      "description": "The core survivor loop is sustained in one replay: player movement, enemy pursuit, auto-attacks, damage, enemy death, XP pickup, level-up choice, upgrade application, and resumed combat all occur without restarting or jumping to a new scenario. Score 0.5 at most if the loop appears only in isolated debug setups or cannot be played continuously. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "A character-selection screen presents at least three original playable characters before the arena. Each has a distinct portrait/silhouette, name, starting weapon, and stat or passive difference shown to the player. Score 0 if there is only one character, selection is skipped, or characters differ only by color with no gameplay distinction. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least four enemy archetypes with distinct silhouettes and readable behavior roles are demonstrated. At least two archetypes do more than direct pursuit (telegraphed chargers, ranged attackers, splitters, shield bearers, summoners, burrowers, or hazard layers). Score 0 if enemies are only color/stat variants or fewer than four archetypes are identifiable. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "A time-based difficulty ladder with at least three legible phases is demonstrated. Each phase visibly changes at least two pressure variables: spawn rate, enemy composition, elite presence, arena hazards, or movement constraints. A timer, wave label, or phase indicator makes the progression understandable. Score 0 if difficulty is static or progression is not observable within a replay. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "At least one elite, mini-boss, or final-wave enemy uses a bespoke mechanic that changes positioning decisions — telegraphed area attacks, summons, shields, lane sweeps, projectile patterns, pull/push zones, or temporary arena hazards. The mechanic is visible across multiple frames with warning and impact feedback. Score 0 if the elite is only a bigger normal enemy or cannot threaten the player. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "The weapon arsenal has original variety: at least five weapon identities (not direct copies of well-known source-game weapons) are exposed by name and icon, and at least three are visible in active combat in the same run with clearly different attack logic (targeted bursts, delayed mines, bouncing shots, chained beams, orbiting drones, radial pulses). Score 0 if fewer than five weapon identities exist or all weapons use the same projectile with different names. Score 0.5 at most if only labels/icons exist without visible combat differences. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The full game flow is connected and styled: a themed title screen leads to character selection and then to the arena, all reachable through in-game UI without restarting. Both defeat and victory result screens exist, halt gameplay, and offer retry or return-to-title. Score 0 if the game launches directly into the arena, any transition is missing, or results are unreachable. Score 0.5 at most if only labels/decorative/static elements exist without functional navigation. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "The combat HUD is readable and non-overlapping at 1280x720. Player HP, XP/level bar, survival timer, and current weapon loadout are permanently visible in styled regions. Score 0 if any core combat value is absent, hidden behind a menu, or overlaps other UI. Score 0.5 at most if HUD elements are raw unstyled labels floating over combat. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Combat readability is strong: player, enemies, pickups, projectiles, hazards, and elite enemies are distinguishable by silhouette, color, size, or animation at 1280x720. Score 0 if the arena becomes visually ambiguous such that player, threats, and rewards cannot be told apart. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Damage and collection feedback are visible across multiple frames: hit sparks or flashes, HP bars/ticks on enemies, enemy death effects, pickup magnet/collection motion, and XP meter animation. Score 0 if enemies vanish instantly, damage has no feedback, or pickups disappear without visible collection. Score 0.5 at most if feedback is purely static text or number changes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art direction is coherent and original across title, character select, arena, enemies, weapons, pickups, HUD, and result screens. It must not read as a direct Vampire Survivors asset/theme clone. Score 0 if most visible elements are default shapes, mismatched asset packs, or raw ColorRects. Score 0.5 at most if visuals are dominated by primitive shapes, mismatched assets, or layouts that feel assembled rather than art-directed."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Animation and polish: player movement, enemy movement, weapon attacks, death effects, level-up transitions, and result transitions use smooth multi-frame animation or tweening. Score 0 if core gameplay moments snap in a single frame or scene changes are hard cuts with no visual treatment. Score 0.5 at most if animation is limited to one or two elements while the rest snaps. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Feedback polish supports the run: weapon hits, pickups, level-up UI, elite warnings, player damage, and result transitions have readable feedback through particles, screen shake, flashes, icons, or animation. Score 0 if important events have no perceptible feedback. Score 0.5 at most if feedback is purely static text with no visual treatment. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

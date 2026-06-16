@@ -1,0 +1,25 @@
+# Godot 4.x
+.godot/
+*.import
+export_presets.cfg
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Build artifacts
+*.pck
+*.exe
+*.x86_64
+*.dmg
+
+# Logs
+*.log
+
+# Environment
+.env

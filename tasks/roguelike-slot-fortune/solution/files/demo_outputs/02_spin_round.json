@@ -1,0 +1,14 @@
+{
+  "scenario": "spin_round",
+  "duration_frames": 480,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 60,  "type": "key_press", "keycode": "SPACE"},
+    {"frame": 120, "type": "wait"},
+    {"frame": 180, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 250, "type": "wait"},
+    {"frame": 300, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 420, "type": "wait"},
+    {"frame": 480, "type": "wait"}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "scenario": "mark_anomaly",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 90,  "type": "key_press", "keycode": "SPACE"},
+    {"frame": 150, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 210, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 270, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 330, "type": "mouse_click", "button": "left", "x": 640, "y": 620},
+    {"frame": 420, "type": "wait"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

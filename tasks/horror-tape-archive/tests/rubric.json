@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player views surveillance footage on a CRT monitor with play, pause, rewind, and fast-forward controls. A timestamp counter runs during playback. The footage shows scenes with activity that the player can scrub through. Score 0 if there is no footage playback, if there are no transport controls, or if there is no visible timestamp."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The player can mark anomalies by pausing at the right moment and clicking a 'Mark Anomaly' button. Correct marks earn investigation points with positive feedback. False marks cost sanity with negative feedback. The system distinguishes correct from incorrect marks. Score 0 if there is no marking mechanic, if all marks are treated equally, or if there is no feedback on correctness."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A sanity meter depletes when viewing anomalies and when making false marks. Low sanity causes visual corruption: screen distortion, phantom elements in footage, and false anomalies that trick the player. At zero sanity, the session ends. Score 0 if there is no sanity system, if sanity never depletes, or if low sanity has no visual effect."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least four distinct surveillance tapes exist, each covering a different camera location (hallway, lab, storage, courtyard). Each tape has different footage content, anomaly types, and visual style. Tapes are selectable from a shelf or menu. Score 0 if there are fewer than 4 tapes, if tapes show identical content, or if there is no selection interface."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least three distinct anomaly types exist across tapes: shadow movement, object disappearance, figure appearance, light flicker, or spatial distortion. Each anomaly type has a unique visual presentation. Anomalies are subtle enough to require attention. Score 0 if there are fewer than 3 anomaly types, if anomalies are identical, or if they are too obvious (full-screen effects)."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "An investigation board or case file connects marked anomalies across tapes. Correctly marking related anomalies reveals connections and advances the story. The board visually fills in as progress is made. Score 0 if there is no investigation tracking, if anomalies are unconnected, or if there is no visual progress display."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The archive room environment changes as the investigation progresses: objects shift, new items appear, the lighting changes, and the room becomes increasingly unsettling. At least three distinct room state changes occur. Score 0 if the room never changes, if changes are not tied to progress, or if fewer than 3 changes occur."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full review loop is connected: Select tape, watch footage, spot anomaly, pause and mark, receive feedback, update investigation board. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, archive room, select tape, review footage, mark anomalies, manage sanity, advance investigation, reach conclusion. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a VHS or monospace font with tracking-line effects, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (static, tape imagery, or surveillance aesthetic) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — CRT monitor, archive room, tape shelf, investigation board, UI controls — belongs to a single consistent retro-surveillance visual language. The palette is dim with CRT-green or amber highlights; no clashing bright colours or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: the archive room uses detailed illustrated surfaces; the CRT monitor has a convincing screen effect; tape controls look functional; UI elements use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if the room is a uniform colour fill, if the monitor is a plain rectangle, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: tape playback, anomaly appearances, marking feedback, sanity corruption effects, room state changes, and investigation board updates each play as a smooth multi-frame tween or effect — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

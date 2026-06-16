@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player places machines on a grid that automatically produce resources over time. Placed machines are visible on the planet surface and show production animation (spinning, pulsing, or particle output). Production happens continuously without player input. At least two machine types exist. Score 0 if machines cannot be placed, if production is not automatic, or if fewer than 2 machine types exist."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Production chains exist: output from one machine feeds input of the next via visible conveyor belts. Machines must be connected in sequence (miner to smelter to fabricator to seller). Resources visibly flow along conveyors between machines. Score 0 if there are no production chains, if machines work independently without connections, or if resource flow is not visible."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A prestige system exists: the planet has finite resources shown by a depletion meter. When depleted, the player prestiges to a new planet with a permanent production multiplier. The prestige shows the bonus to be gained. After prestige, the grid resets but research persists. Score 0 if there is no prestige mechanic, if the planet never depletes, or if resetting grants no bonus."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least four distinct machine types exist in a production hierarchy: miners (extract ore), smelters (ore to metal), fabricators (metal to parts), sellers (parts to credits). Each has a unique sprite and function. Higher-tier machines require lower-tier output. Score 0 if there are fewer than 4 machine types, if machines have no hierarchy, or if all machines produce the same thing."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "A research/tech tree exists: credits fund upgrades that unlock better machines (faster miners, multi-input fabricators, storage buffers). The tech tree shows available upgrades with costs and effects. At least three researchable upgrades exist. Score 0 if there is no research system, if upgrades have no effect, or if fewer than 3 upgrades exist."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "A production rate display shows current throughput: resources per second at each stage of the chain. The player can identify bottlenecks by comparing rates. Optimising layout improves overall output. Score 0 if there is no production rate display, if throughput is not measurable, or if layout has no effect on efficiency."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Exponential scaling exists: machine costs and production rates grow exponentially. Credits accumulate faster with each prestige cycle. Numbers grow large enough to require abbreviation (K, M, B). The progression curve provides satisfying growth. Score 0 if growth is linear, if numbers never scale significantly, or if prestige does not accelerate progression."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full production loop is connected: Place machines, connect with conveyors, produce resources, sell for credits, research upgrades, expand factory. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, planet grid, place machines, build chains, research, deplete planet, prestige, new planet with bonuses. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in an industrial or stencil font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (planet with factories, conveyor imagery) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — planet surface, machines, conveyors, resources, UI panels — belongs to a single consistent industrial/sci-fi visual language. The palette is metallic and mechanical; no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: the planet grid uses textured or illustrated surfaces; machines are recognisable sprites per type; conveyors show resource movement; UI elements (counters, tech tree, buttons) use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if the grid is a uniform colour fill, if machines are solid-colour primitives, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: machine operation, conveyor movement, resource flow, research completion, planet depletion, prestige transition, and number counter ticking each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

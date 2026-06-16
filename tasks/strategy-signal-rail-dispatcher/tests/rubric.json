@@ -1,0 +1,124 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "A railway network is visible with multiple stations, track sections, at least two switchable junctions or sidings, and moving train pieces constrained to the tracks. Trains advance along rails over time, not teleporting between nodes. Score 0.5 at most if trains exist but are static, not on tracks, or the map is a single straight line with no branching. Score 0 if no track network or moving trains are present. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Clicking or otherwise operating a switch visibly changes the route: switch blades, route arrows, or highlighted track segments update, and a train subsequently follows the changed path rather than its previous one. Score 0.5 at most if switch controls exist but do not affect train movement. Score 0 if no switch interaction is present or switches are purely cosmetic. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Signal controls have red/green or stop/go states that visibly halt and release at least one train before a section or station. A train approaching a red signal stops and waits; toggling the signal to green releases it. Score 0.5 at most if signals exist but trains ignore them or signals are only decorative/static. Score 0 if no signal interaction is present. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The game prevents or warns about conflicts between trains through blocked sections, collision warnings, occupancy lights, or an incident state. Two trains cannot silently overlap on the same section without consequence or feedback. Score 0.5 at most if only labels or text warnings appear with no gameplay consequence. Score 0 if multiple trains can overlap with no warning or consequence. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "A timetable, lateness meter, deadline, or shift timer creates time pressure and visibly changes as trains wait or arrive. The player can see whether services are on time or delayed. Score 0.5 at most if timing exists but never changes or has no visible feedback. Score 0 if routing has no timing or schedule element. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least three distinct train or service identities are visible — such as local, express, freight, or color-coded destination trains — with different priorities or station requirements that force the player to make routing trade-offs. Score 0.5 at most if multiple trains exist but are mechanically identical. Score 0 if every train behaves the same way. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "The shift escalates beyond a single routing move: rush-hour density, urgent services, delayed arrivals, blocked sections, or a later phase that increases dispatch pressure so the player must juggle more conflicts over time. Score 0.5 at most if only one unchanging train is present or difficulty never increases. Score 0 if the game shows a static, non-escalating state. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A result or summary screen appears at shift end reporting performance — on-time arrivals, delays, incidents avoided or caused — and offers retry or title navigation without restarting the executable. Score 0.5 at most if the shift ends but no summary or navigation is provided. Score 0 if the game has no end-of-shift state or result. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The HUD clearly shows active routes, signal states, station goals, train identity/priority, and on-time/delay status so the player can make informed decisions without guessing. Score 0.5 at most if only labels or decorative elements are present but the player cannot tell what each train needs or whether a route is safe. Score 0 if no dispatch information is readable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The flow connects title or scenario -> dispatch shift -> active train routing -> result or retry/title navigation without restarting the executable. Score 0.5 at most if transitions exist but feel like disconnected test scenes or debug teleports. Score 0 if any major transition is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Actions produce readable feedback: clicking a switch shows the route change, toggling a signal shows the state flip, trains visibly stop or start in response, and arrivals or conflicts produce a cue. Score 0.5 at most if state changes happen but produce no visible feedback to the player. Score 0 if interactions have no observable effect on screen. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Art direction is coherent across title, track diagram, trains, stations, signals, switches, HUD, and result screens — sharing a consistent palette, typography, iconography, and line weight that reads as one authored product. Score 0.5 at most if visuals are dominated by primitive shapes, raw default controls, noisy color choices, or assembled-looking layouts. Score 0 if mostly default controls or mismatched placeholders dominate. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The track diagram and station elements look like designed schematic art — clean lines, distinct station shapes, readable junction geometry — rather than raw rectangles or debug wireframes. Score 0.5 at most if tracks exist but are plain single-pixel lines with no station or junction styling. Score 0 if the map is unthemed geometric primitives. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Train sprites or icons are visually distinct per service type, with readable silhouettes, color coding, or styled shapes that communicate identity at a glance. Score 0.5 at most if trains are identical colored dots or squares with no differentiation. Score 0 if trains have no visual representation or are indistinguishable from track elements. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback make dispatch decisions legible: trains move smoothly along tracks, switches animate or visibly flip, signals change state with a transition, arrivals produce feedback, and warnings draw attention without obscuring the map. Score 0.5 at most if all state changes snap silently with no motion or transition. Score 0 if nothing animates and all changes are instantaneous. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

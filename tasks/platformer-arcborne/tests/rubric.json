@@ -1,0 +1,148 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5+M6)/6) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player fires a grappling hook at anchor points, connects only when an anchor is in range, stays tethered while input is held, and detaches on demand. A visible tether (rope, beam, or line) appears while attached. Score 0 if there is no grapple action, if the hook attaches to arbitrary empty space with no anchor logic, if no tether is ever drawn, or if the player cannot release. Score 0.5 at most if only labels/decorative/static/disconnected. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "While tethered, the player swings under physics -- pendulum-like motion driven by gravity and momentum, gaining speed through the arc -- and releasing the hook preserves that velocity into a free launch. Chaining a fresh grapple after release without touching the ground should be possible. Score 0 if swinging is a fixed animation with no momentum, if release does not carry velocity, if the player snaps directly to the anchor, or if motion ignores physics entirely. Score 0.5 at most if only labels/decorative/static/disconnected. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The player commands more than one kind of grapple -- for example a swing line that builds pendulum momentum and a pull/retract line that yanks the player toward the anchor -- and can switch between them with a readable mode indicator. Each mode creates a different traversal choice. Score 0 if there is only one grapple behavior, if different modes move the player the same way, or if the only difference is a HUD label. Score 0.5 at most if only labels/decorative/static/disconnected. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Movement is physical and player-driven: gravity pulls the player, horizontal acceleration/deceleration is readable, platforms support and block, and the player can influence motion in the air or on the swing through steering, pumping, reeling, or air-dashing. Score 0 if there is no gravity, if the player cannot meaningfully influence movement, if platform collisions are absent, or if movement is only menu/grid selection. Score 0.5 at most if only labels/decorative/static/disconnected. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Hazards and collision matter: pits, spikes, blades, beams, crushers, or similar hazards kill, damage, or reset the player on contact, and solid surfaces reliably block. A hazard hit produces clear feedback and returns the player to a checkpoint or failure state. Score 0 if the player passes through hazards harmlessly, if there are no hazards/pits, or if collision is absent. Score 0.5 at most if only labels/decorative/static/disconnected. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M6",
+      "agg": "max",
+      "description": "The full loop is connected without restarting the executable: title -> play a course -> result (completion or failure) -> retry or advance. A timer or score measures performance, and reaching the goal completes the level. Every transition is reachable through in-game UI. Score 0 if any transition is missing or broken, if there is no goal/finish, or if retrying requires relaunching. Score 0.5 at most if only labels/decorative/static/disconnected. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The game spans at least three visually distinct worlds or biomes, each with its own backdrop, tileset, and identity -- not the same level recolored. At least two visually different worlds are seen during play. Score 0 if there is only one world or if all worlds share an identical look. Score 0.5 at most if differences amount to a tint swap on the same art. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Anchor/grapple-target variety: at least three distinct kinds of grapple points exist with different behavior (fixed, moving/drifting, single-use breakable, spring, slide rails, etc.). The kinds are visually distinguishable before the player commits, and their behavior changes the route or timing. Score 0 if there is only one anchor type or if all anchors behave identically. Score 0.5 at most if anchors differ only cosmetically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Hazard and obstacle variety: at least three distinct hazard/obstacle types (spikes, spinning blades, crushers, beams/lasers, moving platforms, etc.) that threaten the player in different ways, and the mix differs across worlds. Score 0 if there is only one hazard type or if hazards are cosmetic. Score 0.5 at most if every world reuses an identical single obstacle. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Each world applies a distinct environmental modifier that changes how movement and swinging play -- for example gusts that push mid-swing, conveyors that drag along the ground, or low gravity that stretches arcs. At least one such modifier is observable altering motion. Score 0 if all worlds play under identical physics. Score 0.5 at most if a modifier is purely decorative with no effect on movement. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Movement-tech depth gives a real skill ceiling: at least two distinct techniques such as pumping the swing to build speed, reeling the line in/out, an air-dash/boost, wall recovery, or chaining swings without touching ground, each changing speed, height, reach, or route choice. Score 0 if the only action is fire-and-hold with no way to shape momentum. Score 0.5 at most if extra techniques have no observable effect on traversal. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Core run state is readable at a glance through a HUD: the timer or score, current world/level, active hook mode, and progress toward the goal are placed in clear non-overlapping regions. Score 0 if the timer/score or hook mode is missing or hidden. Score 0.5 at most if only labels/decorative/static/disconnected. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "The scene is legible during fast movement: the player, rope/tether, anchor points, hazards, platforms, and goal are mutually distinguishable in color/silhouette, and the camera keeps both the player and upcoming traversal choices readable. Score 0 if the player or tether is hard to pick out, if anchors/hazards are indistinguishable from the background, or if the camera loses the player. Score 0.5 at most if only labels/decorative/static/disconnected. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Actions and events produce clear visible feedback: firing and connecting the hook, the swing arc, the release/launch, hitting a hazard, reaching a checkpoint, and finishing the goal each show a visible state change (tether appears, motion curves, flashes, particles, panel swap). Score 0 if grapple, swing, release, death, or goal happen with no visible feedback. Score 0.5 at most if only labels/decorative/static/disconnected. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "max",
+      "description": "A styled title screen is present with the game name, a way to start, and art that establishes the acrobatic/momentum tone. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if only labels/decorative/static/disconnected. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art coherence: the player, anchors, tether, platforms, hazards, world backdrops, and UI belong to a consistent visual language, and each world reads as a coherent themed environment rather than mismatched parts or default Godot grey. Score 0 if the screen mixes incompatible styles, relies on unthemed placeholder rectangles, or looks like a blank default scene. Score 0.5 at most if only labels/decorative/static/disconnected. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Character and object sprite quality: the player avatar, anchor points, and hazards are real sprite art (illustrated, pixel-art, or hand-drawn), not solid-color rectangles or default Godot primitives, and the player and different anchor/hazard kinds are visually distinct. Score 0 if the avatar or in-level objects are plain ColorRect/default shapes or indistinguishable colored blobs. Score 0.5 at most if only labels/decorative/static/disconnected."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment and level art: platforms, terrain, and per-world backdrops use real textured or illustrated art with surface detail, and the worlds are clearly different illustrated settings. Score 0 if levels are uniform color backgrounds, if platforms are plain untextured rectangles, or if worlds are visually identical fills. Score 0.5 at most if only labels/decorative/static/disconnected. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and atmosphere: the swing and rope motion, the player's launch arc, hazard motion, hit/death and goal transitions use animation, tween, particles, shake, or trails rather than instant snaps, and the worlds carry ambient life (swaying foliage, drifting clutter, parallax, glowing tech). HUD and UI chrome use styled themed widgets, not raw unstyled Godot defaults. Score 0 if all motion snaps with no easing/effects, or if nothing on screen ever animates during play. Score 0.5 at most if only labels/decorative/static/disconnected. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

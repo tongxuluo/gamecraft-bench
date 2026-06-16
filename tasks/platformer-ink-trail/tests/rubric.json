@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player character leaves a visible wet ink trail while moving. After a short delay (approximately 1 second), the wet ink solidifies into a walkable platform that supports the player's weight. Score 0 if no trail mechanic exists. Score 0.5 at most if a trail appears but never solidifies into a usable platform. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "An ink meter limits trail creation — when empty, movement leaves no trail. Ink wells placed in levels refill the meter. The meter is visible and depletes proportionally to trail length created. Score 0 if ink is unlimited or no resource management exists. Score 0.5 at most if a meter exists but never runs out or ink wells are absent. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The player can stand on their own solidified ink trails — crossing gaps by running through air, then doubling back to stand on the hardened trail. This self-scaffolding is the core puzzle mechanic. Score 0 if the player cannot interact with their own trails. Score 0.5 at most if trails are solid but puzzles never require using them as platforms. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The solidification delay creates timing puzzles — the player must draw a trail mid-jump and land on it after it hardens. Mistiming results in falling through wet ink. Score 0 if trails solidify instantly with no timing element. Score 0.5 at most if a delay exists but timing is never critical for puzzle solutions. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Levels have a clear exit goal. A three-star rating based on ink efficiency (less ink used = better rating) encourages optimal routing. The rating is displayed on level completion. Score 0 if no goal or rating exists. Score 0.5 at most if a goal exists but no efficiency rating is tracked. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 18 levels across 6 worlds are present with unique puzzle layouts requiring different ink-trail strategies. Levels within a world share a theme but vary in challenge. Score 0 if fewer than 10 levels exist. Score 0.5 at most if levels exist but puzzles are trivially similar. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Advanced mechanics are introduced in later worlds: wind that displaces wet ink before hardening, erasers that dissolve trail sections, timed ink that fades after seconds, or color-coded ink. At least 3 distinct advanced mechanics exist. Score 0 if only basic trail mechanics exist throughout. Score 0.5 at most if one advanced mechanic exists but is underused. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Worlds introduce mechanics progressively — early worlds teach basic trail-platforming, later worlds layer complexity. Each world has a distinct visual theme and mechanical focus. Score 0 if no progressive introduction exists. Score 0.5 at most if worlds exist but all mechanics are available from the start. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Ink well placement is strategic — wells are sparse enough to force efficient routing but present enough to prevent soft-locks. Some levels have multiple possible solutions with different ink costs. Score 0 if ink wells are everywhere or absent. Score 0.5 at most if wells exist but placement is not strategic. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Level completion shows ink used, time, and star rating. A world-select screen shows progress and total stars. Score 0 if no completion tracking exists. Score 0.5 at most if only basic completion is shown. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows ink dripping into the game name with thematic art. A world-select grid is accessible. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The game flow connects title -> world select -> level -> completion -> back to select without restarting. Score 0 if transitions are missing. Score 0.5 at most if flow exists but is broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "During gameplay, the ink meter is prominently displayed, wet vs solid trail states are visually distinct (different color or opacity), and the exit goal is clearly marked. Score 0 if no ink meter or trail state distinction is visible. Score 0.5 at most if information exists but is unclear. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: the player, wet ink, solid ink, ink wells, hazards, and level geometry are all clearly distinguishable. Score 0 if elements blend together. Score 0.5 at most if visuals are dominated by raw shapes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, worlds, ink effects, and UI — a consistent ink/watercolor aesthetic with fluid visual language. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Environments use real sprite or tile art for level geometry, backgrounds, and ink wells — not plain ColorRect fills. Ink trails have a fluid, organic appearance. Different worlds have distinct visual themes. Score 0 if environments are uniform color fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: ink meter, star rating, world select, and completion screens use styled themed widgets — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: ink flows fluidly from the character, solidification has a visible hardening effect, ink wells bubble when approached, wind visibly displaces wet ink, and level completion has a satisfying animation. Score 0 if all state changes snap silently. Score 0.5 at most if animation is minimal. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

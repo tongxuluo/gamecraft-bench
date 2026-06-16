@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*(M1+M2+M3)/3 + 0.35*(D1+D2+D3+D4)/4 + 0.15*(V1+V2)/2 + 0.35*(A1+A2+A3+A4)/4)",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player presses a key to charge a cast meter, then releases to throw the fishing line. Cast distance depends on timing. The line lands with a visible splash particle or ripple effect. Score 0 if there is no cast meter, if line placement is random with no player control, or if there is no splash effect on landing."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "After casting, a bobber floats on the water. A fish bites with a visible tug animation. The player must press a key at the right moment to hook the fish, then manage line tension by alternately reeling and releasing. A tension meter shows current line stress. Score 0 if fish bite instantly with no wait, if there is no timing-based hook mechanic, or if the tension meter is missing."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Weather changes (sunny, rainy, foggy) affect fish behaviour: some species only appear in rain, others at dawn or dusk. A day/night cycle shifts lighting and water colour over time. Score 0 if weather never changes, if time of day is fixed, or if weather has no gameplay effect on fish availability."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least five distinct fish species with different appearances, sizes, and habitats. A caught-fish screen shows the species name, size, and short flavour text. Rare fish sparkle or have unique colours. Score 0 if there are fewer than 5 species, if caught fish are not displayed with details, or if all fish look identical."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The world has at least three visually distinct water bodies: a calm lake (light blue, small fish), a rushing river (current effects, medium fish), and a deep ocean (dark blue, large rare fish). The player can walk freely on land and approach any shore. Score 0 if there are fewer than 3 water bodies, if shores are invisible, or if the player cannot move freely between them."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "A fishing journal or bestiary tracks all caught species with a silhouette outline for uncaught fish. The player can see total species caught and a completion percentage. The journal updates immediately after catching a new fish. Score 0 if there is no journal, if uncaught fish are invisible in the list, or if the journal does not update after a catch."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Fish in different water bodies and weather conditions have noticeably different difficulty: ocean fish fight harder and require more tension management; river fish pull with the current; lake fish are easier catches. The player can perceive a progression in challenge across locations. Score 0 if all fish behave identically regardless of location, or if difficulty does not vary."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full fishing loop is connected: Walk to shore, charge cast, cast line, wait for bite, hook at right moment, reel with tension management, catch fish, view in journal. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, explore world, find water body, cast, catch fish, view journal, repeat. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a play button that is interactive and transitions to the game world, and uses a non-default background (water scene, sunset, or illustrated landscape) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — water, land, fish, player character, UI — belongs to a single consistent visual language. The palette is serene and natural; no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: water bodies use textured or illustrated surfaces with visible ripple detail; the player character is a recognisable sprite (not a plain coloured rectangle); fish have distinct sprites per species; HUD elements use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if water is a uniform colour fill, if the player is a solid-colour primitive, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: cast charge meter, line arc, splash, bobber bobbing, fish tug, reel tension gauge, caught-fish screen, and day/night transitions each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

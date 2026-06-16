@@ -1,0 +1,125 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5+M6)/6) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5", "M6"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "A sector map shows connected nodes with partial information (icons hinting at combat, shops, or events). The player chooses which node to jump to, spending fuel per jump. Score 0 if no sector map or node choice exists. Score 0.5 at most if a map exists but all nodes are identical or no fuel cost constrains movement. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Combat shows both ships in cross-section with rooms. The player assigns crew to systems (weapons, shields, engines, medbay) and targets specific enemy rooms. Power distribution between systems is a meaningful choice. Score 0 if no ship combat exists. Score 0.5 at most if combat exists but has no crew assignment or system targeting. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Ship systems take damage during combat — damaged systems reduce effectiveness or stop working. Crew can be assigned to repair damaged systems. Fires and hull breaches create additional hazards. Score 0 if no damage system exists. Score 0.5 at most if damage exists but has no effect on system performance or cannot be repaired. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Fuel and scrap are persistent resources. Fuel limits jumps per sector. Scrap funds repairs, upgrades, and shop purchases. Running out of fuel strands the player. Score 0 if no resource management exists. Score 0.5 at most if resources exist but have no meaningful constraint on decisions. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Crew members have health and can die permanently. Dead crew cannot be replaced easily. Crew in the medbay heal over time. Losing all crew ends the run. Score 0 if crew are invincible or do not exist. Score 0.5 at most if crew exist but cannot die or their loss has no consequence. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M6",
+      "agg": "max",
+      "description": "The full loop connects: title -> sector map -> node encounters -> combat/events -> sector exit -> next sector -> final boss without restarting. Victory and defeat both have result screens. Score 0 if the loop is incomplete or requires relaunch. Score 0.5 at most if most transitions work but some are broken. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 3 sectors with procedurally generated node maps, each with increasing difficulty and different encounter distributions. The final sector contains the flagship boss. Score 0 if only one sector exists. Score 0.5 at most if sectors exist but are identical in difficulty or content. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 4 distinct encounter types exist: hostile ships (combat), shops (buy/sell), distress signals (risk/reward events), asteroid fields (navigation hazards), and empty beacons. Each resolves differently. Score 0 if only combat encounters exist. Score 0.5 at most if encounter types exist but fewer than 4 are present. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Ship upgrades are available: new weapons, shield improvements, engine boosts, and system additions purchasable at shops or earned from events. At least 5 distinct upgrades exist. Score 0 if no upgrade system exists. Score 0.5 at most if upgrades exist but fewer than 5 options are available. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The final boss (flagship) is a multi-phase battle with unique mechanics not seen in regular combat — special weapons, reinforcement waves, or system-disabling attacks. Score 0 if no final boss exists. Score 0.5 at most if a boss exists but fights identically to regular enemies. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Events present narrative choices with risk/reward outcomes — helping a distress signal might yield crew or trigger a trap. At least 5 distinct event scenarios exist with meaningful choices. Score 0 if no events with choices exist. Score 0.5 at most if events exist but choices have no meaningful consequence. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows the ship silhouette against a star field. The sector map is clearly readable with node types, connections, and current position. Score 0 if no title or map visualization exists. Score 0.5 at most if a map exists but nodes are indistinguishable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The ship cross-section view clearly shows rooms, crew positions, system status (powered/damaged/offline), and hull integrity. During combat, both ships are visible with targeting indicators. Score 0 if no ship view exists. Score 0.5 at most if a ship view exists but rooms or systems are not distinguishable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Resource displays (fuel, scrap, hull HP, crew health) are visible at all times in a clear HUD. System power allocation is readable. Combat damage is shown with visual feedback. Score 0 if no resource display exists. Score 0.5 at most if displays exist but are incomplete or overlapping. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: ship rooms, crew, systems, weapons, and map nodes are all clearly distinguishable. Combat state is parseable at a glance. Score 0 if elements blend together. Score 0.5 at most if visuals are dominated by raw shapes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, map, ship view, combat, shops, and events — a consistent sci-fi spacefaring aesthetic with unified palette and typography. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Ship interiors, crew sprites, weapon effects, and enemy ships use real illustrated or pixel-art assets — not plain ColorRect fills. Different ship types and crew are visually distinct. Score 0 if ships are uniform rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: resource bars, system panels, shop interfaces, event dialogs, and result screens use styled themed widgets — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: weapons fire with projectile animations, shields flash on impact, fires flicker in damaged rooms, crew move between rooms, and jumps have a warp transition. Score 0 if all state changes snap silently. Score 0.5 at most if animation is minimal. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

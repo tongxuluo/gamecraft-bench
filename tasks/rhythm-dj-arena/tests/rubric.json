@@ -1,0 +1,118 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Each player has a note highway with at least 3 lanes. Notes scroll toward a judgement line and the player hits them with timed key presses. Successful hits charge a power meter displayed prominently. The charge meter fills proportionally to combo length and accuracy. Score 0 if there is no note highway, if hits do not charge a meter, or if there are no lanes. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "When the charge meter reaches a threshold, the player can spend it to launch a musical attack (projectile, wave, or blast) that travels across the arena toward the opponent. The opponent takes damage if hit (health bar depletes). Stronger charges (from higher combos) produce visibly more powerful attacks. Score 0 if there is no attack mechanic, if charge cannot be spent, or if attacks have no visual scaling with charge level. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The opponent can dodge or block incoming attacks with a timed key press as the projectile arrives. Successful dodges negate damage with a visual effect. Health bars deplete on successful hits. First player to zero health loses the round. Matches are best-of-3 rounds. Score 0 if there is no dodge mechanic, if health does not deplete, or if there is no round structure. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 4 playable characters with distinct visual designs, musical themes, and different special move sets (unique attack types, charge speeds, or passive abilities). Each character has a unique sprite and selection screen preview. Score 0 if there are fewer than 4 characters, if characters look identical, or if they play identically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 3 distinct attack types across characters (e.g., bass wave, treble spike, chord blast) with different visual effects, travel speeds, and damage patterns. Each attack is visually identifiable and has unique properties. Score 0 if there is only one attack type, if attacks all look the same, or if there are fewer than 3 distinct types. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "An arcade/ladder mode with at least 5 AI opponents of increasing difficulty. Later opponents have faster note patterns and more aggressive attack usage. Defeating all opponents shows a character-specific victory screen. Score 0 if there is no arcade mode, if there are fewer than 5 opponents, or if difficulty does not escalate. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The tempo increases between rounds in a match, making note patterns denser and combat faster. The player perceives escalating intensity across the best-of-3 structure. Between-round interludes show score and round status. Score 0 if tempo is static, if there is no between-round screen, or if rounds feel identical in intensity. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The split-screen layout is readable: each player's highway, charge meter, and health bar are clearly separated and identifiable. Attack projectiles travel visibly across the arena between the two sides. The player can assess both their own and the opponent's state at a glance. Score 0 if the layout is confusing, if charge meters are hidden, or if attacks are not visible in transit. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Hit feedback on the note highway is immediate and graded (Perfect/Great/Miss with distinct visuals). The charge meter fills with visible animation. Attack launches produce a dramatic visual cue. Dodge successes show a clear evasion effect. Score 0 if there is no hit feedback, if the charge meter jumps without animation, or if attacks launch without visual cue. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen -> Character select -> Fight (note highway + attacks) -> Round results -> Match winner -> Return to menu or next opponent. The player can experience every node without restarting. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a play button that is interactive and transitions to character select, and uses a non-default background (neon club, stage lights, or musical arena) \u2014 not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element \u2014 character sprites, note gems, attack projectiles, arena background, UI panels \u2014 belongs to a single consistent visual language. The palette is vibrant and energetic with a music/club theme; no clashing styles. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Character sprites are detailed and animated, attack projectiles have distinct authored visual effects, the arena background is illustrated with stage/club theming, and UI elements (health bars, charge meters, combo counters) use styled widgets with custom art. Score 0 if characters are solid-colour primitives, if attacks are plain circles, or if UI is unstyled defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: note scrolling, hit bursts, charge meter filling, attack projectile travel, dodge animations, health bar depletion, round transitions, and character select previews each play as smooth multi-frame tweens or sprite animations. No element snaps to its new state in a single frame. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

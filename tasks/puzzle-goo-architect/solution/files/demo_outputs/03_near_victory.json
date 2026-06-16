@@ -1,0 +1,16 @@
+{
+  "scenario": "near_victory",
+  "duration_frames": 360,
+  "events": [
+    {"frame": 30, "type": "wait"},
+    {"frame": 60, "type": "mouse_down", "button": "left", "x": 50, "y": 20},
+    {"frame": 80, "type": "mouse_move", "x": 620, "y": 140},
+    {"frame": 100, "type": "mouse_up", "button": "left", "x": 620, "y": 140},
+    {"frame": 140, "type": "mouse_down", "button": "left", "x": 50, "y": 20},
+    {"frame": 160, "type": "mouse_move", "x": 640, "y": 110},
+    {"frame": 180, "type": "mouse_up", "button": "left", "x": 640, "y": 110},
+    {"frame": 220, "type": "wait"},
+    {"frame": 300, "type": "wait"},
+    {"frame": 360, "type": "wait"}
+  ]
+}

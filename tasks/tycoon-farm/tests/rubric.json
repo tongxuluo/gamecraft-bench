@@ -1,0 +1,136 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The irreducible farming loop is playable through player input: the player can move to field tiles, till empty ground, plant seeds from inventory, water planted tiles, sleep to advance the day, and see crops progress only after the day transition. Score 1 only if the same loop connects tile state, inventory, stamina/day progression, and player actions. Score 0 if farming is scripted, crops mature instantly without sleeping, or tile actions do not change persistent game state. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The economy loop is closed: mature crops can be harvested into a finite inventory, sold through a shipping bin or shop for gold, and gold can be spent to buy seeds or supplies that return to inventory and feed back into farming. Score 1 only if sell and buy both visibly change gold and inventory. Score 0 if there is no shop/sell action, no persistent gold counter, or money/items are only decorative labels. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Daily resource management is enforceable: meaningful actions such as tilling, watering, harvesting, fishing, or shopping consume stamina; stamina does not passively refill during the day; zero stamina blocks or limits further actions with feedback; sleeping restores stamina and advances the day. Score 1 only if limits affect actual player choices. Score 0 if actions are unlimited, stamina is missing, or stamina exists but has no gameplay consequence. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Save/load and day boundaries work correctly: sleeping commits the morning state for the next day, Continue restores day/gold/inventory/tile state after relaunch, and quitting mid-day without sleeping does not overwrite the last saved morning. Score 1 only if post-sleep persistence and mid-day non-save behavior are both demonstrated or clearly reachable. Score 0 if Continue always starts a default farm or every action autosaves immediately regardless of sleep. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The full flow is connected without restarting the executable: title screen -> New Farm / Continue -> farm gameplay -> sleep -> next day, with transitions between farm, farmhouse, shop, and waterside reachable by player movement or UI. Score 0 if any transition is missing, broken, or requires relaunching the application. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "Crop content has depth: at least three crop types exist, each visually distinct and functionally different through seed price, growth days, sell value, or harvest yield. The shop and inventory represent them as separate items. Score 1 only if at least two crop types are demonstrated growing, harvested, sold, or purchased. Score 0 if there is one crop type, crop differences are tint-only, or all crops have identical behavior. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The world has at least three distinct playable regions or sub-scenes: farm/field, farmhouse, shop or shipping area, and waterside count if they have their own layout/props and can be reached by player movement or UI transition. Score 1 only if at least three regions exist and at least two are visited in demos. Score 0 if the entire game is one screen with labels, or shop/fishing are only popup buttons on the farm with no distinct place. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "There is a secondary activity beyond crop farming, such as fishing, foraging, livestock care, mining, crafting, or requests. It must have its own interaction, visual cue, inventory item or reward, and economic purpose. Score 1 only if the secondary activity is playable and feeds back into inventory/gold/progression. Score 0 if there is no secondary activity or it is just a button that adds gold without scene/state feedback. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The slice contains progression goals beyond a single repeated action: examples include tool upgrades, expanding fields, unlocking crop types, daily earnings summaries, collection goals, shop stock changes, or persistent farm improvements. Score 1 only if progression gives the player a reason to continue across multiple days. Score 0 if the game has no content beyond performing one crop cycle forever with identical state. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Essential life-sim state is readable throughout gameplay: current day, stamina, gold, selected tool/action, seed/crop inventory, and relevant prompts are visible in stable, non-overlapping HUD regions. Score 1 only if a player can understand their resources and current action without guessing. Score 0.5 at most if only labels or decorative counters are shown with no spatial separation. Score 0 if core counters are missing, hidden, or shown only as debug text. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Tile and object states are visually distinct at gameplay scale: untilled, tilled, watered, planted, growing, mature, harvested/empty, blocked scenery, interactable shop/bin/bed/water, and non-tillable ground must be distinguishable without relying only on text labels. Score 1 only if adjacent differing states are clear in sampled frames. Score 0.5 at most if states are only distinguishable by labels or single-color fills. Score 0 if the farm is a uniform fill or tile states are indistinguishable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Player action feedback is durable and clear: tilling changes the tile and remains, watering changes wetness and remains, planting adds a visible crop stage, harvesting removes the crop and updates inventory, selling/buying cues gold/inventory changes, and failed actions produce a visible refusal cue. Score 1 only if both successful and failed actions are observable across sampled frames. Score 0.5 at most if only static state changes with no feedback on failure. Score 0 if actions happen silently or only numbers change. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "The interface and navigation are usable as a game: title, New Farm/Continue, farm HUD, inventory, shop, day-end summary, and menu controls have readable hierarchy, framing, spacing, and contrast. Score 1 only if major screens remain legible and do not cover critical playfield information. Score 0.5 at most if screens are present but overlap or clip. Score 0 if UI consists mainly of unstyled floating labels or hides gameplay. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a publishable cozy pastoral art direction: title, farm, shop, waterside, crops, character, UI, and day-end screens share a warm, coherent visual language. Score 1 only if screenshots read as an authored vertical slice. Score 0 if visible gameplay relies on raw ColorRect shapes, default Godot controls, mismatched asset packs, or off-brief placeholder colors."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "World and environment art are finished enough for release: grass, soil, paths, water, farmhouse, fences, trees, shop/bin, and region props use textured or illustrated assets with internal detail. Score 1 only if the setting feels like a real village farm space. Score 0 if terrain is flat fills, buildings/scenery are solid blocks, or regions are distinguished only by text labels. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Characters, crops, items, and secondary-activity assets use real sprite art: the player has a recognizable character sprite, crops have distinct growth-stage sprites, inventory/shop items have icons, and at least one movement or action animation is visible. Score 1 only if primary gameplay objects could plausibly ship as final art. Score 0 if the player, crops, or important items are plain boxes/circles or all share identical placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "UI and motion polish meet a shippable micro-game bar: title screen, buttons, HUD, inventory, shop, day-end summary, transitions, counter changes, crop growth, and sleep transition use custom styling plus tweening, fades, or equivalent authored motion. Score 1 only if polish is visible across menus and gameplay. Score 0 if major screens use naked default Label/Button widgets or hard-cut without authored motion. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

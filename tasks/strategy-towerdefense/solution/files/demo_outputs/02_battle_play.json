@@ -1,0 +1,20 @@
+{
+  "scenario": "battle_stage1",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 90,  "type": "mouse_move", "x": 95, "y": 660},
+    {"frame": 100, "type": "mouse_down", "button": "left", "x": 95, "y": 660},
+    {"frame": 130, "type": "mouse_move", "x": 256, "y": 256},
+    {"frame": 150, "type": "mouse_up",   "button": "left", "x": 256, "y": 256},
+    {"frame": 240, "type": "mouse_move", "x": 225, "y": 660},
+    {"frame": 250, "type": "mouse_down", "button": "left", "x": 225, "y": 660},
+    {"frame": 280, "type": "mouse_move", "x": 384, "y": 256},
+    {"frame": 300, "type": "mouse_up",   "button": "left", "x": 384, "y": 256},
+    {"frame": 420, "type": "mouse_move", "x": 355, "y": 660},
+    {"frame": 430, "type": "mouse_down", "button": "left", "x": 355, "y": 660},
+    {"frame": 460, "type": "mouse_move", "x": 512, "y": 256},
+    {"frame": 480, "type": "mouse_up",   "button": "left", "x": 512, "y": 256},
+    {"frame": 600, "type": "wait"}
+  ]
+}

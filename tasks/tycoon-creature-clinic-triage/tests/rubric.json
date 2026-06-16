@@ -1,0 +1,130 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Multiple patients appear in a queue with creature identity, symptoms, and urgency, creating a visible prioritization choice. Score 1 only if at least three patients are present simultaneously and the player must choose who to attend. Score 0 if there is only one task at a time. Score 0.5 at most if patients are static labels or preloaded props without changing state. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The player can inspect or diagnose a patient and the diagnosis materially determines which treatment or station is appropriate. Score 1 requires symptoms or clues to drive an observable player decision. Score 0 if treatment is random or automatic. Score 0.5 at most if diagnosis is decorative text or a one-click reveal with no consequence."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Patients can be routed to distinct treatment stations, and correct versus wrong routing visibly changes health, status, time, reputation, or outcome. Score 1 requires the replay to show an assignment resolving or worsening a case. Score 0 if stations do not affect patients. Score 0.5 at most if routing is simulated by labels or generic buttons with no observable difference."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Urgency, timers, deterioration, station occupancy, cooldowns, or supply limits create real triage pressure where waiting or misrouting has a visible cost. Score 1 requires a consequence for delay or capacity mismanagement to be observable. Score 0 if there is no penalty for waiting. Score 0.5 at most if pressure is only a meter or flavor text that never forces a decision."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least four patient types or conditions are represented with distinct symptoms, priorities, and treatment needs that require different player decisions. Score 1 requires mechanical differences, not just different names or colors. Score 0 if all patients are identical. Score 0.5 at most if variety is label-only without gameplay impact."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least four treatment stations or tools exist with distinct effects, requirements, or constraints. Score 1 requires stations to behave differently in ways that matter for routing decisions. Score 0 if there is only one generic heal action. Score 0.5 at most if stations look different but resolve patients identically."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Progression introduces escalation during play: later waves, emergencies, combined symptoms, outbreaks, resource scarcity, or harder triage cases. Score 1 requires escalation that affects decisions, not only separate preloaded scenes. Score 0 if the same state repeats without change. Score 0.5 at most if progression is text-only or cosmetic."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Shift end results reflect prior play with metrics such as treated, failed, waiting, and reputation. Both success and failure outcomes exist and differ meaningfully. Score 1 requires results to vary based on player performance. Score 0 if results are missing. Score 0.5 at most if only one outcome exists or metrics are static text."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Queue state, patient cards, station occupancy, health bars, urgency indicators, and selected actions are readable at 1280x720 without overlap or ambiguity. Score 1 requires all triage-relevant information to be simultaneously legible. Score 0 if critical game state is hidden or unreadable. Score 0.5 at most for dense overlapping controls where key information is obscured."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Player actions produce immediate visible feedback: clicking a patient highlights or selects it, routing shows movement or assignment, treatment progress is indicated. Score 1 requires clear cause-and-effect between input and screen change. Score 0 if clicks produce no visible response. Score 0.5 at most if feedback is limited to log text or subtle state changes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Treatment outcomes are communicated visually through healing animations, health bar changes, patient expression shifts, status icons, particles, or warning indicators. Score 1 requires the player to see whether treatment helped or harmed without reading logs. Score 0 if outcomes change silently. Score 0.5 at most if feedback is only text labels."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Urgency and deterioration are visually distinct from stable states through color coding, pulsing, icons, or positional changes so the player can scan priority at a glance. Score 1 requires urgent cases to be visually distinguishable without reading text. Score 0 if all patients look identical regardless of urgency. Score 0.5 at most if distinction relies solely on small text or numbers."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Clinic art direction is coherent across creatures, stations, HUD, queue, and results at a publishable vertical-slice standard. Score 1 requires consistent palette, typography, iconography, spacing, and visual hierarchy. Score 0 if dominated by primitive shapes or default engine UI. Score 0.5 at most for sparse generic visuals without a unified style. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Creatures have designed silhouettes, icons, colors, or portraits that communicate identity and condition at a glance. Score 1 requires authored creature art that feels intentional. Score 0 if patients are plain text rows or identical rectangles. Score 0.5 at most if identity is mostly labels with minimal visual distinction. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "The clinic workspace feels authored with stations, props, queue areas, and tools arranged as a coherent environment rather than a debug layout. Score 1 requires spatial composition that reads as a clinic floor. Score 0 if the screen is empty or purely abstract. Score 0.5 at most for generic grid layouts without environmental character. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Title screen, menus, transitions, and result screens are polished with themed art, consistent styling, and smooth navigation. Score 1 requires these frames to feel part of the same authored product as gameplay. Score 0 if no title or result screen exists. Score 0.5 at most for raw unstyled screens with default controls. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

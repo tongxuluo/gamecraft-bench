@@ -1,0 +1,14 @@
+{
+  "scenario": "tape_select",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 90,  "type": "mouse_click", "button": "left", "x": 270, "y": 270},
+    {"frame": 180, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 300, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 360, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 420, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 500, "type": "wait"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player tank moves in grid-aligned steps via directional input (arrow keys or WASD), visually rotates to face the movement direction, and fires a linear projectile in the facing direction with spacebar. Only one player shell may exist on screen at a time; firing while a shell is active is rejected. Score 0.5 at most if movement works but is free-form rather than grid-locked, or if multiple shells can exist simultaneously. Score 0 if the tank cannot move or shoot under player control. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Enemies spawn from designated screen-edge zones in discrete waves, autonomously pathfind toward the command core or the player, navigate around walls, and fire shells when aligned. Score 0.5 at most if enemies appear but move randomly or walk through walls. Score 0 if enemies are static, spawn all at once without wave structure, or never attack. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Collision and destruction systems work: player shells destroy enemy tanks and destructible barricades, enemy shells damage the player and can destroy the command core, steel walls block all shells without taking damage, and destroyed entities are removed from the game state. Score 0.5 at most if only some collision pairs work correctly. Score 0 if shells pass through entities or destruction has no game-state effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Victory and defeat conditions are enforced: destroying all enemies in a zone triggers victory, the command core being hit triggers instant defeat, and running out of lives triggers defeat. Both outcomes produce a result screen or transition back to the map. Score 0.5 at most if only one terminal state works. Score 0 if the game has no win/lose condition or results require relaunching. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The full game loop is connected: title screen -> tactical map zone selection -> combat -> result -> return to map, with zone unlock progress persisted so the player can advance through multiple zones across sessions. Score 0 if any transition is missing, if there is no zone selection, or if progress resets on relaunch. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The battlefield has meaningful terrain variety: destructible brick barricades block movement and shells until destroyed, steel walls are permanently impenetrable, and mud or hazard patches visibly reduce tank movement speed. All three terrain types are present, visually distinct, and mechanically functional. Score 0.5 at most if only one terrain type has mechanical effect. Score 0 if the map is open space or terrain is purely cosmetic. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Enemy content has meaningful variety: at least three enemy types appear with different behaviours (e.g. fast scouts rushing the core, heavy tanks requiring multiple hits, carriers dropping salvage). Types are visually distinguishable and force the player to prioritize differently. Score 0.5 at most if enemies differ only in colour with identical stats. Score 0 if all enemies are identical or only one type exists. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least two playable defense zones are selectable from the tactical map, with different grid layouts, wall placements, and enemy compositions. Each zone presents a distinct tactical challenge requiring different strategies. Score 0.5 at most if multiple zones exist but share the same layout. Score 0 if only one zone exists or zones are cosmetic duplicates. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Power-up salvage is functional: destroying carrier enemies drops collectible items (e.g. armor repair, temporary fortifications, EMP freeze) that the player picks up by moving over them, and each produces a visible gameplay effect. At least two distinct power-up types are obtainable and produce observable tactical advantages. Score 0.5 at most if only labels or decorative sprites appear with no gameplay effect. Score 0 if no items exist or items are applied automatically without player interaction. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Waves escalate in difficulty across a zone: later waves introduce more enemies, tougher types, or faster spawn rates compared to earlier waves, creating a rising challenge curve within a single zone. Score 0.5 at most if waves exist but are identical in composition. Score 0 if all enemies spawn at once or there is no wave structure. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Battlefield readability is strong during combat: the player tank, enemy tanks, command core, destructible bricks, steel walls, mud patches, shells in flight, power-up drops, and grid boundaries are all visually distinct and identifiable at a glance. Score 0.5 at most if only labels or text distinguish entity types. Score 0 if tanks blend into walls, terrain types are indistinguishable, or the grid structure is invisible. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Essential game state is always readable: player armor/lives, remaining enemies in the wave, current zone name, command core health, and active power-up effects are displayed in stable non-overlapping HUD regions. Score 0.5 at most if only static decorative elements are shown. Score 0 if armor, lives, or enemy count are missing, hidden, or only flash momentarily. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Player actions produce clear feedback: firing shows muzzle flash and shell travel, impacts on enemies/bricks/steel produce distinct hit effects, enemy destruction shows explosion, player damage shows hull degradation, power-up collection shows pickup confirmation, and core damage shows critical alarm. Score 0.5 at most if only labels or number changes indicate hits. Score 0 if shells vanish silently, destruction has no visual effect, or damage is invisible. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "The interface remains professional across all screens: title menu, tactical map, combat HUD, victory/defeat overlays, and accuracy metrics are legible, properly framed, and do not overlap the battlefield or each other. Score 0.5 at most if only static disconnected panels exist. Score 0 if UI elements clip, overlap critical gameplay, use unreadable contrast, or look like debug output. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art coherence: battlefield tiles, tanks, explosions, UI panels, and menus share a coherent gritty dieselpunk palette of rust-iron, deep shadows, and neon hazard accents. Screenshots read as an authored vertical slice with deliberate colour and mood. Score 0 if visible gameplay relies on raw ColorRect shapes, default Godot widgets, mismatched asset packs, or bright generic placeholder colours."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Battlefield and unit art use real textured or illustrated assets: terrain tiles show surface detail (rust, concrete, metal), tanks have recognisable armoured silhouettes with turret/hull distinction, the command core is a visually prominent structure, and enemies are not geometric primitives. Score 0 if tiles are flat coloured rectangles, tanks are plain circles/squares, or the core is an unlabelled dot. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "UI presentation is custom and themed: title screen, tactical map, combat HUD, armor/life indicators, victory/defeat panels, and accuracy stats use styled panels, military-industrial fonts, borders, icons, or frames matching the dieselpunk tone. Score 0 if the UI is mostly naked Godot controls, unstyled default Label/Button/ColorRect, or plain floating text."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and effects polish: tank treads animate during movement, turret rotates to face direction, shells have travel trails, explosions use multi-frame particle bursts, brick destruction scatters debris, and scene transitions use fades or wipes. Score 0 if tanks teleport between cells, explosions are single-frame colour flashes, or transitions are hard cuts with no easing. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

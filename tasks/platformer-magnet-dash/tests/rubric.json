@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Holding the attract button pulls the player toward the nearest metal surface with increasing acceleration. The pull is visible as a trajectory line or particle stream connecting player to anchor. Releasing at speed converts pull into ballistic momentum. Score 0 if no magnetic attract mechanic exists. Score 0.5 at most if attraction exists but does not build momentum or has no visual indicator. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Pressing repel near a metal surface launches the player away at high speed in the opposite direction. The repel provides explosive force for crossing gaps and ascending shafts. Score 0 if no repel mechanic exists. Score 0.5 at most if repel exists but provides insufficient force for meaningful traversal. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Metal surfaces are clearly marked in the environment and serve as anchor points for both attract and repel. Non-metal surfaces do not respond to magnetic abilities. The distinction is visually clear. Score 0 if no metal/non-metal distinction exists. Score 0.5 at most if metal surfaces exist but are not visually distinguishable from regular surfaces. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Levels require chaining attract and repel moves to traverse — swinging from one anchor, releasing into free flight, then catching another anchor or repelling off a surface. Momentum chains are the primary traversal method. Score 0 if levels can be completed with basic jumping alone. Score 0.5 at most if magnetic mechanics are optional rather than required. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Boss fights (at least 2) take place in arenas with metal anchors and require using magnetic mechanics offensively — deflecting projectiles with repel or pulling away boss armor with attract. Score 0 if no boss encounters exist. Score 0.5 at most if bosses exist but do not require magnetic mechanics to defeat. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 15 levels across 3 zones are present, each with unique arrangements of metal anchors, hazards, and traversal challenges. Levels within a zone share a theme but vary in layout. Score 0 if fewer than 8 levels exist. Score 0.5 at most if levels exist but anchor placement is trivially similar. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Hazards specific to the magnetic theme exist: electric fields that damage on contact, crushers that activate near metal, moving metal platforms that shift anchor points, and demagnetized zones where abilities fail. At least 3 distinct hazard types. Score 0 if no hazards exist beyond pits. Score 0.5 at most if hazards exist but are generic (only spikes/pits). Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Three zones with distinct visual themes and escalating complexity. Each zone introduces new level elements or hazard combinations. A boss caps each zone. Score 0 if only one zone exists. Score 0.5 at most if zones exist but are visually identical or introduce nothing new. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Collectibles in levels reward stylish momentum chains — placed in locations only reachable through skilled attract/repel sequences. A style rating based on momentum chains and collectibles is awarded per level. Score 0 if no collectibles or rating exists. Score 0.5 at most if collectibles exist but are all on the obvious path. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Level completion shows time, collectibles, and style rating. A zone-select screen shows progress per zone. Boss defeat unlocks the next zone. Score 0 if no completion tracking exists. Score 0.5 at most if only basic completion is shown. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows the robot character suspended between magnets with the game name. A zone-select menu is accessible. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The game flow connects title -> zone select -> levels -> boss -> next zone without restarting. Score 0 if transitions are missing. Score 0.5 at most if flow exists but is broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "During gameplay, magnetic connection lines or particle streams are visible when attract/repel is active. Metal surfaces glow or pulse to indicate interactability. The HUD shows boss health during fights. Score 0 if no visual feedback for magnetic mechanics exists. Score 0.5 at most if feedback is minimal or unclear. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: metal surfaces, non-metal surfaces, hazards, the player, and magnetic effects are all clearly distinguishable. Score 0 if elements blend together. Score 0.5 at most if visuals are dominated by raw shapes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, zones, robot, magnetic effects, and UI — a consistent industrial/sci-fi aesthetic with metallic palette and energy effects. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Environments use real sprite or tile art for metal surfaces, walls, hazards, and backgrounds — not plain ColorRect fills. Different zones have visually distinct industrial themes. Score 0 if environments are uniform color fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: zone select, level complete, boss health bar, and style rating use styled themed widgets — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: attract shows energy streams, repel produces a shockwave burst, momentum chains leave speed trails, metal surfaces pulse when in range, and boss hits produce impact effects. Score 0 if all state changes snap silently. Score 0.5 at most if animation is minimal. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

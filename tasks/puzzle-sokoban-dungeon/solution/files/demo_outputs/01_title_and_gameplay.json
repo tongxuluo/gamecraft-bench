@@ -1,0 +1,25 @@
+{
+  "scenario": null,
+  "duration_frames": 450,
+  "events": [
+    {"frame": 30, "type": "mouse_click", "button": "left", "x": 640, "y": 455},
+    {"frame": 90, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 110, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 130, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 150, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 170, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 190, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 210, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 230, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 250, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 270, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 290, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 310, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 330, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 350, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 370, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 390, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 410, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 430, "type": "wait"}
+  ]
+}

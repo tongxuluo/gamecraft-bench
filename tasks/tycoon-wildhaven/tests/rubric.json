@@ -1,0 +1,148 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5+D6)/6) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4+A5)/5))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "A production loop works end-to-end: the player performs a gathering action, a resource is visibly produced on the map (a tree falls, a crop is harvested, a fish is caught), a stock count rises, and selling converts goods into cash. The loop must have pacing — visible work unfolding over time, not an instant number bump. Score 0.5 at most if production technically changes a counter but has no on-map sprite change, animation, or pacing. Score 0 if there is no functional gather-produce-sell chain. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A cash economy constrains decisions: money is permanently visible, earned by selling goods, spent on buildings/upgrades/tools, and purchases the player cannot afford visibly fail (disabled button, message, or rejection cue). Score 0.5 at most if money exists but purchases never fail or costs are trivial. Score 0 if money is absent, never changes, or purchases succeed without deduction. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Reinvestment grows the operation: spending money builds or upgrades something that visibly changes the map and increases capacity, output, or unlocks new capability. The outpost should look busier after investment. Score 0.5 at most if upgrades only change a stat label with no map or production effect. Score 0 if there is nothing to build or upgrade, or upgrades have no observable consequence. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Seasons advance on a visible clock and change both gameplay and visuals: a new season alters the economy (crops dormant, lake frozen, prices shift, an industry pauses) AND changes how the scene looks (snow, autumn tints, frozen water, dried fields). Score 0.5 at most if seasons change a label or value but the environment art stays identical. Score 0 if there is no seasonal progression or seasons have no gameplay effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The full game flow is connected without restarting: title screen -> outpost (new or loaded) -> economy running -> season transition -> continue playing, with progress saved persistently so a returning player resumes the same outpost, season, and cash. Score 0 if any transition is broken, if there is no save/load, or if continuing requires relaunching. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least three distinct industries (logging, farming, fishing) are each genuinely playable with their own action, resource, map zone, and economic role, represented by recognizable art (illustrated forest, tilled fields, a lake). Score 0.5 at most if three industries technically exist but zones are plain color blocks or text labels. Score 0 if fewer than three industries are playable or they share identical mechanics. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Production chains have depth: at least one industry has multiple processing stages or product tiers (log -> plank -> furniture, crop -> processed good) with visible facilities on the map, and several distinct goods with different values exist. Score 0.5 at most if only a single numeric conversion exists with no processing building or product art. Score 0 if every industry is one-step collect-and-sell with a single tradeable good. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Weather or natural events disrupt the economy with visible staging: an event occurs (storm, drought, cold snap), has a real consequence (damaged output, destroyed stock, halted industry), and is communicated with a visual presentation (overlay, animation, weather effect) beyond a text label. Score 0.5 at most if an event changes a number but is shown only as a HUD label. Score 0 if there are no disruptive events or they are purely cosmetic. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Wild animals appear as visible sprites that disrupt industries (raid timber, trample crops, steal fish) and the player can respond (defend, fence, scare off) with an observable result. Score 0.5 at most if a raid only deducts a resource via message with no animal sprite on the map. Score 0 if there are no animal threats or they are purely decorative. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Industries are interdependent: exploiting one affects the others through observable cause-and-effect (clearing forest opens farmland, over-logging erodes soil, muddied watershed reduces catch) shown both as a numeric effect AND a visual change on the map. Score 0.5 at most if the dependency only adjusts a hidden multiplier with no visual change. Score 0 if industries are independent silos with no cross-effects. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D6",
+      "agg": "max",
+      "description": "Seasonal interdependence forces hedging: different seasons stall different industries so no single one pays year-round, and the player must adapt strategy across seasons. Score 0.5 at most if one season changes availability but multi-season planning is never demonstrated. Score 0 if all industries pay equally regardless of season. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Core economic state is readable at a glance: current cash, current season, stock levels, and industry health are shown in clear, non-overlapping HUD regions that help the player make decisions. Score 0 if cash or season is missing, if industry status is unreadable, or if readouts overlap into an indecipherable cluster. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "Player actions produce clear visible feedback: performing a production action, earning or spending money, building/upgrading, season changing, weather events, and animal raids each show a visible state change (counts move, sprites appear or change, panels update, flashes or overlays). Score 0 if production, money changes, or major events happen with no perceptible feedback. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The outpost map is legible and zoned: forest, fields, lake, buildings, and animals are distinguishable from each other and from terrain, HUD panels are framed and do not bleed into the play area, and expansion visibly changes the zones over time. Score 0 if zones are indistinguishable, if buildings blur into terrain, or if HUD floats over the scene with no separator. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art coherence: terrain, buildings, characters/tools, animals, icons, and UI belong to a consistent visual language with a coherent palette. The camp should feel like a living lakeside outpost rather than a spreadsheet over a flat board. Score 0 if the screen mixes incompatible styles, relies on unthemed placeholder rectangles, or reads as plain default Godot grey. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Terrain and environment art: forest, fields, lake, shore, and paths use real textured or illustrated tiles with surface detail and are clearly different zones. Seasonal variants are visually distinct (snow, autumn tints, frozen lake, dry soil). Score 0 if the map is uniform color fills, if terrain is plain ColorRect, or if seasonal change is only a text label."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Buildings, workers, tools, and animals are real sprite art (illustrated, pixel-art, or hand-drawn), not solid-color rectangles or default Godot primitives. Upgrades make facilities look more substantial or busier. Score 0 if buildings or animals are plain ColorRect or default shapes, or if upgraded production has no visual presence."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI chrome: cash readout, season indicator, industry panels, build menus, and event notices use styled themed widgets (custom panels, icon buttons, illustrated frames, themed StyleBox) with a custom or styled font. Score 0 if primary UI elements are obviously unstyled default Godot widgets or if the interface feels like debug controls. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A5",
+      "agg": "mean",
+      "description": "Animation and atmosphere: production actions, season transitions, weather, and animal events use animation, tweens, or particles rather than instant snaps, and the outpost carries ambient life (swaying trees, rippling water, moving workers). Score 0 if all events snap instantly with no motion or if nothing on screen ever animates. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player maintains a lighthouse lamp that burns fuel and requires periodic maintenance. Actions include refuelling from storage, cleaning the lens, and repairing the rotation mechanism. Each maintenance task has a visible interaction (clicking, holding, or mini-game). If the light goes out, ships crash visibly. Score 0 if there is no lamp maintenance, if the light never needs attention, or if ships are unaffected by light state."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A fuel management system exists: fuel is limited and the lamp consumes it over time. A fuel gauge shows remaining supply. The player can choose between full brightness (drains fast, safe for ships) and dim mode (conserves fuel, ships may not see). Supply boats arrive periodically. Score 0 if fuel is unlimited, if there is no fuel gauge, or if brightness has no trade-off."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Ships appear on the dark ocean as distant lights moving toward rocks. The rotating lighthouse beam warns them away. Successfully guided ships pass safely; ships that crash add visible wreckage. The player's lamp maintenance directly affects ship survival rates. Score 0 if there are no ships, if ships never crash, or if the lighthouse beam has no effect on ship behaviour."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The lighthouse has at least three accessible areas: lamp room (top), living quarters (middle), and fuel storage (bottom). The player moves between floors. Each area has distinct visuals and interactive elements. Score 0 if there are fewer than 3 areas, if the player cannot move between them, or if areas have no interactive elements."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "A creature in the water interferes with the lighthouse: tentacles reach for the dock, bioluminescent lures mimic ship lights, and damage occurs to the lighthouse structure. The player must repair creature damage and resist interference. At least three distinct creature actions exist. Score 0 if there is no creature, if the creature has no effect on gameplay, or if fewer than 3 actions exist."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Difficulty escalates across nights: storms worsen (more visual rain/wind), fuel becomes scarcer, ships arrive more frequently, and the creature grows bolder. At least three nights with increasing difficulty exist. Score 0 if difficulty never increases, if there is only one night, or if escalation is not perceptible."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The final night serves as a climax: the creature directly assaults the lighthouse while the player must keep the light burning and guide the last ship to safety. The ending depends on whether the player succeeds. Score 0 if there is no climax night, if the creature never directly attacks, or if there is no ending condition."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full maintenance loop is connected: Monitor fuel, refuel lamp, clean lens, repair damage, guide ships, fend off creature. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, begin night, maintain lighthouse, guide ships, resist creature, survive until dawn, face escalating nights, reach climax. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a weathered serif font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (stormy coast with lighthouse beam) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — lighthouse, ocean, ships, creature, storm effects, UI — belongs to a single consistent dark maritime visual language. The palette is stormy blues and greys with warm lamp highlights; no clashing bright colours or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: the lighthouse uses detailed illustrated surfaces; the ocean has wave and storm effects; ships and creature are recognisable sprites; UI elements use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if the lighthouse is a uniform colour fill, if the ocean is a flat rectangle, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: lamp rotation, storm effects, ship movement, creature tentacles, fuel depletion, lens cleaning, and night transitions each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

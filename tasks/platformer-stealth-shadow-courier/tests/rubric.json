@@ -1,0 +1,142 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The courier moves responsively with keyboard input in a top-down stealth level, with smooth multi-frame movement and collision that prevents passing through walls, doors, furniture, or the map edge. Score 0 if the courier is static, teleports, or ignores level boundaries. Score 0.5 at most if movement exists but the scene is empty, debug-like, or mostly placeholder shapes. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "At least two guards patrol autonomously along visible routes, reverse or turn at route endpoints, and continue without player input. Their bodies and facing directions are readable. Score 0 if guards are static, move randomly, or appear only as text labels. Score 0.5 at most if patrols exist but the scene is sparse or guards lack readable facing. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Guard vision cones are visible, attached to guard facing direction, and update as guards patrol or turn. Entering a cone triggers a detection response with at least a warning state before capture. Staying outside cones avoids detection. Score 0 if cones are absent, detached from guard direction, or detection has no gameplay consequence. Score 0.5 at most if cones exist but are purely decorative or disconnected from gameplay. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The level contains a key or credential pickup and at least one locked door. Collecting the key visibly updates the HUD or inventory and allows passage through the locked route; without the key the door blocks progress. Score 0 if key state is invisible, the door is never actually locked, or pickup has no effect. Score 0.5 at most if the mechanic exists but is only communicated through static text labels. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "A light switch or shadow-control interaction changes the stealth state of the level: lights dim, guard cone range changes, or safe shadow areas expand. The change is visible in the environment and reflected in gameplay. Score 0 if the switch is cosmetic only or detection behavior is unaffected. Score 0.5 at most if the interaction exists but its effect is not visually observable. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The playable map has an authored stealth layout with multiple rooms or zones, corridors, cover objects, walls, doors, a document objective, and an exit route arranged so patrol timing and route choice matter. Score 0 if the level is a single empty room or flat arena. Score 0.5 at most if the map exists but is sparse, generic, or elements are purely decorative with no gameplay role. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least three distinct guard or security behaviors affect route choice -- such as fixed patrols, rotating sentries, widened alert cones, search movement after suspicion, cameras, or alarms. Score 0 if all threats behave identically. Score 0.5 at most if variety is mostly labels, color swaps, or disconnected demonstrations. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "The document theft is a real objective: the target is visible in the environment, interacting with it changes mission state, and the player cannot win until the document is stolen. Score 0 if the document is only mentioned in text, theft is automatic, or escape works before theft. Score 0.5 at most if the objective exists but is visually weak or represented only by debug text. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "At least two stealth tools or environmental affordances besides basic movement are demonstrated -- such as hiding behind cover, crouch mode, noisemakers, disabling cameras, locking doors behind the player, light switches, vents, or shadow zones. Each has a visible gameplay effect. Score 0 if no tools exist or all are cosmetic. Score 0.5 at most if affordances are generic, isolated, or only explained with text. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "The mission has both success and failure outcomes. Reaching the exit with the document triggers a styled success screen; being captured triggers a styled failure screen. Both halt gameplay and offer retry or return-to-title controls. Score 0 if either outcome is missing or allows gameplay to continue underneath. Score 0.5 at most if result screens exist but are raw floating text with no theming. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows the game name, a clear Start button, and a non-default covert background. Score 0 if the game starts directly in the level or uses raw default UI. Score 0.5 at most if a title exists but is sparse, generic, or mostly placeholder text. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full flow connects title -> briefing -> playable infiltration -> success or failure result -> retry or title without restarting the executable. Score 0 if any major transition is missing or broken. Score 0.5 at most if the flow exists only as disconnected scenario jumps with no player-facing controls. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "During stealth gameplay the HUD is readable and non-overlapping at 1280x720, showing mission status such as key possession, document state, light/blackout state, alert level, and escape objective. Score 0 if core mission state is hidden or appears only as raw debug labels. Score 0.5 at most if HUD exists but is sparse, overlapping, or mostly unstyled text. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Stealth readability is strong: courier, guards, vision cones, walls, doors, cover, lights, key, document, and exit are distinguishable by silhouette, color, or iconography during normal play. Score 0 if the player cannot tell threats, objectives, and obstacles apart. Score 0.5 at most if readability depends mainly on text labels rather than visual language. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art direction is coherent across title, briefing, map, courier, guards, lighting, cones, keys, document, HUD, and results. The game reads as a shadowy courier infiltration, not a collection of default controls. Score 0 if most visible elements are default shapes, raw ColorRects, or unthemed placeholders. Score 0.5 at most if visuals are dominated by primitive shapes or layouts that feel assembled rather than art-directed."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The stealth environment uses real sprite or tile art for walls, floors, doors, cover, and lighting -- not plain ColorRect fills or default Godot primitives. Different map elements are visually distinct and recognisable. Score 0 if the environment is uniform color fills or unstyled rectangles."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: mission panels, alert indicators, key/document icons, result screens, and menu buttons use styled themed widgets rather than raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled default widgets. Score 0.5 at most if chrome treatments differ wildly between screens. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback are present: courier movement, guard patrols, cone sweeps, pickup effects, door unlock feedback, light transitions, detection escalation, and result transitions use smooth multi-frame animation or tweening. Score 0 if all state changes snap silently with no animation. Score 0.5 at most if animation is minimal or limited to a single element. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

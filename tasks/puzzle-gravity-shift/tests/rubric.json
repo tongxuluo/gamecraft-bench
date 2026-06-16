@@ -1,0 +1,100 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3)/3))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Gravity can be rotated in 90-degree increments (down, left, up, right) via player input. When gravity changes, all physics objects (ball, boulders, loose blocks) fall in the new direction until they hit a surface. The ball cannot be moved directly — only gravity rotation controls it. Score 0 if gravity cannot be rotated or the ball is directly controlled. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Destructible terrain responds to physics: crumbling blocks break after being landed on once or twice, explosive crates detonate on hard impact destroying adjacent terrain, and fragile platforms shatter under heavy objects. Terrain destruction permanently changes the level layout. Score 0 if terrain is entirely static and indestructible. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Chain reactions emerge from gravity shifts: one rotation can trigger a sequence of events (boulder falls onto explosive, explosion breaks wall, debris activates switch). The player must plan rotation sequences that set up multi-step chain reactions. Score 0 if objects do not interact with each other or no cascading effects exist. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The chamber has an exit portal: guiding the ball to the exit completes the level. Hazards (spikes, lava, void) destroy the ball on contact, triggering a failure state with undo or retry. An undo system allows rewinding gravity shifts. Score 0 if there is no exit, no hazards, or no retry mechanism. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 3 destructible terrain types exist: crumbling blocks (break after N landings), explosive crates (detonate on impact), and fragile glass (shatters instantly). Each has distinct visual identity and destruction behavior. Score 0 if only one destructible type exists. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The campaign contains at least 15 chambers across themed worlds, with escalating complexity: basic gravity navigation, destructible terrain puzzles, chain reaction setups, and multi-mechanic combinations. Score 0 if fewer than 5 chambers exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Interactive objects add variety: pressure switches activated by weight, conveyor surfaces that add lateral movement during falls, magnetic walls that attract the ball, and weighted boulders that trigger mechanisms. At least 3 interactive object types exist. Score 0 if no interactive objects beyond basic terrain exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Hazard variety creates distinct challenges: spikes on specific surfaces, lava pools, void gaps, laser beams that activate on certain gravity orientations, and timed hazards. At least 3 hazard types appear across chambers. Score 0 if only one hazard type exists. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Chamber readability is clear: solid terrain, destructible terrain types, hazards, interactive objects, the ball, and the exit portal are all visually distinct at 1280x720. Current gravity direction is indicated with a persistent UI element. Score 0 if elements blend together or gravity direction is unclear. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "HUD shows essential information: gravity direction indicator, chamber number, move count, and undo availability. Destructible terrain shows damage state (cracks, glow before explosion). Score 0 if no gravity or progress information is visible. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Title screen, world/chamber select, and completion screens are present with styled navigation. Chain reactions play out visibly with sequential timing so the player can follow the cascade. Score 0 if the game starts directly in gameplay with no navigation. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent abstract-geometric art direction: chambers, terrain, objects, effects, and UI share a consistent visual language with clean shapes, bold colors, and spatial depth cues. Score 0 if visuals are raw default controls or unthemed rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Terrain tiles have textured surfaces, the ball has material shading or illustrated detail, destructible objects show visual damage states, and hazards have distinctive warning aesthetics. Score 0 if everything is plain colored blocks on a flat background. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Gravity rotation, object falling, terrain destruction, chain reactions, and level transitions have polished animation: the ball rolls and bounces, explosions have particle effects, crumbling blocks fragment, and screen transitions are smooth. Score 0 if all state changes are instant snaps. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

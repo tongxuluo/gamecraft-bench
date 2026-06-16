@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player skates with momentum-based physics: speed builds on downhill slopes and drains on uphill. The skater moves left/right with smooth rolling animation. Jumping launches the skater into the air with gravity. Landing on ramps preserves momentum. Score 0 if there is no momentum physics, if movement is constant speed regardless of terrain, or if there is no jump mechanic."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A trick system exists: button combinations trigger tricks (flip tricks in air, grind tricks near rails, grab tricks while airborne). Each trick has a name that pops up on screen and a distinct animation. At least three trick categories exist. Score 0 if there are no tricks, if tricks have no animation, or if fewer than 3 trick types exist."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A combo and score multiplier system exists: linking tricks without touching ground or bailing increases the multiplier. Landing cleanly banks the accumulated score; bailing loses the current combo. A combo meter shows current chain length and potential score. Score 0 if there is no combo system, if the multiplier does not increase with chains, or if bailing has no penalty."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least three distinct parks exist with different layouts: a street course (rails, stairs, ledges), a vert ramp (half-pipes, bowls), and a combined mega park. Each park has unique visual theming and obstacle placement. Parks unlock progressively. Score 0 if there are fewer than 3 parks, if parks look identical, or if all parks are available from the start."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Career goals exist for each park: specific challenges like target scores, required trick sequences, or time limits. Completing goals unlocks new tricks and parks. A goals list shows current objectives and completion status. Score 0 if there are no goals, if goals have no rewards, or if there is no goals display."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Unlockable tricks expand the player's repertoire as goals are completed. New tricks are more complex and score higher. At least five total tricks are available across all categories. A trick list shows unlocked and locked tricks. Score 0 if there are fewer than 5 tricks total, if no tricks are unlockable, or if there is no trick list."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A park editor exists: the player can place ramps, rails, and obstacles on a grid to create custom parks. Placed elements snap to positions and are immediately skateable. At least three distinct placeable element types exist. Score 0 if there is no park editor, if placed elements are not functional, or if fewer than 3 element types exist."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full skating loop is connected: Build speed, jump, perform trick, land cleanly, chain into next trick, bank combo score. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, park selection, skate session, complete goals, unlock tricks/parks, park editor. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a graffiti or street-art font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (half-pipe silhouette, skate park imagery) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — parks, skater, ramps, rails, UI panels — belongs to a single consistent urban/street visual language. The palette is bold and energetic; no clashing photorealistic assets or unrelated themes. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: parks use textured or illustrated surfaces with visible ramp/rail detail; the skater is a recognisable sprite with distinct poses; UI elements (score, combo meter, goals) use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if parks are uniform colour fills, if the skater is a solid-colour primitive, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: skating movement, trick rotations, grind sparks, landing impact, bail tumble, combo popup, and park transitions each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

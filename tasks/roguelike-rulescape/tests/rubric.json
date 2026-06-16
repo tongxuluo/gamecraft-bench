@@ -1,0 +1,154 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5+M6+M7)/7) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5",
+        "M6",
+        "M7"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player directly controls a visible survivor in a top-down 2D playfield with WASD or arrow keys. Movement must be continuous or grid-based traversal through physical space: the avatar visibly passes through intermediate positions, collides with or routes around obstacles, and moves near rooms, corridors, doors, walls, or hazards. Score 0 if input only switches between labeled areas, menu choices, or abstract map nodes, or if the avatar is absent or teleports between markers. Score 0.5 at most if only labels, decorative elements, or a plain geometric placeholder represent the player. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The explorable site contains meaningful spatial structure: walkable floors, blocked walls or obstacles, rooms or zones with different purposes, reachable points of interest, and clear navigation constraints. The player must be able to physically approach nearby objects, doors, notes, props, hiding spots, exits, or hazards inside the playfield. Score 0 if the map is a flat backdrop, decorative room diagram, graph of circles/labels, or if navigation has no collision or spatial exploration choices. Score 0.5 at most if only static or disconnected geometry is present. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Rules are a central visible system. The active site displays written rules as in-world notes, broadcasts, signage, corrupted panels, journals, or strongly themed UI, and the player can inspect or read them during play. Rules must affect decisions about movement, searching, hiding, item use, anomaly behavior, or escape. Score 0 if rules are absent, hidden in code, purely decorative flavor text, or displayed as generic side-panel text with no connection to actual play. Score 0.5 at most if only labels or decorative text reference rules without gameplay connection. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "A visible in-game clock, schedule, or time track advances during exploration. Reaching time thresholds must visibly change gameplay through at least one authored event: a new rule, anomaly behavior change, route shift, locked area opening, danger escalation, or escape opportunity. Score 0 if the clock is absent, static, purely decorative, or disconnected from rules, danger, and escape. Score 0.5 at most if a timer is shown but has no observable effect on gameplay. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "At least one anomaly encounter occurs inside the playable site and is connected to that site's rules, current time, clues, or player choices. The anomaly must occupy or threaten space in the playfield, be visually distinct from the survivor, and produce readable warning, pursuit, attack, or pressure feedback. Score 0 if there is no anomaly, if it is just a label or portrait outside the playfield, or if it behaves like an unrelated random enemy. Score 0.5 at most if only static or decorative elements represent the anomaly. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M6",
+      "agg": "max",
+      "description": "The player can meaningfully respond to danger through at least two options such as fleeing, hiding in a specific place, using an item, activating a survivor ability, obeying a rule, or choosing a risky interaction. At least one response must visibly prevent or reduce harm, and at least one wrong response must cause damage, sanity loss, time loss, or pursuit. Score 0 if encounters are resolved only by pressing a generic button, have only one outcome, or if responses have no visible consequence. Score 0.5 at most if only disconnected UI buttons represent danger responses. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M7",
+      "agg": "max",
+      "description": "The full game loop is connected and playable without restarting the application: title screen leads to survivor selection, then to the anomaly site for exploration and interaction, then to a result screen with retry or return to title. Score 0 if any major transition is missing, broken, or requires manually restarting the game. Score 0.5 at most if only partial flow exists or transitions are disconnected. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The game offers at least three selectable survivors before a run. Each survivor must have a visible name, portrait or avatar, and a distinct ability or tool that changes how the player approaches exploration, clues, danger, or anomaly encounters. Score 0 if there is no character selection, fewer than three survivors, or purely cosmetic differences. Score 0.5 at most if only labels or text differentiate survivors without visible gameplay impact. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "A normal run can begin in one of at least three distinct anomaly sites (e.g. hospital, school, subway, apartment block, office). Each site must have a different name, visual identity, room/prop layout, rule text, anomaly behavior, and escape objective. Score 0 if there is only one site, if sites differ only by label or palette, or if alternate sites exist only in code but are not visibly demonstrated. Score 0.5 at most if only labels or color swaps distinguish sites. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "The player can interact with specific nearby environment objects to discover useful information or items: clues, notes, keys, tools, locked exits, warnings, hiding places, terminals, or equivalent site-specific props. Interactions must produce visible feedback and update the player's knowledge, inventory, rule list, or objective. Score 0 if interaction is limited to generic global buttons with no nearby target, or if discoveries do not affect play. Score 0.5 at most if only static labels or decorative props are present without interactive feedback. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Items and survivor abilities are usable during exploration or danger. At least one found item or ability must visibly change an outcome: revealing a clue, opening an escape route, preventing damage, calming an anomaly, or enabling a safer path. It must show feedback and a spent, cooldown, consumed, or inventory state. Score 0 if items and abilities are only flavor text, never usable, or have no visible gameplay effect. Score 0.5 at most if only labels reference items without observable use. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Rules within a site exhibit variety and deduction challenge: at least two rules per site with different conditions, and at least one rule that is incomplete, misleading, corrupted, or reversed so the player must infer the truth from environmental clues. Score 0 if all rules are straightforward instructions with no deduction element, or if rules are identical across sites. Score 0.5 at most if only a single rule or trivially obvious rules are present. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Core gameplay information is readable during play: current site name, clock/schedule, HP or sanity, inventory, active rules, interaction prompts, anomaly warnings, and current objective. The HUD or in-world UI must be themed and legible at 1280x720. Score 0 if critical state is missing, unreadable, or hidden. Score 0.5 at most if only raw unstyled default labels communicate game state. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Player actions and state changes have clear feedback: movement, searching, item pickup, rule reveal, skill use, anomaly appearance, hiding/fleeing, damage or sanity loss, and escape/failure transitions are visible through animation, text popups, effects, flashes, particles, shakes, or other readable signals. Score 0 if important events happen silently or only through invisible variable changes. Score 0.5 at most if only static text labels communicate events. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Both victory and failure endings are reachable and communicate their cause. Victory should come from satisfying the site's escape condition; failure should come from HP/sanity depletion, anomaly capture, or rule violation. Result screens must explain what rule, clue, or decision caused the outcome. Score 0 if there is no win condition, no lose condition, or results are unreachable. Score 0.5 at most if only plain unstyled floating text shows results. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "max",
+      "description": "Spatial navigation is clear: the player can distinguish walkable areas from walls, identify doors and interactable objects, and understand where anomalies are relative to the survivor. Camera, lighting, or map design supports orientation. Score 0 if the playfield is visually ambiguous such that walls, paths, and threats cannot be told apart. Score 0.5 at most if only uniform color fills or unlabeled geometry represent the environment. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall rules-horror art coherence: environments, characters, anomalies, notes, UI panels, icons, and effects belong to a consistent horror visual language with a limited, dark palette. The tone should read as frightening, investigative, and oppressive rather than cheerful fantasy or generic arcade. Score 0 if the screen mixes incompatible styles, uses bright cheerful default colors, or relies on unthemed placeholder rectangles for primary elements. Score 0.5 at most if only labels or decorative overlays suggest the horror theme. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Site environment realism and identity: each visible site or room should feel like a real physical place. Floors, walls, doors, furniture, props, signs, hazards, lighting, and layout should communicate the site's identity before the player reads a label. Score 0 if the primary map is made from uniform color fills, abstract graph nodes, or unthemed rectangles. Score 0.5 at most if only text labels identify the site without environmental visual storytelling. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Character and anomaly presentation: the controllable survivor is a visible sprite, animated figure, or illustrated token moving in the playfield, and anomalies are distinct unsettling sprites, silhouettes, or effects that occupy or threaten space in the same playfield. Score 0 if survivors or anomalies are plain colored squares/circles, labels only, or visually indistinguishable from props and background. Score 0.5 at most if only simple geometric shapes with text labels represent characters. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD, rule, and interaction UI polish: clock, HP/sanity, inventory, active rules, notes, prompts, action buttons, and result panels use styled, themed widgets with readable text and strong contrast. Atmosphere is supported by transitions, flicker, fade, shake, lighting, or particles during key moments (rule reveals, anomaly appearances, time thresholds, endings). Score 0 if primary UI elements are visually bare or look like unmodified Godot defaults. Score 0.5 at most if only raw unstyled controls are present with no atmospheric treatment. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

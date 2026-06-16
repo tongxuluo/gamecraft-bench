@@ -1,0 +1,148 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4+A5)/5))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Platform movement is tight and expressive: the knight moves left/right with controlled acceleration, jumps with a smooth gravity arc supporting variable height or early-release control, flips to face movement direction, and lands reliably on platforms without jittering through walls or floors. Score 0 if movement is grid-snapped, floaty, lacks gravity, or uses pass-through placeholder collision. Score 0.5 at most if movement exists but the stage is empty or debug-like with no real platforming geometry. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Advanced traversal mechanics gate progression: wall-cling, wall-jump, and dash each have distinct input, timing, cooldown or limits, and level geometry that requires them to advance. Score 0 if abilities are absent or purely cosmetic. Score 0.5 at most if abilities exist but are never required by any level geometry or hazard. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Melee combat is a stateful system: nail slash has a frontal hitbox and recovery, enemies take visible damage and can damage the player, invincibility frames prevent repeated hits, kills award geo and soul, and dead enemies are removed from collision. Score 0 if combat is only an animation or enemies are inert. Score 0.5 at most if only labels or score increments indicate damage with no observable HP or removal. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Soul, healing, health, and death form a survival loop: mask health decreases on damage, soul meter fills from combat, holding focus consumes soul to heal one mask during a vulnerable window, zero health triggers defeat with geo penalty. Score 0 if health or soul are missing or healing is free/instant. Score 0.5 at most if health exists but healing has no cost or death has no consequence. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Stage resolution and persistence are connected: the player starts from a checkpoint, reaches an endpoint to clear a stage, unlocks the next stage in save data, returns to the kingdom map, and load/continue restores progress. Score 0 if stages are disconnected scenes or progress never saves. Score 0.5 at most if stages exist but completion has no persistent effect on the map. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "A kingdom map presents at least three named stages in a linear progression with locked/unlocked states enforced — later stages require earlier completion. Score 0 if there is one level or locked stages can be entered freely. Score 0.5 at most if stage names are visible but locking is decorative or untested. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Non-boss stages contain multiple connected rooms with varied platform layouts, verticality, hazards, enemy locks or barriers, and wall-cling sections that differ across rooms. Score 0 if the level is one flat screen or all rooms are cosmetic duplicates. Score 0.5 at most if multiple rooms exist but share identical layout or have no traversal variety. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least three enemy types exist that are visually distinct and functionally different — varying in movement, attack style, HP, speed, range, or room-lock role. Score 0 if enemies are clones or all share identical stats and behavior. Score 0.5 at most if enemies differ visually but behave identically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A boss encounter occupies its own room with a large health indicator, at least three attack patterns with readable telegraphs, a defeat condition, and a victory reward. Score 0 if there is no boss or the boss repeats one simple attack. Score 0.5 at most if a boss room exists but the fight has fewer than three distinct patterns or no health indicator. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Metroidvania systems beyond combat are present: geo economy, checkpoints, ability-gated routes, stage preview information, collectibles, or environmental storytelling — at least three such systems are implemented and visible. Score 0 if the game is only a linear fight corridor with no progression context. Score 0.5 at most if only one extra system exists or extras are purely decorative. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Platforming readability is strong: safe ground, walls, thorn hazards, pits, wall-cling surfaces, dash gaps, checkpoints, and endpoints are distinguishable at 1280x720. The player can plan jumps without guessing collision boundaries. Score 0 if terrain and hazards blend together or important surfaces are only labeled with text. Score 0.5 at most if only labels or decorative elements distinguish safe from dangerous terrain. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Combat and survival information is always readable: mask health, soul meter, geo count, enemy damage state, boss HP, and healing state are visible without opening hidden panels. Score 0 if health, soul, or boss HP are missing or ambiguous. Score 0.5 at most if only one of these readouts is present or they overlap with gameplay. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Action feedback is visible: slash, enemy hit, player hit, i-frame flash, geo pickup, soul gain, focus heal, death, checkpoint save, and boss telegraph each produce observable feedback. Score 0 if actions happen silently or are communicated only by debug text. Score 0.5 at most if only static labels or disconnected counters indicate state changes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Menus and navigation are usable: title start/load, kingdom map, locked-stage indicators, pause/retry, and stage-clear/defeat flows have readable hierarchy, spacing, and contrast. Score 0 if UI clips, overlaps, or looks like raw development labels. Score 0.5 at most if menus exist but are mostly unstyled text with no visual hierarchy. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent melancholic underground art direction: title, map, rooms, knight, enemies, boss, HUD, and effects share cold blue or deep purple tones, high-contrast silhouettes, and a ruined-kingdom mood. Score 0 if visible gameplay relies on ColorRect primitives, default Godot UI, or bright off-brief placeholder colors. Score 0.5 at most if art direction is attempted but inconsistent across screens."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Environment art uses textured or illustrated cavern/ruin tiles, layered background depth, and readable platform edges. Each stage has a distinct visual identity while staying in the same world. Score 0 if rooms are flat fills or untextured rectangles. Score 0.5 at most if tiles exist but all rooms look identical with no stage differentiation. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Character, enemy, and boss art are finished sprites with recognizable silhouettes: the knight, regular enemies, and boss each have distinct designs, scale, palette, and animation poses. Score 0 if the player or enemies are boxes, circles, or generic icons. Score 0.5 at most if sprites exist but lack silhouette identity or are recolors of each other. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation supports the action-platformer feel: idle, run, jump, fall, wall-cling, slash, enemy patrol/attack, hit reaction, death, and boss attacks use multi-frame animation, tweening, or particles. Score 0 if major interactions are single-frame snaps or static sprites sliding around. Score 0.5 at most if animation is limited to one or two actions with everything else static. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A5",
+      "agg": "mean",
+      "description": "UI chrome and atmospheric polish: title logo, map nodes, mask icons, soul meter, geo counter, boss HP, result panels, room transitions, particles, glow, and fog use themed frames, icons, or illustrated elements rather than naked Godot widgets. Score 0 if UI is mostly unstyled default labels and the game lacks atmospheric effects. Score 0.5 at most if only one screen is polished while others remain raw defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "One-button flight physics work as a playable loop: gravity accelerates the bird downward, each tap applies a consistent upward impulse that resets downward velocity, and repeated taps create controllable arcs. The bird is frozen in a ready hover before first input and only begins falling once the player acts. Score 1 if ready-freeze, gravity pull, upward impulse, and arc control all function in the same run. Score 0 if the bird does not respond to input, teleports, moves on rails, or starts falling before first input. Score 0.5 at most if impulse exists but gravity or ready-state is missing. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Endless obstacle spawning produces a continuous corridor: paired top/bottom hazards appear off-screen right at regular intervals, scroll left at constant speed, maintain a uniform gap height, and randomize the gap center within safe bounds. Score 1 if multiple pairs demonstrate fixed spacing, uniform clearance, randomized vertical placement, and continuous scrolling. Score 0 if obstacles are static, single-sided, or stop spawning. Score 0.5 at most if scrolling exists but gaps vary unpredictably or pairs are incomplete. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Collision and defeat are accurate: touching a pipe, floor, or ceiling triggers immediate defeat, freezes scrolling and physics, and presents a result state. Score 1 if collision detection, world freeze, and result display all trigger correctly on contact. Score 0 if the bird passes through hazards or defeat occurs without contact. Score 0.5 at most if collision works but the world does not freeze or no result appears. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Scoring increments correctly and retry resets the loop: passing a hazard pair adds exactly one point, the run starts at zero, and a retry control returns to the ready state without relaunching the executable. Score 1 if score increments on pass, resets on retry, and the full loop is replayable. Score 0 if score is decorative or retry requires restarting. Score 0.5 at most if scoring works but retry is broken or absent. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "Difficulty progresses over the course of a run: at least two pacing changes are observable such as faster scroll speed, narrower safe margins, shifted pipe cadence, or new hazard behaviors. Score 1 if progression affects survival decisions while preserving fair gaps. Score 0 if every obstacle remains identical forever. Score 0.5 at most if only cosmetic changes occur or progression is imperceptible. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Obstacle variety provides authored content: at least three visually distinct hazard presentations appear across play, such as different pipe styles, plasma gates, moving shutters, or warning zones. They must remain mechanically readable. Score 0 if all hazards are identical rectangles or only one presentation exists. Score 0.5 at most if only recolors of the same shape are used. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "High-score persistence and record feedback are functional: the best score is saved locally, loaded on the title screen, updated when beaten, and a new-best indicator is shown on the result screen. Score 1 if save/load, new-best detection, and display all work. Score 0 if there is no persistence or high-score system. Score 0.5 at most if high score is displayed but never actually persists between sessions. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Replay-value systems beyond raw score exist: at least one secondary feedback layer such as medals, streak counters, speed-tier labels, run-length stats, or milestone cues is integrated into the loop and visible to the player. Score 0 if the game offers only a single score number with no meta feedback. Score 0.5 at most if labels exist but are static or disconnected from gameplay. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Gameplay readability at speed: the bird, safe gap, incoming hazards, floor/ceiling danger, and score are visually distinguishable at 1280x720 during motion without relying on debug labels. Score 1 if a player can judge gap position and bird trajectory precisely. Score 0 if hazards blend into the background or collision boundaries are unclear. Score 0.5 at most if only labels or static elements communicate state. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "State-change feedback is visible: flap impulse, score increment, defeat collision, world freeze, and retry reset each produce observable visual response. Score 1 if both successful and failed actions are clearly communicated. Score 0 if state changes happen without visible feedback. Score 0.5 at most if only one transition has feedback while others snap silently. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "HUD and UI text are readable in every game state: title shows high score and start affordance, ready state shows input prompt, gameplay shows current score, result shows final/best score and retry control. All text has sufficient contrast and spacing. Score 0 if core UI is hidden, overlapping, or unreadable. Score 0.5 at most if text is present but clips, overlaps art, or uses raw unstyled labels. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "max",
+      "description": "The game flow connects title -> ready -> flight -> defeat -> result -> retry without requiring an executable restart. Score 1 if the full loop is playable end-to-end in a single session. Score 0 if major transitions are missing or broken. Score 0.5 at most if some transitions work but the loop cannot complete. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent dark/cyberpunk art direction: bird, hazards, skyline, HUD, title, and result screens share a consistent palette and visual language that reads as authored rather than assembled from mismatched parts. Score 1 if screenshots read as a publishable vertical slice. Score 0 if visible gameplay relies on raw ColorRect shapes, default Godot controls, or generic bright placeholder colors. Score 0.5 at most if some themed art exists but clashes with unstyled elements."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The bird is recognizable character art with a distinct silhouette, detail beyond a primitive shape, and at least one animation state (flap, bob, or velocity tilt) visible across frames. Score 1 if the avatar could plausibly ship as final art. Score 0 if the bird is a circle, rectangle, or icon-less placeholder. Score 0.5 at most if a sprite exists but has no animation or identity. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Hazards and environment have surface detail and atmospheric depth: pipes/gates show texture, glow, or structural detail; the background has parallax layers or depth cues; atmospheric elements like smog, particles, or haze are present. Score 1 if the playfield feels like a world rather than flat bars on a solid fill. Score 0 if hazards are untextured rectangles and the background is a single color. Score 0.5 at most if only one layer has detail while others are bare. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "UI chrome is custom and themed: title, score display, result panel, and retry button use styled fonts, borders, panels, or effects matching the game's visual identity. Score 1 if no primary UI element reads as an unstyled default Label or Button. Score 0 if the UI is mostly naked Godot widgets or plain floating text. Score 0.5 at most if some elements are styled but others remain raw defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

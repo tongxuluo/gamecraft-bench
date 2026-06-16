@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4+A5)/5))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "Headless launch exits 0 without fatal errors; this 0/1 gate multiplies the rest."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4", "A5"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "A shop displays purchasable units each round. The player spends gold to buy units and places them on a grid board by dragging. Buying deducts gold; attempting to buy without sufficient gold fails visibly. 0 if there is no shop, if units cannot be purchased, or if gold is not consumed. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Units placed on the board auto-fight during combat phase without player input. Units move toward enemies, attack, use abilities, and die with visible feedback. The combat phase resolves to a winner. 0 if combat requires player input, if units do not fight automatically, or if combat has no visible resolution. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A gold economy persists across rounds: gold is earned each round (base + interest on savings + win/loss streak bonus), spent on units and rerolls, and the balance carries forward. Interest rewards saving. 0 if gold resets each round, if there is no interest mechanic, or if economy has no strategic depth. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Combining three copies of the same unit upgrades it to a visibly stronger star level (larger sprite, stat boost, or visual effect). The upgrade is permanent and observable. 0 if there is no unit combination system, if upgrades have no visible change, or if copies do not merge. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The full loop connects: title -> draft/position phase -> auto-combat -> damage to loser -> next round -> elimination or victory -> result screen. Player HP decreases when losing a round. Reaching 0 HP eliminates the player. 0 if any phase is missing or if elimination is unreachable. Full credit needs authored sprites/illustrated assets; shape/default-widget versions cap at 0.5."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least six distinct unit types exist with different sprites, stats, and combat behaviors (melee vs ranged, tank vs assassin vs support). 0 if fewer than four types exist or if types are visually identical. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "A synergy system grants bonuses when multiple units of the same class or origin are fielded. Active synergies are shown in a tracker. At least three different synergy types exist with observable effects. 0 if there is no synergy system or if bonuses are invisible. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Multiple AI opponents (at least three) compete simultaneously, each with their own board, HP, and strategy. A scoreboard shows all competitors and their health. 0 if there is only one opponent or if no scoreboard exists. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Board positioning matters: front-row units are targeted first, back-row units are protected. Different formations produce different combat outcomes with the same units. 0 if position has no effect on combat or if all units are placed in a single row. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "The shop can be rerolled for gold to see new unit options. Player level increases over time or by spending gold, unlocking higher-tier units in the shop. At least two power tiers of units are observable. 0 if the shop never changes or if no tier system exists. Full credit needs distinct authored art; shape/color/text-only variants cap at 0.5."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The HUD shows current gold, player HP, round number, and active synergies in clear non-overlapping regions with icon/gauge treatment. The player can always tell economic and health state. 0 if gold, HP, or round info is missing; plain text/debug rows also score 0. Full credit needs themed UI with real assets."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The board grid has distinct cells, readable ownership, and simultaneous shop, bench, and board zones with clear drop targets. 0 if cells are invisible, sides look identical, regions overlap, or plain grids/text labels carry readability. Full credit needs themed UI with real assets."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Actions produce visible feedback: buying adds to bench, placement moves to board, combat shows attacks/HP, star upgrades transform, and round results show damage. 0 if actions lack observable change, rely on text-only feedback, or jump instantly between states. Full credit needs themed UI with real assets."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art coherence: units, board, shop, UI panels, menus, results, and effects share a fantasy-arena visual language and palette. 0 if styles clash, read as default Godot grey, or rely on mixed placeholders/programmatic shapes."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Unit sprites are real illustrated or pixel-art characters, not colored rectangles. Different unit types are visually distinct with unique silhouettes. Star-level upgrades show visible sprite changes. 0 if units are plain shapes or indistinguishable. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "The board uses real textured tiles or illustrated arena flooring. The shop and bench areas have themed backgrounds distinct from the combat board. 0 if the board is a plain colored grid or if all areas share an identical flat background. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI use styled themed widgets: illustrated shop cards, custom gold/HP icons, synergy badges, scoreboard, and result panels. 0 if UI is unstyled Godot defaults, rectangle/text UI, or programmatic chrome."
+    },
+    {
+      "id": "A5",
+      "agg": "mean",
+      "description": "Animation and atmosphere: combat attacks, unit deaths, star upgrades, gold changes, and round transitions use animation, tween, or particles. The board has ambient life between rounds. 0 if all events snap instantly with no motion. Programmatic shapes/solid fills/untextured geometry cap at 0.5."
+    }
+  ]
+}

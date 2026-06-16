@@ -1,0 +1,142 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The starfighter moves smoothly in response to mouse position or directional keys across the play area, stays clamped within screen boundaries, and primary lasers fire automatically without player input. Score 0 if the ship teleports, ignores input, exits the screen, or requires manual firing. Score 0.5 at most if movement exists but the play area is empty or debug-like with no scrolling backdrop. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Enemy interceptors enter from the top in recognizable geometric formations and fire scripted bullet configurations that travel downward toward the player. Enemies are destroyed when hit by player lasers. Score 0 if enemies spawn randomly with no formation, bullets travel in random directions, or enemies are invincible. Score 0.5 at most if only labels or static sprites appear with no functional bullet patterns. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Collision and damage systems work: player lasers destroy enemies on contact, enemy bullets reduce player shield HP on contact, the player ship has a visually distinct small hitbox, and destroyed entities are removed. Score 0 if projectiles pass through entities or damage has no game-state effect. Score 0.5 at most if collisions register but the hitbox is the full ship sprite or HP never decreases. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Shield HP reaching zero ends the run and displays a results overlay showing gold earned and waves survived. Defeating a stage boss triggers a victory state that unlocks the next stage. Score 0 if the game has no terminal state or results are never shown. Score 0.5 at most if only one end state exists with no distinction between victory and defeat. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Save persistence works: upgrades purchased in the hangar persist across launches, and stage unlock progress is retained. Score 0 if all progress resets on every launch. Score 0.5 at most if persistence is claimed in UI text but not observable across separate runs. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The hangar loadout system offers at least three functional upgrade slots that are purchasable with gold and produce observable gameplay differences (different projectile patterns, higher HP, additional weapon beams). Score 0 if the hangar is a static screen with no functional upgrades. Score 0.5 at most if upgrades are decorative or their effect is not observable in gameplay. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least three distinct enemy types appear across waves, visually identifiable and functionally different through HP, movement pattern, bullet configuration, or special behavior. Score 0 if all enemies are identical clones or only one enemy type exists. Score 0.5 at most if enemies differ only by color with identical behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least two selectable constellation stages exist with visually distinct stellar backdrops, different enemy compositions, and different boss encounters. Score 0 if only one stage exists. Score 0.5 at most if multiple stages are listed but share the same background and enemy set. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Destroying elite enemies drops collectible power crystals; collecting them triggers a visible frenzy state that doubles fire rate and produces a distinct visual effect for its duration. Score 0 if no crystals exist or crystals are not collectible. Score 0.5 at most if crystals appear but frenzy produces no observable gameplay change. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A multi-phase boss encounter locks the screen scroll and introduces layered bullet patterns with at least two distinct attack phases. Score 0 if no boss exists. Score 0.5 at most if a boss appears but has only a single static attack pattern with no phase transitions. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The flow connects title -> hangar -> sector map -> flight gameplay -> boss -> results without restarting the executable. The core loop is playable end to end. Score 0 if major transitions are missing. Score 0.5 at most if transitions exist but are mostly static menu jumps with no gameplay between them. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Gameplay readability is strong: the player ship, its small glowing hitbox, enemy ships, player lasers, enemy bullets, and power crystals are all visually distinct and identifiable at 1280x720 during fast-paced play. Score 0 if player and enemy projectiles share the same color or the hitbox is invisible. Score 0.5 at most if key entities blend into the background or are only distinguishable when paused. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Essential game state is always readable: shield HP, score or gold, wave number or stage progress, and active frenzy indicator are displayed in stable non-overlapping HUD regions throughout gameplay. Score 0 if shield HP or score are missing or hidden. Score 0.5 at most if HUD exists but overlaps gameplay or is mostly debug-style text. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Player actions produce clear feedback: laser impacts show hit sparks or flashes, enemy destruction produces a multi-frame explosion, player damage shows hull flash or screen shake, and crystal collection shows a pickup effect. Score 0 if projectile impacts are invisible and damage has no visual response. Score 0.5 at most if only one type of feedback exists while others are absent. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent sci-fi cosmic art direction: starfield backgrounds, ship sprites, projectiles, explosions, UI panels, and menus share a deliberate palette of deep space blues, neon plasma colors, and bright particle effects. Score 0 if visible gameplay relies on raw ColorRect shapes, default Godot widgets, or dull placeholder colors. Score 0.5 at most if some themed art exists but the overall look is inconsistent or partially placeholder."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Ship and enemy art use real illustrated or sprite assets: the player starfighter has a recognizable silhouette with engine exhaust, enemies have distinct designs, and the scrolling backdrop features parallax depth with nebulae or star layers. Score 0 if ships are plain colored polygons and the background is a solid fill. Score 0.5 at most if sprites exist but there is no parallax or sense of depth in the backdrop. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "UI presentation is custom and themed: title screen, hangar panels, sector map, in-flight HUD, results overlay, and boss health bar use styled panels, sci-fi fonts, borders, icons, or glowing frames matching the cosmic theme. Score 0 if the UI is mostly naked Godot controls or plain floating text. Score 0.5 at most if only one screen is styled while others remain default. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and effects polish: ship engine exhaust animates continuously, lasers have travel trails, explosions use multi-frame particle bursts, frenzy state has a pulsing aura, and scene transitions use fades or wipes. Score 0 if ships have no exhaust, explosions are single-frame flashes, and all transitions are hard cuts. Score 0.5 at most if animation is minimal or limited to a single element. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

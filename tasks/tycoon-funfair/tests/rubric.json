@@ -1,0 +1,154 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5+D6)/6) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4+A5)/5))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player builds the park on a grid by laying paths out from the entrance and placing attractions; the layout matters because guests reach attractions only along connected paths. Placing a path tile or attraction visibly changes the map, and path connectivity shapes where visitors walk, queue, and spend. Score 0.5 at most if building exists but path connectivity has no effect on guest access. Score 0 if there is no spatial building, if attractions cannot be placed, or if 'building' is only a menu with no grid/map. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A cash economy drives the park: a money total is permanently visible, guests generate income (gate tickets and/or per-ride/stall purchases), and money is spent on building/upgrading. An unaffordable build clearly fails rather than going through for free. Score 0 if money is not shown, if it never changes, if guests never generate income, or if builds happen without deducting cost. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Guest satisfaction is a real system that closes the loop between park quality and income: an overall satisfaction readout is shown, it moves in response to park conditions (path layout, queues, prices, variety), and satisfaction feeds back into the crowd — a happier park draws or keeps more paying guests, an unhappy one loses them. Score 0 if there is no satisfaction system, if it is a static number, if player choices do not move it, or if it never affects guest count or spending. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The player sets prices (tickets and/or per-ride/stall) and it affects guest behaviour or income — charging more yields more per head but risks driving guests away, while lower prices attract a bigger crowd. At least one price control is shown and its effect is observable. Score 0 if there is no pricing control or if changing price has no observable effect on guests or income. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The full game loop is connected: title screen -> park (new or loaded) -> build/manage -> time advances -> continue, with progress saved to disk so a returning player resumes the same park, cash, and layout. Score 0 if any transition is missing, if there is no save persistence across launches, or if continuing requires relaunching the application. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The park offers at least four distinct ride types that are visually different (different sprite/silhouette, not a recolor) AND functionally different (differing in excitement, capacity, footprint, or cost), each shown with its cost in the build UI. Score 0 if there is only one ride type, if all rides are the same sprite differing by tint, or if all 'types' have identical cost and behaviour. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Beyond rides, the park has a spread of service amenities — food, drink, souvenirs, rest areas, or equivalent support buildings — that the player can build and that serve guest needs rather than thrill them. Amenities are visually and functionally distinct from rides and from each other. Score 0 if there are no service amenities, if 'stalls' are just reskinned rides, or if amenities have no role distinct from rides. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Guests have varied needs: different guests or guest states want different things (thrills, gentle rides, food, drink, rest) and a guest whose need goes unmet visibly reacts (unhappy state, leaving, lower spend). Score 0 if guests have no needs, if all guests behave identically around one generic 'fun' value, or if needs never affect satisfaction or behaviour. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Guests are visible mobile visitors that enter at the gate, travel paths, gather at attractions/queues, buy, and leave — and the on-screen crowd visibly grows when the park thrives and thins when it fails. Score 0.5 at most if visitors move but are featureless dots/squares, or if the crowd never visibly changes with park quality. Score 0 if there are no visible guests, if guests never move, or if the crowd exists only as a counter. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Attractions have progression depth: at least one attraction can be upgraded or comes in tiers (small ride becoming a headline ride, cheap vs premium variants) with a visible difference in size, draw, capacity, or income. Score 0 if attractions never improve, if 'upgrades' have no observable effect, or if upgrades are only a stat bump with no visual or crowd change. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D6",
+      "agg": "max",
+      "description": "The player reinvests cash to grow the park: spending money builds new attractions/stalls, extends paths, or upgrades existing attractions, and the change is visible on the map and affects the park's pull. The park visibly transforms from a bare lot into a sprawling fairground. Score 0.5 at most if building works but upgrades only bump a number with no real change in the attraction's appearance or crowd draw. Score 0 if there is nothing to build or upgrade, or if the park never changes regardless of spending. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Core park state is readable at a glance: cash, current guest count, and overall satisfaction are displayed in clear, non-overlapping regions of the screen alongside the build tool/selection. The player can always tell how the park is doing without hunting for information. Score 0 if cash, guests, or satisfaction is missing or hidden, or if readouts overlap into one cluttered cluster. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The park scene is legible and zoned: paths, the entrance, rides, service stalls, and guests are mutually distinguishable on screen, the buildable grid is clear, and HUD/UI panels are separated from the play area. The player can tell what each element is without guessing. Score 0.5 at most if only labels or decorative text distinguish elements. Score 0 if paths/rides/stalls/guests are indistinguishable or if the grid is unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Actions produce clear visible feedback: placing a path or attraction, earning or spending money, a guest buying or queueing, a satisfaction change, and a price change each show a visible state change (sprite appears, counts move, meter shifts). The player is never left wondering whether an action worked. Score 0 if building, money changes, guest activity, or satisfaction changes happen with no visible feedback. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "max",
+      "description": "Build tools and controls are operable: the player can select what to build, see what is selected, place it on the grid, and access price/upgrade controls without confusion. Affordances are clear — clickable things look clickable, selected tools are highlighted, and disabled options are visually distinct. Score 0.5 at most if only labels/text indicate selection with no visual highlight. Score 0 if the player cannot tell what tool is active or how to place things. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art coherence: paths, rides, stalls, guests, scenery, icons, and UI belong to a consistent bright, colourful fairground visual language with a cheerful palette. The park reads as a lively amusement park, not a spreadsheet over a flat grid. Score 0 if the screen mixes incompatible styles, relies on unthemed placeholder rectangles for primary elements, or reads as plain default Godot grey. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Ride and stall art: rides and service stalls are real sprite art (illustrated, pixel-art, or hand-drawn fairground attractions), not solid-color rectangles or default Godot primitives, and different ride/amenity types are visually distinct and recognisable. Score 0 if attractions are plain ColorRect / default shapes or indistinguishable blobs."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Grounds and guest art: park grounds, paths, entrance, and grid use real textured or illustrated tiles with surface detail, and guests are character sprites (illustrated or pixel-art people), not dots or rectangles. Score 0 if grounds are uniform color fills, if paths are plain ColorRect, or if guests are featureless dots/squares."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI chrome: cash readout, guest count, satisfaction meter, build menu, price controls, and notice panels use styled themed widgets — custom panels, icon buttons, illustrated frames, or themed StyleBox — not raw unstyled Godot defaults, and numeric text uses a custom or styled font. Score 0 if primary UI elements are obviously unstyled default Godot widgets or if chrome treatments differ wildly between screens. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A5",
+      "agg": "mean",
+      "description": "Animation and atmosphere: rides spinning/moving, guests walking, money/satisfaction changes, building events use animation, tween, or particles rather than instant snaps, and the park carries ambient life (turning wheels, strolling crowds, twinkling lights). Score 0 if all motion snaps with no easing/effects or if nothing on screen ever animates during play. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

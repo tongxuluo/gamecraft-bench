@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player engages in real-time combat against active enemies using dark magic attacks or commanded undead, with enemies moving, attacking, taking damage, showing health, and dying into persistent corpse objects that remain interactable in the same play space. Score 0 if combat is only a scripted display, if enemies are static targets, if damage/death has no visible feedback, if corpses are only labels or menu entries, or if enemies disappear without leaving usable bodies."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The player can target a specific corpse and channel a raise spell that visibly transforms that corpse into an undead minion. The corpse should be consumed, a summoning effect should play, and the new minion should follow, path toward threats, and participate in combat without being manually repositioned by a demo script. Score 0 if raising is just a button that increments a counter, if minions spawn without corpse source, if they do not move or fight, or if the raised unit is only represented in UI text."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "An army management panel shows live minion count, type composition, health, and capacity, and the panel must match visible minions in the world. Different corpse sources create meaningfully different undead such as melee skeletons, durable zombies, ranged spectres, or elite hero corpses, with different appearance and combat behaviour. Score 0 if the panel is static, if capacity never constrains decisions, if all undead behave the same, or if type differences exist only as text."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The open world contains at least three connected regions such as village, graveyard, forest, and ruined keep, each with distinct terrain art, lighting, props, enemy composition, and corpse quality. The player should physically travel between them rather than selecting isolated scenes. Score 0 if regions are repeated backgrounds with different labels, if enemies and corpses are effectively identical across areas, or if exploration is only a menu or disconnected scenario showcase."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Territory conquest is playable: the player must clear defenders at a village or keep, then claim the location and see it become a dark stronghold with visible undead guards, altered buildings or palette, and soul energy income that updates over time. Score 0 if conquest is only a progress bar, if locations flip state without combat, if captured areas do not visibly persist, or if soul income cannot be spent or used."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Hero hunters spawn in response to rising infamy and actively pursue the player or invaded territory. Each hero should be visually distinct from regular enemies, use at least one observable special ability such as shield, heal, charge, or area attack, and leave an elite corpse that can create a stronger undead. Score 0 if heroes are decorative, if they never chase or attack, if their abilities are only described in text, or if defeating one has no corpse or army consequence."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "An infamy system tracks notoriety with a visible meter or rank that increases from kills, raising corpses, and conquest. Higher infamy must change the world by spawning stronger hero hunters, larger patrols, or tougher defenders, and the player should see the escalation happen during play. Score 0 if infamy is a static label, if it does not respond to player actions, if difficulty never changes, or if escalation is only shown in a separate scripted scene."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The necromancy loop is connected in one playable flow: fight enemies, leave corpses, raise those corpses into minions, use the growing army to win a larger fight, and claim territory. State must persist across the chain, including corpse consumption, army count, minion health, territory ownership, and soul income. Score 0 if the loop is split into unrelated demo screens, if state resets between steps, or if any major step is only represented by labels."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop connects title, free exploration, combat, raising, army management, conquest, infamy escalation, hero hunter encounters, and progression without restarting. Menus should return to gameplay and player actions should change later encounters. Score 0 if these elements only appear as isolated scenario setups, if transitions are broken, or if progression has no observable effect on future play."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and strongly themed around dark fantasy necromancy, with the game name, an interactive play button, and a composed background such as graveyard mist, ruined keep, undead silhouettes, or ritual light. Score 0 if the title is generic text over a flat fill, if the start action is nonfunctional, or if it does not visibly transition into gameplay."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: terrain, necromancer, corpses, undead minions, enemies, hero hunters, villages, strongholds, effects, and UI share a consistent dark fantasy visual language. High credit requires recognizable themed forms rather than labels explaining what each shape means. Score 0 if the screen mixes incompatible styles, if most objects are plain geometric placeholders, or if the game looks like a generic template with necromancer text added."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: regions should use textured or illustrated terrain, props, and readable silhouettes; the necromancer, enemies, corpses, undead types, and heroes should be recognizable without relying on name labels; army and infamy UI should be styled as part of the world. Score 0 if terrain is mostly uniform colour fills, if characters are solid-colour primitives, if corpses/minions are indistinguishable, or if primary UI is generic boxes."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: dark magic attacks, enemy reactions, death into corpse, raise channelling, undead emergence, minion following/attacking, conquest conversion, soul income, and hero abilities should animate over multiple frames with readable effects. Score 0 if important actions are instant toggles, blinking labels, static before/after panels, or hard cuts with no transition."
+    }
+  ]
+}

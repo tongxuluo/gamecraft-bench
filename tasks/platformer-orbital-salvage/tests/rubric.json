@@ -1,0 +1,142 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The tug uses inertia-based movement with visible acceleration and coasting; thrusters fire in response to player input and the ship drifts when thrust stops. Score 0 if the ship is static or instantly jumps to positions. Score 0.5 at most if movement exists but feels cursor-like with no visible drift, or if the scene is empty/debug-like. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A tractor beam attaches to salvage and visibly links the tug to the object while towing it over multiple frames; the beam stretches or adjusts as the tug moves. Score 0 if pickup is only a counter change or the beam is decorative and does not affect motion. Score 0.5 at most if a beam graphic exists but salvage does not follow or respond to it. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Salvage mass or type visibly affects tug handling, tow speed, or fuel consumption while towing. Heavier pieces drag the ship differently than lighter ones. Score 0 if all salvage pieces behave identically when towed. Score 0.5 at most if mass labels exist but no observable handling difference is demonstrated. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Hazards such as gravity wells, mines, radiation arcs, or debris storms visibly threaten or redirect the player, with warning feedback before or during danger. Score 0 if hazards are absent or purely decorative. Score 0.5 at most if hazard graphics exist but have no observable effect on the tug or gameplay. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Fuel, heat, or energy depletes during thrust and constrains how aggressively the player can maneuver; running low has observable consequences such as reduced thrust or mission failure. Score 0 if fuel is absent or infinite. Score 0.5 at most if a fuel bar is displayed but never changes or has no gameplay consequence. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "Delivering salvage to a station or recovery zone awards credits, completes contract progress, or changes mission status visibly. The delivery loop is functional end to end. Score 0 if delivery has no state change or reward. Score 0.5 at most if delivery is only a text message with no score or progress update. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least three distinct salvage or contract types are visible with different value, risk, mass, or visual identity such as light panels, heavy cores, volatile capsules, or black boxes. Score 0 if there is only one generic salvage object. Score 0.5 at most if types differ only by label with no gameplay or visual distinction. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Mission pressure escalates through fuel limits, contract timers, damage accumulation, richer salvage in harder locations, or later phases with tougher routing. The player faces increasing challenge over time. Score 0 if the scene remains a single unchanging pickup with no escalation. Score 0.5 at most if escalation is implied by text but not observable in gameplay. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "An upgrade or planning screen offers choices such as thrust power, beam strength, hull plating, or fuel capacity, and choosing one visibly changes later play. Score 0 if there is no upgrade or reinvestment layer. Score 0.5 at most if upgrades are listed but their effect is not observable in gameplay. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Victory and failure result screens show credits earned, fuel spent, salvage delivered, damage taken, and retry/title controls. Results reflect prior mission performance. Score 0 if results are missing. Score 0.5 at most if only one generic result exists regardless of performance. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows the game name, a clear Start or Contract control, and space-salvage imagery such as a tug, debris, station, or starfield. Score 0 if the game starts directly in gameplay or uses raw default UI with no theme. Score 0.5 at most if a title exists but is sparse, generic, or mostly placeholder text with no themed art. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The flow connects title or scenario -> contract selection -> salvage field play -> delivery or failure -> result/retry/title navigation without restarting the executable. Score 0 if major transitions are missing. Score 0.5 at most if transitions exist but are mostly static menu jumps with no gameplay between them. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The HUD clearly shows fuel or heat, velocity or thrust state, active contract, salvage value or mass, credits, delivery target indicator, and hazard warnings in readable non-overlapping regions. Score 0 if the player cannot tell what to tow or where to deliver. Score 0.5 at most if HUD exists but is sparse, overlapping, or mostly debug-style text. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: tug, salvage, beam, hazards, station, HUD elements, and contract info are distinguishable and do not overlap or become ambiguous. Score 0 if navigation or mission state is unreadable. Score 0.5 at most if visuals are dominated by raw controls, primitive shapes, or layouts that feel assembled rather than designed. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Art direction is coherent across title, tug, salvage, tractor beam, station, hazards, HUD, contracts, upgrades, and result screens. A consistent palette, typography, iconography, spacing, and visual hierarchy hold the game together at a publishable vertical-slice standard. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic with no cohesive art language. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The space environment uses real sprite or procedural art for the starfield, asteroids, station, debris, and hazard zones — not plain ColorRect fills or default Godot primitives. Different field elements are visually distinct and recognisable. Score 0 if the environment is uniform color fills or unstyled rectangles."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: fuel gauges, contract panels, delivery indicators, upgrade menus, and result screens use styled themed widgets (custom panels, icon buttons, illustrated frames, or themed StyleBox), not raw unstyled Godot defaults. Numeric text uses a custom or styled font. Score 0 if primary UI elements are obviously unstyled default Godot widgets or if chrome treatments differ wildly between screens. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback make space salvage legible: thrusters flare on input, the beam stretches or glows while towing, salvage trails behind, hazards pulse warnings, delivery rewards animate, and state changes use tween or particles rather than instant snaps. Score 0 if all changes snap silently with no animation. Score 0.5 at most if animation is minimal or limited to a single element. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

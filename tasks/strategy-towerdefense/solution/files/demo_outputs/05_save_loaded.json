@@ -1,0 +1,9 @@
+{
+  "scenario": "stage_select_cleared1",
+  "duration_frames": 360,
+  "events": [
+    {"frame": 60,  "type": "wait"},
+    {"frame": 180, "type": "mouse_click", "button": "left", "x": 340, "y": 255},
+    {"frame": 360, "type": "wait"}
+  ]
+}

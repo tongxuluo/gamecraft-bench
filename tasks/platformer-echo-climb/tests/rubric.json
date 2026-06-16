@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player character can run, jump, and wall-slide on vertical surfaces. When the player falls or quits a run, the entire run is recorded as a ghost replay. Score 0 if no ghost recording system exists. Score 0.5 at most if ghosts are recorded but do not replay on subsequent attempts. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Ghost replays from previous attempts are physically solid — the current player can stand on, jump off, and ride ghost bodies as moving platforms. Multiple ghosts replay simultaneously. Score 0 if ghosts are visual only with no collision. Score 0.5 at most if ghosts have collision but only one ghost replays at a time. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The tower has sparse fixed platforms with large vertical gaps that are initially impassable. Ghosts from previous runs create the scaffolding needed to reach higher. Progress requires multiple layered attempts. Score 0 if the tower is fully climbable without ghosts. Score 0.5 at most if ghosts help but are not required for progression. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "A height meter tracks current altitude and best-ever altitude. The best height persists between sessions. Each attempt shows progress relative to the previous best. Score 0 if no height tracking exists. Score 0.5 at most if height is shown but does not persist or compare to previous bests. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "A solidify mechanic allows the player to convert one ghost into a permanent fixed platform every few attempts. Solidified ghosts stop replaying and become static ledges. This choice is strategic and irreversible. Score 0 if no solidify mechanic exists. Score 0.5 at most if solidification exists but has no strategic cost or is unlimited. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The tower is tall enough that reaching the top requires at least 5-10 ghost layers. The vertical space is substantial with varied fixed platform placement creating different climbing challenges at different heights. Score 0 if the tower is trivially short. Score 0.5 at most if the tower exists but can be climbed in 1-2 attempts without ghosts. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The tower environment changes visually at different height tiers (at least 3 tiers) — different backgrounds, platform styles, or atmospheric effects as the player climbs higher. Score 0 if the tower looks identical at all heights. Score 0.5 at most if minor color changes occur but no real visual variety exists. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Milestone heights unlock cosmetic rewards (trail effects, character skins, or visual flair) that are visible during gameplay. At least 3 milestones with distinct rewards exist. Score 0 if no milestone rewards exist. Score 0.5 at most if milestones exist but rewards are not visible during play. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Ghost data persists between game sessions — closing and reopening the game preserves all recorded ghosts and solidified platforms. The tower state accumulates over time. Score 0 if ghost data is lost on restart. Score 0.5 at most if some data persists but ghosts are lost. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A stats screen shows total attempts, total ghosts, solidified platforms, best height, and time played. An attempt-end screen shows height reached and ghosts active. Score 0 if no stats tracking exists. Score 0.5 at most if only height is tracked with no other metrics. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows the tower with ghost silhouettes and the game name. A start button and stats access are available. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The game flow connects title -> climb attempt -> fall/end -> solidify choice (when available) -> next attempt without restarting. Score 0 if transitions are missing. Score 0.5 at most if flow exists but is broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "During gameplay, the height meter, ghost count, and best-height marker are visible. Ghosts are visually distinct from the player (semi-transparent or different color). Score 0 if no HUD or ghost distinction exists. Score 0.5 at most if information is present but ghosts are indistinguishable from the player. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: the player, ghosts, fixed platforms, solidified platforms, and tower background are all clearly distinguishable. Score 0 if elements blend together. Score 0.5 at most if visuals are dominated by raw shapes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, tower, player, ghosts, and UI — a consistent ethereal tower-climbing aesthetic with unified palette. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The tower environment uses real sprite or tile art for platforms, walls, backgrounds, and height-tier transitions — not plain ColorRect fills. The player and ghosts have distinct sprite art. Score 0 if environments are uniform color fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: height meter, ghost counter, solidify interface, stats screen, and title use styled themed widgets — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: ghosts have a translucent shimmer or trail, solidification has a crystallize effect, reaching new heights triggers a celebration, and falling has a dramatic camera or particle effect. Score 0 if all state changes snap silently. Score 0.5 at most if animation is minimal. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

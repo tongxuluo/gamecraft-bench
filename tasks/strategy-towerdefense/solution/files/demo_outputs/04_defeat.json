@@ -1,0 +1,7 @@
+{
+  "scenario": "battle_stage1",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 600, "type": "wait"}
+  ]
+}

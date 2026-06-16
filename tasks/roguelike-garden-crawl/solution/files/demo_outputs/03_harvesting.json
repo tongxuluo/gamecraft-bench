@@ -1,0 +1,23 @@
+{
+  "scenario": "battle",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "key_press", "keycode": "1"},
+    {"frame": 60,  "type": "mouse_click", "button": "left", "x": 200, "y": 240},
+    {"frame": 90,  "type": "key_press", "keycode": "SPACE"},
+    {"frame": 120, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 150, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 180, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 210, "type": "key_press", "keycode": "UP"},
+    {"frame": 240, "type": "key_press", "keycode": "H"},
+    {"frame": 300, "type": "key_press", "keycode": "2"},
+    {"frame": 330, "type": "mouse_click", "button": "left", "x": 200, "y": 400},
+    {"frame": 360, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 390, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 420, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 450, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 480, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 540, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

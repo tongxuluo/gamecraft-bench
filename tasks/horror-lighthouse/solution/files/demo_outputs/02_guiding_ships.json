@@ -1,0 +1,20 @@
+{
+  "scenario": "night1",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 60,  "type": "key_press", "keycode": "LEFT"},
+    {"frame": 90,  "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 120, "type": "key_down", "keycode": "SPACE"},
+    {"frame": 180, "type": "key_up", "keycode": "SPACE"},
+    {"frame": 240, "type": "key_press", "keycode": "LEFT"},
+    {"frame": 280, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 320, "type": "key_down", "keycode": "SPACE"},
+    {"frame": 360, "type": "key_up", "keycode": "SPACE"},
+    {"frame": 420, "type": "key_press", "keycode": "LEFT"},
+    {"frame": 480, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 540, "type": "key_down", "keycode": "SPACE"},
+    {"frame": 580, "type": "key_up", "keycode": "SPACE"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4", "D5"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2", "V3"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player activates a time-travel device (portal, watch, machine) to jump between at least three eras. The transition plays a visible effect (warp tunnel, clock hands spinning, screen dissolve). The destination era loads with the player at the corresponding map coordinates, not a fixed spawn point. Score 0 if era switching is instant with no transition effect, if the player respawns at a fixed location instead of corresponding coordinates, or if travel is one-way. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Actions in an earlier era alter later eras in visible, gameplay-meaningful ways. At least three distinct causal chains exist (e.g., plant a seed in Ancient that becomes a tree blocking a path in Industrial; destroy a dam in Industrial that floods a route in Future; befriend an NPC in Ancient whose descendants leave a treasure in Industrial). The changes must affect traversal or quest availability, not just cosmetics. Score 0 if actions in past eras never affect future eras, if effects are purely cosmetic, or if there are fewer than 3 distinct causal chains. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The game detects and responds to paradoxical actions. Attempting to destroy a key object that the player's future self depends on triggers a visible paradox warning (flashing geometry, reversed controls, alarm effects) and blocks or penalizes the action until resolved. Score 0 if there is no paradox detection, if paradoxes are silently ignored, or if paradox resolution produces no visible feedback. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The same geographical region is rendered in three visually distinct time periods with different palettes, terrain, and architecture: Ancient (verdant, warm greens and golds), Industrial (factories, greys and oranges), and Future (ruins, cold blues and purples). Landmarks are recognisably consistent across eras (the same hill, river, or structure in different states). The player can walk freely in each era. Score 0 if there are fewer than 3 eras, if the same location is not recognisable across eras, or if the player cannot move freely. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Each era has unique NPCs with quests that span multiple time periods. At least two cross-era quests exist where an NPC in one era sends the player to retrieve, alter, or deliver something in a different era. Completing cross-era quests produces visible rewards (new destinations unlocked, device upgraded, or new paths opened). Score 0 if there are no NPCs, if quests are confined to a single era, or if cross-era quest rewards produce no visible state change. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Items have era tags and behave differently across time. Some items survive time travel (metal tools, stone artefacts) while others decay or transform (food rots, paper crumbles). The inventory UI clearly communicates which items are stable and which will not survive the next jump. Score 0 if all items behave identically across eras, if there is no inventory, or if era compatibility is invisible to the player. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Each era contains at least two interactable objects or environmental features unique to that time period (e.g., a seed to plant in Ancient, a lever to pull in Industrial, a terminal to hack in Future). These interactions feed into the butterfly-effect chains or quests and produce visible state changes. Score 0 if eras contain no interactable objects, or if interactions produce no observable consequence. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A progression layer exists: completing butterfly-effect chains or cross-era quests upgrades the time device or unlocks new areas within eras. The player's capabilities or accessible world visibly expand over the course of play. Score 0 if there is no sense of advancement, or if completing objectives never changes what the player can access. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The HUD is readable during play: the current era indicator, active quest objective, and inventory status are visible in stable, non-overlapping UI regions. Era-specific colour grading or border clearly communicates which time period the player is in. Score 0 if the current era is ambiguous, if quest objectives are hidden, or if UI elements overlap at 1280x720. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Butterfly-effect state changes and paradox warnings are visually clear: when the player jumps to a later era, altered landmarks are obviously different from their previous state; paradox warnings use distinct visual language (flashing, colour shift, screen shake) that cannot be confused with normal gameplay. Score 0 if state changes are invisible, or if paradox feedback is indistinguishable from normal play. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title -> Explore Era -> Interact with Object/NPC -> Time Jump -> Observe Butterfly Effect -> Complete Cross-Era Quest -> Unlock Progression. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken (e.g., time jump crashes the game, or quest completion produces no result). Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a 'Begin Journey' or 'Play' button that is interactive (clicking it transitions to the game world), and uses a non-default background (overlapping era landscapes, clock imagery, or temporal aurora) -- not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element -- terrain tiles, NPC sprites, time device, UI panels, buttons -- belongs to a single consistent visual language. Each era has a distinct palette and mood that clearly communicates which time period the player is in, while maintaining stylistic unity across all three. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes (solid-colour rectangles, default Godot primitives). Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: each era uses textured or illustrated tiles with visible surface detail that reads clearly at 1280x720; the player character and NPCs are recognisable sprites (not plain coloured rectangles); the time-travel device has a distinct sprite; HUD and inventory panels use styled, themed widgets -- not raw unstyled Godot defaults. Score 0 if any era is a uniform colour fill, if the player is a solid-colour primitive, or if primary UI elements are obviously unstyled default widgets. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: time-travel transition effects, butterfly-effect state changes (tree growing, dam breaking, building crumbling), paradox warnings, NPC idle/movement animations, and inventory item decay each play as a smooth multi-frame tween or sprite animation -- no element snaps to its new state in a single frame. Scene transitions (title to game, era to era) use a brief fade, dissolve, or warp rather than an instant cut. Score 0 if any of these moments is instantaneous, or if era transitions are hard cuts with no effect. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

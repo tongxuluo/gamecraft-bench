@@ -1,0 +1,118 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Notes (gems or arrows) fall down 4 colour-coded lanes toward a judgement line at the bottom. The player presses the corresponding lane key as a note crosses the line. Timing is evaluated as Perfect/Great/Good/Miss with distinct visual feedback for each (burst, glow, dim, shake). Score 0 if notes do not fall, if there are no lanes, or if timing has no graded evaluation. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A combo counter increments on consecutive successful hits and resets on a miss with a visible shatter or break effect. A score multiplier (x2, x4, x8) scales with combo length and is displayed prominently. The multiplier visibly changes the score increment per note. Score 0 if there is no combo system, if misses do not reset the combo, or if the multiplier has no visual representation. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A health/life bar depletes on misses and recovers slightly on perfect hits. If health reaches zero, the song fails with a game-over screen showing final stats. Hold notes exist that require sustaining a key press for their duration (visible trailing tail on the note). Score 0 if there is no fail condition, if hold notes are absent, or if the health bar is missing. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 10 playable songs with distinct note patterns and varying difficulty levels (Easy/Medium/Hard). Each song has a unique name and BPM. The note charts feel hand-crafted with musical phrasing rather than random placement. Score 0 if there are fewer than 10 songs, if all songs share the same pattern, or if difficulty does not vary. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "A song select screen shows all available songs with difficulty ratings, best scores, and letter grades (S/A/B/C/F). Songs unlock sequentially through a campaign mode. Locked songs are visibly indicated. Score 0 if there is no song select, if scores are not tracked, or if there is no progression system. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "A results screen after each song shows: total score, max combo achieved, accuracy percentage, grade letter, and a breakdown of Perfect/Great/Good/Miss counts. New high scores trigger a distinct celebration animation or effect. Score 0 if there is no results screen, if stats are incomplete, or if high scores are not recognized. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Difficulty escalation is perceptible: later songs have denser note patterns, faster scroll speeds, or more complex rhythms (syncopation, triplets). The player feels a clear skill progression from early to late campaign songs. Score 0 if all songs feel equally difficult, or if there is no perceptible escalation. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The gameplay HUD shows: score, combo counter, multiplier, health bar, and song progress (time or percentage). All elements are readable and non-overlapping at 1280x720. The lane judgement line is clearly visible and distinct from the background. Score 0 if any core HUD element is missing or unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Hit feedback is immediate and visually graded: Perfect hits produce a large bright burst, Great hits a medium glow, Good hits a small flash, and Misses produce a negative indicator (red X, shake). The player can distinguish timing quality at a glance. Score 0 if all hit qualities look the same, or if there is no visual feedback on note hits. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen -> Song select -> Play song -> Results screen -> Return to song select. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a play button that is interactive and transitions to song select, and uses a non-default background (neon stage, concert lights, or illustrated artwork) \u2014 not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element \u2014 note gems, lanes, background, UI panels, hit effects \u2014 belongs to a single consistent visual language. The palette is vibrant and energetic with a concert/stage theme; no clashing styles or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Note gems, lane backgrounds, hit effects, and UI panels use authored art with visible detail and theming. Notes are distinct coloured gems or styled arrows (not plain rectangles). The background reacts to gameplay (pulses, lights). HUD elements use styled widgets with custom fonts. Score 0 if notes are plain rectangles, if the background is static and unthemed, or if UI elements are obviously unstyled defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: notes scroll smoothly, hit bursts animate over multiple frames, combo counter increments with a pop or scale tween, the health bar drains smoothly, and scene transitions (song select to gameplay, gameplay to results) use fades or slides rather than instant cuts. Score 0 if notes appear/disappear abruptly, if hit effects are instantaneous, or if transitions are hard cuts. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

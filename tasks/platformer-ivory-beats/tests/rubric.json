@@ -1,0 +1,142 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The core lane-tap loop works: a 4-lane grid is visible, pressing the correct lane key or clicking the correct lane destroys the lowest active dark tile in that lane, increments the score, and shifts the remaining tile stack downward. Score 0 if tiles cannot be destroyed or the score does not increment. Score 0.5 at most if only labels or static elements suggest a lane grid with no functional input response. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A ready state gates the start of play: before the first input the grid is static with tiles frozen, a visible prompt invites the player to begin, and the scroll or timer only activates after the player's first valid action. Score 0 if the game starts scrolling immediately on launch without waiting for input or if there is no ready state. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Miss detection and defeat are enforced: tapping an empty lane triggers immediate defeat, and allowing a dark tile to pass the bottom boundary also triggers defeat. On defeat the board locks and a results panel appears. Score 0 if wrong-lane taps are silently ignored, tiles can escape without consequence, or no defeat state exists. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Save persistence and retry work: personal best scores are loaded from a save file and displayed on the title or mode-select screen, a new best updates the save, and the retry option from the results panel resets the board without relaunching the executable. Score 0 if scores reset on every launch, no best is shown, or retry requires restarting the game. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The full game loop connects: title/mode-select -> ready state -> gameplay -> defeat/results -> retry or return to title, all without relaunching. Score 0 if any major transition is missing or broken. Score 0.5 at most if transitions exist but gameplay between them is non-functional. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "Multiple game modes are selectable and produce distinct gameplay: at least two modes with different end conditions (e.g., target tile count, endless acceleration, timed countdown) are reachable from the mode-select screen. Score 0 if only one mode exists or mode selection has no effect on gameplay. Score 0.5 at most if modes are listed but play identically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Speed progression is functional in at least one mode: the scroll rate or tile drop speed visibly increases over the course of a run, creating a measurable difficulty ramp from a slow opening pace to a noticeably faster sprint. Score 0 if speed is constant throughout. Score 0.5 at most if the increase is so small it is imperceptible. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Tile generation is procedurally correct: each horizontal row contains exactly one dark target tile placed in one of the four lanes, the lane assignment varies across rows, and the sequence is deterministic given the same seed so replays produce identical tile patterns. Score 0 if multiple dark tiles appear in the same row, all tiles appear in the same lane, or the pattern changes between identical runs. Score 0.5 at most if variants differ only by color, name, or stat number with identical visual appearance and behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A timed mode with a visible countdown is functional: a timer counts down, the game ends when it reaches zero displaying the final score, and the score is compared against the saved best. Score 0 if no timed mode exists or the timer does not end the game. Score 0.5 at most if a timer is displayed but has no effect on game flow. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "The results panel provides meaningful run feedback: final score, mode played, personal best comparison, and whether a new record was set are all shown. Score 0 if results are missing or show only a generic game-over label. Score 0.5 at most if only the score is shown with no best comparison or mode context. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Gameplay readability is strong: the 4 lanes are clearly delineated, dark target tiles are visually distinct from empty spaces, the bottom hit zone or strike line is visible, and the current lowest target tile is identifiable at a glance. Score 0 if dark and empty tiles are indistinguishable, lanes have no separators, or the hit zone is invisible. Score 0.5 at most if only labels or decorative elements suggest lane structure. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Essential game state is always readable: current score, mode name, and mode-specific counters (countdown timer, tile progress, or speed level) are displayed in stable non-overlapping HUD regions throughout gameplay. Score 0 if score or mode-relevant counters are missing or hidden. Score 0.5 at most if only static labels exist with no live updating values. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Player actions produce clear feedback: a successful tile hit produces a visible flash or effect, a miss produces a distinct error indicator, the score increments visibly, and the defeat state is visually distinct from normal play. Score 0 if hits and misses are visually identical or defeat looks the same as normal play. Score 0.5 at most if only labels or disconnected text indicate hit/miss. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "The interface remains professional across all screens: title/mode-select, ready state, gameplay HUD, and results panel are legible, properly framed, and do not overlap the tile grid or each other. Score 0 if UI elements clip, overlap the play area, use unreadable contrast, or look like debug output. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent modernist art direction: the tile grid, lanes, tiles, HUD, and menus share a deliberate monochromatic palette with neon accent colors for feedback. Screenshots read as an authored vertical slice with intentional minimalist style. Score 0 if the game relies on raw ColorRect shapes with no styling, default Godot widgets, or a cluttered mismatched color scheme."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The tile grid and lane art are polished: dark tiles have a distinct styled appearance (rounded corners, gradient, glow border, or texture), lane separators are clean and consistent, the bottom hit zone has a styled marker, and the overall grid feels like a finished game board. Score 0 if tiles are plain flat rectangles with no visual treatment or the grid has no lane separators. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "UI presentation is custom and themed: title screen, mode-select buttons, best-score display, ready-state prompt, HUD counters, results panel, and retry button use styled panels, custom fonts, borders, or glow effects matching the modernist theme. Score 0 if the UI is mostly naked Godot controls or plain floating text. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and effects polish: tile destruction produces a multi-frame particle splash or flash, the stack shift animates rather than snapping, the ready-state prompt pulses or animates, the miss flash is multi-frame, and the results panel slides or fades in. Score 0 if tile destruction is a single-frame disappear, the stack teleports, or all transitions are hard cuts. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3)/3))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Pipe segments can be placed on empty grid cells: the player selects a pipe piece from a queue or inventory and places it by clicking a cell. Pipes have directional openings (straight, corner, T-junction, cross) and can be rotated before or after placement. Score 0 if pipes cannot be placed or rotated on the grid. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Fluid flows through connected pipes after a countdown or trigger: fluid visibly travels from source through pipe openings, following the connected path. Fluid stops at dead ends or unconnected openings and causes overflow failure. Score 0 if fluid does not flow or connections are not enforced. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Color matching is enforced: each fluid source has a color and must reach a drain of the same color. Mixing different colored fluids in the same pipe segment causes contamination failure. Score 0 if fluid color has no gameplay effect or only one fluid type exists. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Time pressure creates urgency: a visible countdown timer ticks toward flow start, giving the player limited planning time. The player can also trigger flow early. Overflow from incomplete routing triggers a clear failure state with retry option. Score 0 if there is no time constraint or failure condition. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least three distinct fluid types exist beyond color: standard fluid, corrosive acid that damages normal pipes over time, pressurized steam that flows faster, or viscous sludge that flows slower. Each type requires different pipe strategies. Score 0 if all fluids behave identically except for color. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The campaign contains at least 15 levels across themed facilities, with escalating complexity: single-source levels, multi-source parallel routing, crossing paths requiring junction pieces, and obstacle-filled grids. Score 0 if fewer than 5 levels exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Special pipe types add strategic depth: cross junctions allowing two fluids to pass without mixing, reservoir tanks that buffer flow and buy time, acid-resistant pipes, one-way valves, or heated pipes that convert fluid types. At least two special pipe types are available. Score 0 if only basic straight and corner pipes exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Grid obstacles and terrain features create routing challenges: immovable blocks, pre-placed pipes that cannot be moved, restricted cells, or multi-level grids with elevation changes. At least two obstacle types appear across levels. Score 0 if all grids are empty and uniform. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Grid readability is clear: empty cells, placed pipes, sources, drains, obstacles, and fluid flow are all visually distinct at 1280x720. Pipe openings and connection directions are unambiguous. Score 0 if pipe directions are unclear or elements blend together. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "HUD shows essential information: countdown timer, pipe queue or inventory, current level identity, and fluid color legend. Fluid flow progress is visible as it travels through pipes. Score 0 if no timer or queue information is displayed. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Title screen, level select, completion, and failure screens are present with styled navigation. Success shows routing efficiency; failure clearly indicates where overflow or contamination occurred. Score 0 if the game starts directly in gameplay with no navigation or feedback. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent industrial-plumbing art direction: pipes, fluids, grid tiles, gauges, valves, and UI share a consistent visual language with metallic textures and pressure-gauge aesthetics. Score 0 if visuals are raw default controls or unthemed rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Pipes have detailed sprites with visible openings, joints, and material texture. Fluids are animated with flow direction, bubbles, or particle effects. Sources and drains have mechanical detail (valves, gauges, tanks). Score 0 if pipes are plain lines and fluids are solid color fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Fluid flow, pipe placement, rotation, overflow, and level transitions have polished animation: fluid fills pipes progressively, placement has snap feedback, overflow has splash effects, and screen transitions are smooth. Score 0 if all state changes are instant snaps. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "duration_frames": 450,
+  "events": [
+    {"frame": 30, "type": "wait"},
+    {"frame": 90, "type": "mouse_click", "button": "left", "x": 640, "y": 440},
+    {"frame": 150, "type": "wait"},
+    {"frame": 200, "type": "key_press", "keycode": "1"},
+    {"frame": 240, "type": "mouse_click", "button": "left", "x": 400, "y": 280},
+    {"frame": 300, "type": "mouse_click", "button": "left", "x": 1080, "y": 75},
+    {"frame": 360, "type": "wait"},
+    {"frame": 450, "type": "wait"}
+  ]
+}

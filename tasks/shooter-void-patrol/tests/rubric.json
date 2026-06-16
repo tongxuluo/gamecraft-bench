@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player ship scrolls horizontally through a side-view space environment, moving freely within screen bounds while the background auto-scrolls. Score 0 if there is no scrolling or the ship is static. Score 0.5 at most if scrolling exists but the ship cannot move vertically or is locked to a rail. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The ship fires projectiles that travel forward and destroy enemies on contact, with visible hit feedback such as explosions or flash effects. Score 0 if the ship cannot fire or projectiles have no effect. Score 0.5 at most if firing works but there is no destruction feedback or enemies simply vanish. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Collecting power-up items upgrades the weapon through at least 3 visible tiers (e.g., single shot to spread to laser), and dying resets the chain. Score 0 if no power-up system exists. Score 0.5 at most if power-ups exist but produce no visible weapon change or have no chain/reset mechanic. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "A bomb or screen-clear ability destroys all on-screen enemy projectiles and damages enemies, with a limited stock shown in the HUD. Score 0 if no bomb mechanic exists. Score 0.5 at most if a clear ability exists but has no visual effect or unlimited use. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The player has a lives system with visible life counter; losing all lives offers limited continues before game over. Score 0 if there is no life system or the player has infinite health. Score 0.5 at most if lives exist but there is no continue system or game-over state. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 5 distinct stages are present with different background themes, enemy compositions, and scrolling patterns. Score 0 if only one stage exists or stages are visually identical. Score 0.5 at most if multiple stages exist but share the same background and enemy set. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 4 distinct enemy types with different movement patterns, firing behaviors, and visual designs appear across stages. Score 0 if only one enemy type exists. Score 0.5 at most if enemies differ in color only with identical behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Each stage ends with a multi-phase boss that has distinct attack patterns per phase and visible health or damage states. Score 0 if no bosses exist. Score 0.5 at most if bosses exist but have only a single attack pattern with no phase transitions. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Power-up chain offers at least 3 weapon tiers with visually and functionally distinct firing patterns (spread, laser, homing, etc.). Score 0 if only one weapon exists. Score 0.5 at most if tiers exist but fire identically with only damage differences. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A score system tracks performance with stage-end tallies and a final victory or game-over summary showing total score, lives used, and stages cleared. Score 0 if no scoring exists. Score 0.5 at most if score is shown but no summary or tally screen appears. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Normal startup shows a styled title screen with the game name, a Start control, and space-themed imagery such as stars, ships, or nebulae. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse text on a blank background. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The flow connects title to stage gameplay to boss encounter to stage-clear interstitial without restarting the executable. Score 0 if major transitions are missing or broken. Score 0.5 at most if transitions exist but require manual workarounds. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "The HUD clearly shows score, lives, bomb stock, current weapon tier, and stage progress in readable non-overlapping regions. Score 0 if the player cannot determine game state. Score 0.5 at most if information is present but overlapping or unreadable at 1280x720. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Player actions produce visible feedback: firing shows muzzle flash, hits show explosions, power-up collection flashes, death triggers an animation, and boss phase changes are visually signaled. Score 0 if actions happen silently. Score 0.5 at most if only one type of feedback exists. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Art direction is coherent across title, gameplay, bosses, HUD, and interstitials with a consistent space-themed palette and style. Score 0 if mostly default controls or mismatched placeholders dominate. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The player ship, enemies, bosses, projectiles, and power-ups use real sprite art with distinct silhouettes and animations. Score 0 if primary gameplay elements are unstyled rectangles. Score 0.5 at most if sprites exist but are inconsistent in style or resolution. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Animation brings the scene to life: scrolling parallax backgrounds, enemy movement animations, explosion sequences, boss phase transitions, and weapon firing effects. Score 0 if all elements are static. Score 0.5 at most if only one element animates. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI panels use styled themed widgets with icons, framed panels, or custom fonts rather than raw Godot defaults. Score 0 if all UI is default Label/Button. Score 0.5 at most if some panels are styled but others remain raw defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

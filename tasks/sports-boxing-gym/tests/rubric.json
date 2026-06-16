@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The opponent telegraphs attacks with visible tells (shoulder dip, foot shift, glove pull-back) before striking. The player must read the tell and respond with the correct defensive action (dodge high, dodge low, block). Correct responses avoid damage; incorrect responses result in a hit with visible impact. Score 0 if opponents attack without tells, if there is no defensive mechanic, or if dodging has no visible feedback."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The player throws punches using different keys: jabs (fast, weak), hooks (medium), and uppercuts (slow, powerful). Each punch type has a distinct animation and different speed/power/stamina cost. Combos (sequences of punches) deal bonus damage with a visible combo indicator. Score 0 if there is only one punch type, if punches have no animation difference, or if combos do not exist."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A stamina bar depletes with every punch thrown and every dodge performed. Low stamina slows punch speed and weakens blocks (more damage taken). Between rounds, stamina partially recovers. The stamina bar is always visible and changes colour at low levels. Score 0 if there is no stamina system, if stamina never depletes, or if low stamina has no gameplay effect."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "A career mode exists with at least four opponents of increasing difficulty. Each opponent has a unique sprite, name, and distinct attack patterns (different tells, speeds, combos). A fight card shows the next opponent with their record. Score 0 if there are fewer than 4 opponents, if all opponents fight identically, or if there is no career progression."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Training mini-games exist between fights: heavy bag (timing combos), speed bag (rhythm clicking), or jump rope (pattern matching). Training improves specific stats (power, speed, stamina). At least two distinct training activities exist. Score 0 if there is no training, if training has no stat effect, or if fewer than 2 activities exist."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Multi-round bouts exist: fights have at least 3 rounds with a bell and rest period between them. Health and stamina carry between rounds. The player must pace themselves across the full fight. A round indicator shows current round. Score 0 if fights are single-round only, if there is no round system, or if health fully resets between rounds."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A counter-attack system rewards well-timed dodges: dodging at the last moment opens a counter window where the player's next punch deals bonus damage with a special visual effect. The timing window is tight enough to require skill. Score 0 if there is no counter mechanic, if counters have no bonus damage, or if the timing window is so large that every dodge triggers a counter."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full fight loop is connected: Read opponent tell, choose response (dodge/block/counter), throw punches, manage stamina, survive rounds, win fight. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, career menu, training, fight, win/lose, advance rank, face harder opponents. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a bold block font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (boxing ring, spotlight, or gym scene) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — ring, boxers, crowd, UI panels, training equipment — belongs to a single consistent visual language. The palette is warm gym tones with spotlight highlights; no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: the boxing ring uses textured or illustrated surfaces; both fighters are recognisable sprites with distinct poses; UI elements (health bars, stamina, round counter) use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if the ring is a uniform colour fill, if fighters are solid-colour primitives, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: punch animations, dodge movements, hit impacts, stamina depletion, round transitions, training activities, and knockdown sequences each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

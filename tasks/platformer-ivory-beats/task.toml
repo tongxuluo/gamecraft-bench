@@ -1,0 +1,29 @@
+schema_version = "1.2"
+artifacts = []
+
+[task]
+name = "gamecraft-bench/platformer-ivory-beats"
+description = "Generate a 2D vertical rhythm-reaction arcade game in Godot 4"
+keywords = []
+[[task.authors]]
+name = "GameCraft-Bench Team"
+
+[metadata]
+
+[verifier]
+timeout_sec = 1800.0
+
+[verifier.env]
+
+[agent]
+timeout_sec = 7200.0
+
+[environment]
+build_timeout_sec = 600.0
+os = "linux"
+allow_internet = true
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

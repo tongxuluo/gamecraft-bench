@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player draws the bow by holding a button (a power meter fills) and aims with directional input. Releasing fires an arrow that follows a physics arc affected by gravity. Arrow trajectory is visible as a projectile sprite travelling through the air. A wind indicator shows current direction and strength affecting the shot. Score 0 if there is no draw mechanic, if arrows travel in straight lines ignoring gravity, or if there is no wind system."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Monsters approach from the distance and the player must hit glowing weak points to deal maximum damage. Different monsters have different weak point locations and movement patterns. Hitting a weak point produces a distinct visual effect (flash, particle burst) compared to a body hit. Score 0 if there are no monsters, if there are no weak points, or if all hits deal equal damage regardless of location."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Arrows are limited: the player has a finite quiver that depletes with each shot. Missed arrows are lost. Arrows can be recovered from defeated monsters or found in the environment. An arrow count is always visible in the HUD. Score 0 if arrows are unlimited, if there is no arrow counter, or if missed shots have no cost."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "A world map with at least three distinct areas exists (forest, canyon, ruins, dragon's peak). Each area has multiple stages with different target types and challenges. Areas unlock progressively as stages are completed. Score 0 if there are fewer than 3 areas, if areas have no distinct stages, or if all areas are available from the start."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Target stages exist alongside monster stages: the player hits bullseyes at increasing distances, shoots moving targets, or threads arrows through narrow gaps. Score is based on accuracy. At least two distinct target challenge types exist. Score 0 if there are no target stages, if targets are stationary only, or if accuracy is not scored."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Boss targets exist at the end of each area: large creatures with multiple weak points that must be hit in sequence. Bosses have attack phases where the player must dodge while finding shot windows. At least two distinct bosses exist. Score 0 if there are no bosses, if bosses have only one weak point, or if bosses do not attack."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A bow upgrade system exists: earned gold buys upgrades including longer range, faster draw speed, and elemental arrows (fire, ice, lightning) with distinct visual effects. A shop screen shows available upgrades with stat comparisons. At least three upgrade types exist. Score 0 if there are no upgrades, if upgrades have no visual effect, or if fewer than 3 types exist."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full combat loop is connected: Draw bow, aim accounting for wind, release arrow, hit weak point, defeat monster, collect rewards. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, world map, select stage, complete challenges, defeat boss, unlock next area, buy upgrades. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a runic or fantasy font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (forest clearing with target, arrow imagery) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — environments, monsters, arrows, UI panels, world map — belongs to a single consistent fantasy visual language. The palette is natural and adventurous; no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: stage backgrounds use textured or illustrated surfaces; monsters are recognisable detailed sprites; arrows and bow are distinct; UI elements (wind indicator, arrow count, health) use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if backgrounds are uniform colour fills, if monsters are solid-colour primitives, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: bow draw, arrow flight arc, hit impacts, weak point flash, monster death, boss attack patterns, and stage transitions each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

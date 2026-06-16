@@ -1,0 +1,26 @@
+{
+  "scenario": "level2",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 15, "type": "wait"},
+    {"frame": 30, "type": "mouse_click", "button": "left", "x": 368, "y": 145},
+    {"frame": 50, "type": "mouse_click", "button": "left", "x": 432, "y": 145},
+    {"frame": 70, "type": "mouse_click", "button": "left", "x": 496, "y": 145},
+    {"frame": 90, "type": "mouse_click", "button": "left", "x": 560, "y": 145},
+    {"frame": 110, "type": "mouse_click", "button": "left", "x": 624, "y": 145},
+    {"frame": 130, "type": "mouse_click", "button": "left", "x": 688, "y": 145},
+    {"frame": 150, "type": "mouse_click", "button": "left", "x": 752, "y": 145},
+    {"frame": 170, "type": "mouse_click", "button": "left", "x": 816, "y": 145},
+    {"frame": 190, "type": "mouse_click", "button": "left", "x": 368, "y": 401},
+    {"frame": 210, "type": "mouse_click", "button": "left", "x": 432, "y": 401},
+    {"frame": 230, "type": "mouse_click", "button": "left", "x": 496, "y": 401},
+    {"frame": 250, "type": "mouse_click", "button": "left", "x": 560, "y": 401},
+    {"frame": 270, "type": "mouse_click", "button": "left", "x": 624, "y": 401},
+    {"frame": 290, "type": "mouse_click", "button": "left", "x": 688, "y": 401},
+    {"frame": 310, "type": "mouse_click", "button": "left", "x": 752, "y": 401},
+    {"frame": 330, "type": "mouse_click", "button": "left", "x": 816, "y": 401},
+    {"frame": 360, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 500, "type": "wait"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

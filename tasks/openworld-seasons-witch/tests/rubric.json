@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player can cast a season spell to change the world between spring, summer, autumn, and winter. A radial menu or selection UI shows four seasons. Selecting a season triggers a visible transition that transforms terrain, water, vegetation, and sky colour across the entire visible world. Score 0 if there is no season-switching mechanic, if fewer than 4 seasons exist, or if switching has no visible world change."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Each season has distinct mechanical effects on the world: winter freezes water (walkable ice), spring grows plants and fills rivers, summer dries swamps and ripens fruit, autumn drops leaves revealing hidden paths. These effects enable or block traversal and puzzle solutions. Score 0 if seasons are purely cosmetic, if fewer than 3 seasons have mechanical effects, or if effects do not affect gameplay."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A potion brewing system exists at the witch's cottage. Ingredients gathered in different seasons combine into potions with gameplay effects (speed boost, barrier, creature charm). A recipe book tracks discovered combinations. Brewing requires selecting ingredients and produces a visible result. Score 0 if there is no brewing system, if potions have no effect, or if there is no recipe tracking."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The valley has at least four distinct areas (village, forest, lake, mountain path, farmland) that each respond differently to season changes. Each area has unique seasonal visuals and interactions. The player moves freely between all areas. Score 0 if there are fewer than 4 areas, if areas do not change with seasons, or if the player cannot move freely."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Villager NPCs offer quests that require seasonal manipulation to complete. At least three distinct quests exist (farmer needs rain then sun, builder needs frozen lake, healer needs autumn mushrooms). Completing quests earns reputation and rewards. Score 0 if there are no quests, if quests do not require season changes, or if fewer than 3 quests exist."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Potion ingredients are season-specific: certain plants only grow in spring, berries ripen in summer, mushrooms appear in autumn, ice crystals form in winter. The player must switch seasons to gather all ingredients. At least four distinct ingredients exist. Score 0 if ingredients are not season-specific, if fewer than 4 ingredients exist, or if all ingredients are available in one season."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Progression unlocks new areas: completing quests earns reputation that opens blocked paths (mountain pass, deep forest). Unlocked areas contain new quests, ingredients, and challenges requiring mastery of multiple seasons. Score 0 if there is no progression gating, if reputation has no effect, or if all areas are accessible from the start."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full seasonal loop is connected: Switch season, observe world change, gather season-specific ingredient, brew potion, complete villager quest. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, explore valley, switch seasons, help villagers, brew potions, earn reputation, unlock new areas. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a flowing or magical font, has at minimum a play button that is interactive and transitions to the game world, and uses a non-default background (four-panel seasonal valley or magical cottage scene) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — terrain in all seasons, witch character, villagers, UI panels, potions — belongs to a single consistent storybook or whimsical visual language. Each season has a distinct but harmonious palette; no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: terrain uses textured or illustrated tiles that change convincingly per season; the witch is a recognisable sprite; villagers are distinct; UI panels use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if terrain is a uniform colour fill, if characters are solid-colour primitives, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: season transition, world transformation, potion brewing, quest completion, ingredient gathering, and area unlocking each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "scenario": null,
+  "duration_frames": 300,
+  "events": [
+    {"frame": 30, "type": "wait"},
+    {"frame": 60, "type": "mouse_click", "button": "left", "x": 640, "y": 450},
+    {"frame": 120, "type": "wait"},
+    {"frame": 180, "type": "mouse_click", "button": "left", "x": 640, "y": 540},
+    {"frame": 240, "type": "wait"},
+    {"frame": 300, "type": "wait"}
+  ]
+}

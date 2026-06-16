@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Combat takes place on a small grid (8x8 or similar). The player controls a squad of mechs, moving each and using one ability per turn. Movement and abilities are grid-based with clear range indicators. Score 0 if no grid-based combat exists. Score 0.5 at most if a grid exists but movement or abilities are not grid-constrained. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Every enemy telegraphs its next action before the player's turn — attack direction, movement target, or spawn location are shown as visible indicators on the grid. The player uses this information to plan counter-moves. Score 0 if enemy intents are hidden. Score 0.5 at most if some intents are shown but not all enemies telegraph. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Buildings occupy grid tiles and must be protected. A structural integrity bar decreases when buildings are destroyed. Losing all integrity fails the mission. The player must balance offense against building protection. Score 0 if no building protection objective exists. Score 0.5 at most if buildings exist but their destruction has no consequence. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Mech abilities include displacement effects (push, pull) that can redirect enemies into each other, off the grid, or away from buildings. Positioning and displacement are core tactical tools. Score 0 if no displacement abilities exist. Score 0.5 at most if push/pull exists but is rarely useful tactically. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "A timeline-reset mechanic allows the player to undo one full turn a limited number of times per battle. This is a strategic resource for recovering from mistakes. The remaining resets are visible. Score 0 if no undo/reset mechanic exists. Score 0.5 at most if reset exists but is unlimited or has no visible counter. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 4 islands with branching mission paths are present. Each island has multiple missions with increasing difficulty. Completing an island unlocks the next. Score 0 if fewer than 3 islands exist. Score 0.5 at most if islands exist but have no branching or difficulty progression. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 4 distinct enemy types exist with different telegraphed behaviors (chargers, artillery, spawners, bombers). Different enemies require different tactical responses. Score 0 if only one enemy type exists. Score 0.5 at most if enemies exist but all behave identically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "The mech squad has at least 3 mechs with distinct ability sets (tank/push, ranged/sniper, support/repair). Between missions, upgrade screens offer new weapons, pilot abilities, and reactor power allocation. Score 0 if all mechs are identical or no upgrades exist. Score 0.5 at most if mechs differ but no upgrade system exists. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Island boss encounters have unique grid mechanics not seen in regular missions — larger grids, special objectives, multi-phase fights, or unique enemy abilities. At least 2 distinct boss encounters exist. Score 0 if no boss encounters exist. Score 0.5 at most if bosses exist but fight identically to regular missions. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Mission completion shows buildings saved, enemies defeated, resets used, and a performance rating. A final victory screen shows overall stats across all islands. Score 0 if no results tracking exists. Score 0.5 at most if only basic completion is shown. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows mechs on a grid. The island-select map clearly shows progression and branching paths. Score 0 if no title or map exists. Score 0.5 at most if a title exists but is sparse. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The combat grid clearly shows tile types, mech positions, enemy positions, telegraphed intents, buildings, and ability ranges. All information needed for tactical decisions is visible without clicking. Score 0 if the grid is unreadable. Score 0.5 at most if some information requires hovering or is hidden. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Structural integrity bar, reset counter, turn indicator, and mech health/abilities are visible in a clear HUD during combat. Score 0 if no HUD exists. Score 0.5 at most if HUD is incomplete. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: mechs, enemies, buildings, grid tiles, intent indicators, and ability effects are all clearly distinguishable. Score 0 if elements blend together. Score 0.5 at most if visuals are dominated by raw shapes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, map, grid combat, mechs, enemies, and UI — a consistent mech-tactics aesthetic with clean grid visuals and unified palette. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Mechs, enemies, buildings, and grid terrain use real sprite or pixel-art assets — not plain ColorRect fills. Different mech and enemy types are visually distinct. Score 0 if units are colored rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: integrity bar, reset counter, ability panels, upgrade screens, and result displays use styled themed widgets — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: mechs animate when moving/attacking, enemies show intent activation, buildings crumble on destruction, displacement produces impact effects, and timeline reset has a rewind visual. Score 0 if all state changes snap silently. Score 0.5 at most if animation is minimal. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

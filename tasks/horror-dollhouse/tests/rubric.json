@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player can interact with miniature objects in the dollhouse: move furniture, open doors, flip switches. Each interaction has a visible response in the dollhouse (object moves, door swings, light toggles). The dollhouse is navigable with clickable elements. Score 0 if the dollhouse is not interactive, if objects cannot be manipulated, or if interactions have no visible effect."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Actions in the dollhouse affect the real house: moving a miniature bookcase reveals a passage in the real house, turning on a tiny lamp illuminates a dark real room, locking a dollhouse door blocks a real passage. At least three distinct mirror-mechanic puzzles exist. Score 0 if dollhouse actions do not affect the real house, if fewer than 3 mirror puzzles exist, or if the connection is not visible."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The player can switch between exploring the real house (side-view movement) and manipulating the dollhouse (zoom-in interaction mode). Both views are distinct and the player alternates between them to solve puzzles. A clear transition exists between modes. Score 0 if there is only one view, if the player cannot switch between scales, or if there is no transition between modes."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The real house has at least four distinct rooms (attic, bedroom, kitchen, basement, hallway) with different visual themes and locked/blocked passages. Each room has at least one puzzle element connected to the dollhouse. Score 0 if there are fewer than 4 rooms, if rooms look identical, or if rooms have no puzzle elements."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The dollhouse responds autonomously as the game progresses: figures appear in rooms the player just left, furniture moves back to original positions, and new rooms appear that do not exist in the real house. At least three autonomous changes occur. Score 0 if the dollhouse never changes on its own, if there are no autonomous horror elements, or if fewer than 3 changes occur."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Puzzle progression gates exploration: solving earlier puzzles opens access to new rooms in both the real house and dollhouse. Puzzles increase in complexity, requiring multi-step manipulation across both scales. Score 0 if all rooms are accessible from the start, if puzzles do not gate progression, or if complexity does not increase."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The game has a clear ending reached by solving the final puzzle. The ending depends on whether the player investigated anomalous dollhouse rooms or ignored them, providing at least two distinct outcomes. Score 0 if there is no ending, if the final puzzle does not exist, or if there is only one possible outcome."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full puzzle loop is connected: Explore real house, find blocked path, switch to dollhouse, manipulate miniature, observe real house change, access new area. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, explore real house, find dollhouse, alternate between scales, solve puzzles, witness horror elements, reach ending. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a childlike or unsettling font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (split dollhouse/real house view or creepy miniature scene) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — real house rooms, dollhouse miniatures, UI panels, horror effects — belongs to a single consistent visual language with clear scale differentiation. The palette is muted and unsettling; no clashing bright colours or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: both house scales use detailed illustrated surfaces; the dollhouse looks convincingly miniature; real house rooms have atmospheric detail; UI elements use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if rooms are uniform colour fills, if the dollhouse is indistinguishable from the real house, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: dollhouse manipulation, mirror effects in real house, scale transitions, autonomous dollhouse changes, puzzle solutions, and horror reveals each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

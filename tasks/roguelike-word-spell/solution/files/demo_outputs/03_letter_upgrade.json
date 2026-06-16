@@ -1,0 +1,10 @@
+{
+  "scenario": "upgrade",
+  "duration_frames": 300,
+  "events": [
+    {"frame": 30, "type": "wait"},
+    {"frame": 90, "type": "mouse_click", "button": "left", "x": 640, "y": 260},
+    {"frame": 200, "type": "wait"},
+    {"frame": 280, "type": "wait"}
+  ]
+}

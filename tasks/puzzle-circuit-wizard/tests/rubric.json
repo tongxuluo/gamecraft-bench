@@ -1,0 +1,100 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3)/3))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Logic gates can be placed on a board from a toolbox: the player drags AND, OR, NOT, or XOR gates onto grid positions. Gates have clearly marked input and output pins. Placed gates can be removed or repositioned. Score 0 if gates cannot be placed or do not have functional inputs/outputs. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Wires connect gate outputs to gate inputs: the player draws wires between pins to create signal paths. Signals propagate through the circuit when tested — inputs produce outputs according to correct boolean logic (AND requires both high, OR requires either high, NOT inverts, XOR requires exactly one high). Score 0 if wires cannot be drawn or logic evaluation is incorrect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A test/run button evaluates the circuit: signals flow visibly from input terminals through gates and wires to output terminals. Output values are compared against the required solution. Correct outputs light up green; incorrect ones show red with the expected value. Score 0 if there is no way to test the circuit or no visual signal flow. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The puzzle is solved when all output terminals produce the correct signal for all input combinations (truth table is satisfied). Level completion advances to the next puzzle. A clear button resets the board for reattempting. Score 0 if there is no completion check or truth table validation. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The campaign contains at least 15 puzzles across themed chapters: basic gates, compound logic, arithmetic circuits (half-adder, full-adder), multiplexers, and challenge rounds. Complexity escalates from single-gate to multi-layer circuits. Score 0 if fewer than 5 puzzles exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 4 gate types are available: AND, OR, NOT, and XOR. Additional components like signal splitters, delay elements, or NAND/NOR gates appear in later chapters. Each has distinct visual identity and truth table. Score 0 if fewer than 3 gate types exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Spatial constraints add challenge: limited board space forces efficient layouts, wire crossing restrictions require planning, and some puzzles have pre-placed gates that cannot be moved. Gate count efficiency is tracked as a bonus metric. Score 0 if the board is unlimited and unconstrained. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Multi-bit signals appear in later puzzles: buses carry multiple signals, requiring parallel circuit construction. The truth table display shows all required input/output combinations clearly. Score 0 if only single-bit signals exist throughout the campaign. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Board readability is clear: input terminals, output terminals, placed gates, wires, signal states (high/low), and empty grid cells are all visually distinct at 1280x720. Gate types are identifiable by shape and symbol. Score 0 if elements blend together or gate types are indistinguishable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Signal flow is animated during testing: signals visibly propagate from inputs through wires and gates to outputs with directional animation. High signals and low signals have distinct colors. The truth table shows which combinations pass and which fail. Score 0 if signal state is not visible or testing has no visual feedback. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Title screen, chapter select, puzzle select, and completion screens are present with styled navigation. Completion shows gate count efficiency and offers the next puzzle. Score 0 if the game starts directly in gameplay with no navigation. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent electronics-workshop art direction: circuit boards, gates, wires, terminals, and UI share a consistent visual language with PCB green, copper traces, and component aesthetics. Score 0 if visuals are raw default controls or unthemed rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Gates have detailed component sprites with recognizable logic symbols, pins, and housing. Wires look like copper traces or colored cables. Input/output terminals have connector aesthetics. The board has PCB texture or workbench surface. Score 0 if gates are plain rectangles with text labels and wires are thin lines. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Gate placement, wire drawing, signal propagation, success/failure feedback, and level transitions have polished animation: gates snap into place with feedback, signals pulse through wires, success triggers a celebration cascade, and screen transitions are smooth. Score 0 if all state changes are instant snaps. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

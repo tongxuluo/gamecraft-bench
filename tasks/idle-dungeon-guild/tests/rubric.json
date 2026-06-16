@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player assigns hero parties to dungeon quests from a quest board. A progress bar shows quest completion over time without player input. When complete, a results screen shows loot found and experience gained. Quests run automatically once dispatched. Score 0 if quests do not run automatically, if there is no progress indicator, or if there is no results screen."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Heroes have classes (warrior, mage, rogue, healer) with distinct stats and sprites. The player recruits heroes from a pool and assigns them to parties of 1-4. Party composition affects quest success rate and speed. At least three hero classes exist. Score 0 if heroes have no classes, if party composition has no effect, or if fewer than 3 classes exist."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A prestige system exists: when guild reputation reaches maximum, the player retires all heroes and starts a new generation with permanent bonuses (faster levelling, better loot rates). The prestige shows the bonus to be gained. After prestige, heroes reset but equipment and guild upgrades persist. Score 0 if there is no prestige mechanic, if resetting grants no bonus, or if there is no indication of prestige benefit."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "A quest board shows available dungeons with difficulty rating, estimated duration, and reward preview. At least four distinct dungeons exist with different difficulty levels. Harder dungeons yield better loot but require stronger parties. Score 0 if there are fewer than 4 dungeons, if difficulty does not vary, or if rewards are identical regardless of difficulty."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "An equipment system exists: completed quests yield gear (weapons, armour, accessories) that the player assigns to heroes. Equipment improves stats and enables harder dungeons. A comparison tooltip shows stat changes when equipping. At least three equipment slots exist. Score 0 if there is no equipment, if gear has no stat effect, or if fewer than 3 slots exist."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Heroes level up automatically from quest experience. Higher levels improve stats and unlock access to harder dungeons. Level progress is visible per hero. Heroes at higher levels complete quests faster. Score 0 if heroes do not level up, if levelling has no effect, or if level progress is not visible."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A guild reputation meter fills as quests are completed. Higher reputation unlocks new dungeons, better hero recruits, and guild upgrades (more party slots, faster quest speed). The reputation meter is always visible. Score 0 if there is no reputation system, if reputation has no unlocks, or if the meter is not visible."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full quest loop is connected: Assign party to dungeon, wait for completion, receive loot, equip heroes, level up, attempt harder dungeon. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, guild hall, recruit heroes, dispatch quests, collect loot, equip and level, build reputation, prestige, new generation. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a fantasy serif font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (guild hall interior, quest board, or hero silhouettes) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — guild hall, heroes, quest board, equipment, UI panels — belongs to a single consistent fantasy visual language. The palette is warm tavern tones with gold accents; no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: the guild hall uses textured or illustrated surfaces; heroes are recognisable sprites per class; equipment has distinct icons; UI elements (quest board, progress bars, buttons) use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if the hall is a uniform colour fill, if heroes are solid-colour primitives, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: quest dispatch, progress bar filling, results reveal, equipment equipping, level-up effect, reputation gain, and prestige transition each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

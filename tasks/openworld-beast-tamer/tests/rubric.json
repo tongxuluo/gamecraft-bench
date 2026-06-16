@@ -1,0 +1,31 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1","M2","M3"]},
+    {"name": "Content Depth", "items": ["D1","D2","D3","D4"]},
+    {"name": "Functional Visuals", "items": ["V1","V2"]},
+    {"name": "Presentation & Art", "items": ["A1","A2","A3","A4"]}
+  ],
+  "requirements": [
+    {"id": "M1", "agg": "max", "description": "Wild creatures move within their biomes with visible behavior patterns, and approaching one starts an actual taming interaction such as timing, bait choice, or stealth positioning. Success must visibly add the creature to the party. Score 0 if taming is a single instant button press, a static menu, or only explained by labels."},
+    {"id": "M2", "agg": "max", "description": "Tamed creatures have distinct usable abilities that alter the world, such as melting ice, digging soft ground, flying over gaps, or breaking sealed gates. The player must be able to switch active creatures and trigger their abilities in play. Score 0 if abilities are only listed, do not affect obstacles, or all creatures behave the same."},
+    {"id": "M3", "agg": "max", "description": "Creatures gain experience from ability use or exploration and evolve through a visible transformation into stronger forms with changed appearance or enhanced ability effects. Score 0 if evolution is only a progress label, if the sprite does not change, or if growth is unrelated to player actions."},
+    {"id": "D1", "agg": "max", "description": "At least three biomes are playable and visually distinct, with different terrain, palettes, boundaries, and biome-specific creatures. Score 0 if biomes are adjacent colour patches with labels, if creatures are reused everywhere, or if the player cannot move between biomes."},
+    {"id": "D2", "agg": "max", "description": "At least five creature species are recognizable by sprite, behavior, habitat, and ability, with a bestiary that distinguishes discovered, tamed, and unknown species. Score 0 if species are identical shapes with different names or if the bestiary is only a static list."},
+    {"id": "D3", "agg": "max", "description": "Progression includes at least three environmental puzzle types that require different creature abilities and visibly open new paths or areas when solved. Score 0 if obstacles are decorative, if any ability can solve every puzzle, or if puzzle completion does not change traversal."},
+    {"id": "D4", "agg": "max", "description": "Taming challenges vary by biome and species, with different interaction rules such as stealth in jungle, warm bait in tundra, and rhythm timing in desert. Score 0 if every creature uses the same generic capture interaction or if biome rules are only written in UI text."},
+    {"id": "V1", "agg": "max", "description": "The taming loop is playable as one connected sequence: explore, find a creature, complete taming, add it to the party, use its ability on a puzzle, and advance toward evolution. Score 0 if these steps appear as disconnected showcase screens or if party/puzzle state does not persist."},
+    {"id": "V2", "agg": "max", "description": "The full loop connects title, biome exploration, creature discovery, taming, ability puzzles, area unlocking, evolution, and harder challenges without restarting. Score 0 if the game only presents a bestiary or ability menu without playable traversal and consequences."},
+    {"id": "A1", "agg": "max", "description": "The title screen uses a vibrant biome-and-creature composition with an interactive play button and visible transition to exploration. Score 0 if it is a generic title screen with swapped text or lacks creature/biome imagery."},
+    {"id": "A2", "agg": "mean", "description": "The art style is coherent across biomes, creatures, player, puzzles, capture effects, and UI. Strong credit requires theme-specific silhouettes and readable natural palettes. Score 0 if objects are mostly labelled primitives or reused template panels."},
+    {"id": "A3", "agg": "mean", "description": "Creatures, player, terrain, and puzzle obstacles are recognizable without labels, with species-specific shapes and biome-appropriate terrain detail. Score 0 if creatures are solid circles or rectangles, terrain is flat blocks, or the UI must explain what every object is."},
+    {"id": "A4", "agg": "mean", "description": "Creature roaming, taming, capture, ability use, puzzle solving, and evolution animate smoothly over time. Score 0 if these are instant state changes, blinking labels, or static before/after illustrations."}
+  ]
+}

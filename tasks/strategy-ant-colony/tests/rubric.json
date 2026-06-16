@@ -1,0 +1,108 @@
+{
+  "score_formula": "BUILD * (3*((M1+M2+M3+M4+M5)/5) + 7*((D1+D2+D3+D4+D5)/5) + 3*((V1+V2+V3)/3) + 7*((A1+A2+A3+A4+A5)/5)) / 20",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "Headless launch exits 0 without fatal errors; this 0/1 gate multiplies the rest."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3", "M4", "M5"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4", "D5"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2", "V3"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4", "A5"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player marks soil and ants excavate it over time or cost; opened tunnels/chambers must alter movement and colony layout. Static layouts score 0; instant tile toggles, scripted showcases, or pure Canvas shapes/text cap at 0.5."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Forager, digger, nurse, and soldier roles are player-assigned and perform different jobs affecting food, excavation, brood, and defense. Role labels, icons, or color-only mockups without distinct behavior cap at 0.5."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Food is gathered from visible surface sources, stored, consumed over time, and starvation has colony consequences. Counters without collection routes, carried food, storage, or starvation feedback score 0."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "A visible queen produces eggs/larvae, nurses affect hatching, and new ants join a food-limited population. Timer-only population growth or number-only brood state cap at 0.5."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The loop connects title, colony management, threats or seasons, queen death or survival milestone, and result navigation. Static presentation screens or pre-scripted progress without playable cause/effect cap at 0.5."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least four ant roles have distinct silhouettes and mechanics that create workforce tradeoffs. Text names, simple recolors, or same-behavior variants cap at 0.5."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Nursery, food store, barracks, and throne room have different visuals and functional effects. Same-looking chambers or label-only designations cap at 0.5."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least two threat systems, such as insects, floods, or winter, affect different colony systems and have counterplay. Warning text or mechanically identical events cap at 0.5."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Surface food varies by type/location and changes through depletion, days, or seasons. A food counter or decorative resource list without foraging decisions scores 0."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Tunnel depth, width, route length, or chamber placement changes speed, flood risk, defense, storage, or brood efficiency. Layout diagrams with no mechanical response score 0."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "HUD clearly shows population, food, day/season, queen safety, and role distribution without overlap. Plain text/debug counters cap at 0.5 even when readable."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The cross-section distinguishes surface, soil, tunnels, chambers, depth, food, ants, and threats through spatial art. Flat grids/text-labeled cells cap at 0.5."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Digging, assignment, foraging, hatching, threats, and starvation produce visible state feedback. Number changes, text messages, or brief primitive flashes cap at 0.5."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has cohesive underground-colony art direction across gameplay, HUD, menus, and results. Primitive/draw_text-heavy or mismatched placeholder art scores 0."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Ants, queen, larvae, and threats use authored sprites or illustrated/pixel-art forms with readable silhouettes. Dots, letters, icons, or simple recolors score 0."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Soil, tunnels, surface, food, and chambers use textured authored environment art with depth and prop detail. Uniform fills or geometric grids score 0."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Title, HUD, controls, warnings, and results use themed UI chrome, icons, fonts, and frames. Rectangle/text or default-control UI scores 0."
+    },
+    {
+      "id": "A5",
+      "agg": "mean",
+      "description": "Movement, digging, carrying food, hatching, attacks/floods, and transitions use deliberate animation or particles. Static scenes or single-frame swaps score 0."
+    }
+  ]
+}

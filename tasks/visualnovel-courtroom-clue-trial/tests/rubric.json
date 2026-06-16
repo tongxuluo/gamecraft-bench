@@ -1,0 +1,142 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Witness testimony contains multiple statements that can be advanced, reviewed, and pressed for extra detail. Pressing must reveal new information or change the witness response. Score 1 requires player-driven testimony navigation with visible statement index or progress. Score 0 if testimony is a single static paragraph. Score 0.5 at most if only a linear text log with no press or review mechanic."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Evidence can be selected or inspected and shows useful facts such as time, location, object condition, fingerprints, map position, or witness relation. Score 1 requires evidence facts to be readable and relevant to a deduction choice. Score 0 if evidence is absent or purely decorative. Score 0.5 at most if only generic buttons or flavor-only cards with no actionable detail."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Presenting the correct evidence against a contradictory statement triggers an objection, updates the testimony or case state, and visibly changes progress, credibility, or route. Score 1 requires the replay to show correct evidence chosen for a specific contradiction with observable consequence. Score 0 if evidence never affects the case. Score 0.5 at most if contradiction resolution is only described in text after an unrelated click."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Wrong evidence or poor choices create a visible penalty such as credibility loss, judge warning, health bar reduction, or locked-out clue. Score 1 requires a wrong action and its consequence to be observable in the replay. Score 0 if all choices succeed equally. Score 0.5 at most if penalty is only hidden state or a generic dismissible warning with no lasting effect."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The game loop continues after the first contradiction: a rebuttal, new testimony phase, or second puzzle layer requires further player decisions before reaching a verdict. Score 1 requires the second layer to involve interactive deduction, not just reading. Score 0 if the case ends immediately after one correct click. Score 0.5 at most if the second layer is text-only exposition with no player agency."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The case has at least four distinct evidence items with different roles in the logic chain, not one universal clue. Score 1 requires at least two items to matter in different deductions or testimony phases. Score 0 if evidence variety is missing. Score 0.5 at most if items differ only by name or icon with identical mechanical function."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Multiple courtroom roles appear and matter visually or mechanically: judge, witness, defense, prosecutor, clerk, defendant, or gallery. Score 1 requires staging, reactions, or role-specific behavior beyond labels. Score 0 if no courtroom roles are represented. Score 0.5 at most if roles are only labels or names without visual staging or mechanical relevance."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Testimony contains enough statements that the player must read and compare before identifying the contradiction, not a single obvious lie. Score 1 requires at least three testimony statements with only one or two being contradictable. Score 0 if testimony is trivially short. Score 0.5 at most if every statement is equally suspicious with no real deduction required."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Both successful verdict and failed or mistrial states are reachable across normal play or scenarios, each with case-specific outcome text, summary, retry, or title navigation. Score 0 if one outcome is missing entirely. Score 0.5 at most if outcomes are unstyled generic text with no case context. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A case brief or opening phase establishes the charge, suspect, victim or location, and available evidence before testimony begins. Score 1 requires the brief to orient the player with enough context to reason about contradictions. Score 0 if the player is dropped into testimony with no context. Score 0.5 at most if the brief is only a single sentence or title card with no evidence preview."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Normal startup shows a styled title screen with the case name, start action, and courtroom or case-file motif. Score 1 requires theme-specific scene composition with authored background, not only text labels over a flat color. Score 0 if it launches directly into raw gameplay or default UI. Score 0.5 at most for sparse or debug-like presentation."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The flow connects title or scenario to case brief, testimony, evidence interaction, objection or penalty, and verdict without restarting. Score 1 requires a playable case sequence with clear current decision state at each phase. Score 0 if transitions are missing or broken. Score 0.5 at most if mostly static menu jumps or disconnected scenes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Dialogue, statement index, evidence details, credibility, and available actions are readable at 1280x720 without overlap or clipping. Score 1 requires the player to always be able to parse the current decision and available options. Score 0 if the player cannot determine what to do. Score 0.5 at most for cramped, overlapping, or default-control-heavy screens."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Objections, pressed statements, penalties, and verdict changes have visible feedback such as stamps, flashes, portrait reactions, screen shake, or case-board updates. Score 1 requires feedback to clearly communicate what just happened. Score 0 if important state changes silently snap with no indication. Score 0.5 at most if feedback is only log text or a brief label change."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Courtroom art direction is coherent across backgrounds, portraits, evidence cards, HUD, and result screens at a publishable vertical-slice standard. Score 1 requires consistent palette, typography, iconography, spacing, hierarchy, and authored feedback across all major screens. Score 0 if dominated by primitive shapes or raw default controls. Score 0.5 at most for sparse generic visuals or mismatched styles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Evidence and case materials look like designed objects with cards, stamps, tabs, icons, or diagrams rather than plain text rows. Score 1 requires evidence presentation to feel like physical courtroom exhibits. Score 0 if evidence identity is hidden or indistinguishable. Score 0.5 at most if mostly labels or unstyled list items. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Character portraits or witness sprites convey identity and react to courtroom events through expression changes, cut-ins, or pose shifts. Score 1 requires at least two characters with visible reactions during key moments. Score 0 if all screens are static with no character presence. Score 0.5 at most if characters are static single-frame placeholders with no reaction. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Courtroom drama is supported by animation, transitions, or timed composition: objection banners, screen flashes, text reveals, panel slides, or dramatic pauses. Score 1 requires motion and timing to reinforce the dramatic beats of the trial. Score 0 if all screens are static and flat with instant transitions. Score 0.5 at most if presentation has no authored timing or effects beyond basic scene switching. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

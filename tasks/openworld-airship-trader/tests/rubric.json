@@ -1,0 +1,31 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1","M2","M3"]},
+    {"name": "Content Depth", "items": ["D1","D2","D3","D4"]},
+    {"name": "Functional Visuals", "items": ["V1","V2"]},
+    {"name": "Presentation & Art", "items": ["A1","A2","A3","A4"]}
+  ],
+  "requirements": [
+    {"id": "M1", "agg": "max", "description": "The player pilots a visible airship freely across a continuous 2D sky map with directional input, momentum, thrust animation, and a fuel gauge that decreases during actual flight. Refueling should happen through docking or collectible fuel, with the fuel value visibly changing. Score 0 if movement is only teleporting or clicking route markers, if the fuel bar is static, or if the ship is just a labelled icon in a showcase scene."},
+    {"id": "M2", "agg": "max", "description": "Docking at an island opens a functional trading interface with goods, island-specific buy/sell prices, cargo capacity, and credits. Buying and selling must visibly change cargo, credits, and inventory, and profitable trade should require visiting at least two different islands. Score 0 if the market is only a static table, prices never affect transactions, or buy/sell actions do not change game state."},
+    {"id": "M3", "agg": "max", "description": "Sky pirates appear as active enemy ships along trade routes, chase or intercept the player, and can be answered by outrunning, paying a toll, or firing a mounted cannon with visible projectile and hit feedback. Score 0 if pirates are decorative, if combat is only described in text, or if there is no visible damage, retreat, defeat, or toll outcome."},
+    {"id": "D1", "agg": "max", "description": "At least four floating islands are visually distinct in silhouette, palette, layout, and economic role, and the player can physically approach and dock at each. Score 0 if islands are repeated blobs with different labels, if their specialties only appear in text without gameplay effect, or if docking works at only one location."},
+    {"id": "D2", "agg": "max", "description": "At least three ship upgrades are purchasable with earned credits and produce observable gameplay changes, such as faster acceleration, larger cargo, stronger hull, or slower fuel use. At least one upgrade must visibly alter the ship sprite. Score 0 if upgrades are merely listed, have no cost, have no effect, or cannot be bought after trading."},
+    {"id": "D3", "agg": "max", "description": "Market prices vary by island and over time or repeated visits, with a visible comparison or history that lets the player choose profitable routes. Score 0 if every island effectively uses the same prices, if price changes do not affect profit, or if price history is only static decoration."},
+    {"id": "D4", "agg": "max", "description": "The sky map contains layered parallax clouds, collectible crates or debris, and readable trade corridors that affect navigation or rewards. Score 0 if the world is mostly empty background, if environment objects cannot be collected or interacted with, or if depth is only implied by labels."},
+    {"id": "V1", "agg": "max", "description": "The trade loop is playable as one connected sequence: fly to an island, dock, buy cargo, fly to another island, sell for profit, then refuel or upgrade using the profit. Each step must visibly persist into the next. Score 0 if the loop is split into unrelated demo screens or if state changes reset between steps."},
+    {"id": "V2", "agg": "max", "description": "The overall game loop connects title, launch, sky navigation, docking, trading, pirate risk, and upgrades without requiring a restart. Score 0 if these parts only appear as separate scenario showcases, if menus do not lead back to play, or if the player cannot repeat the route with changed resources."},
+    {"id": "A1", "agg": "max", "description": "The title screen is a themed sky-trading composition with the game name, interactive play button, clouds, islands, and airship imagery. Score 0 if it is a generic title over simple shapes, if the start action is nonfunctional, or if it does not transition visibly into gameplay."},
+    {"id": "A2", "agg": "mean", "description": "The visual language is coherent across sky, islands, airship, pirates, cargo, and UI. Strong credit requires task-specific shapes and palette, not repeated generic panels. Score 0 if the game relies on labels to identify most objects or looks like a reskinned template."},
+    {"id": "A3", "agg": "mean", "description": "Primary art assets are recognizable without reading labels: an airship with body, balloon or sails, distinct pirate ships, textured islands, cargo crates, and styled trade UI. Score 0 if the main objects are plain geometric placeholders or uniform colour fills."},
+    {"id": "A4", "agg": "mean", "description": "Important actions animate over multiple frames: thrust, docking, trade confirmation, cannon fire, pirate chase, fuel use, refuel, and upgrade purchase. Score 0 if these moments are instant toggles, blinking text, or static before/after panels."}
+  ]
+}

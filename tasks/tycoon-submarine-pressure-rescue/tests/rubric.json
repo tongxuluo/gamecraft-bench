@@ -1,0 +1,130 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "A compartment layout displays rooms with live state indicators (water level, pressure, oxygen, damage) that change during play in response to events and player actions. Score 1 requires compartment state to visibly evolve over time. Score 0 if there is no readable submarine layout. Score 0.5 at most if compartments are only static labels, preloaded text rows, or decorative diagrams that never change."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The player can assign crew or issue orders to repair leaks, run pumps, close doors, route power, or operate systems, with visible progress and completion or failure. Score 1 requires a player action to produce an observable change in compartment state. Score 0 if repairs are automatic only or no crew assignment exists. Score 0.5 at most if actions exist but do not visibly affect compartment state."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Systems interact so that choices create tradeoffs: closing a door slows flooding but traps crew, rerouting power enables pumps but disables sonar, sealing a section saves oxygen elsewhere but abandons what is inside. Score 1 requires at least one visible cause-and-effect chain where fixing one problem worsens another. Score 0 if every meter is independent. Score 0.5 at most if interactions are described in text only without observable state coupling."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "A sonar, navigation, or rescue-target view changes over time and influences player priorities or mission progress. Score 1 requires the objective display to affect decisions, not just animate. Score 0 if there is no rescue or navigation system. Score 0.5 at most if sonar is decorative only with no connection to gameplay."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least five compartments or systems are represented with distinct roles and mechanics such as engine, pump room, med bay, ballast, sonar, airlock, bridge, or reactor. Score 1 requires rooms to behave differently in ways that matter for player decisions. Score 0 if all rooms are identical. Score 0.5 at most if variety is label-only without mechanical distinction."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Multiple emergency types appear with distinct consequences and required responses: leaks, fire, power loss, trapped crew, pressure spike, oxygen depletion, blocked door, or hull breach. Score 1 requires different emergencies to demand different player actions. Score 0 if only one static problem exists. Score 0.5 at most if emergencies look different but resolve identically."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Progression escalates with simultaneous failures, limited crew, falling oxygen, increasing depth pressure, or compounding hazards that force harder tradeoffs over time. Score 1 requires escalation to change available choices or risk level. Score 0 if the same state repeats without change. Score 0.5 at most if escalation is text-only or cosmetic."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Both rescue success and failure outcomes exist with metrics reflecting prior play such as crew saved, hull integrity, oxygen remaining, compartments lost, or survivors evacuated. Score 1 requires outcomes to vary based on player performance. Score 0 if results are missing. Score 0.5 at most if only one outcome exists or metrics are static regardless of play."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Compartments, crew assignments, flooding indicators, pressure gauges, oxygen levels, power state, and sonar are readable at 1280x720 without overlap or ambiguity. Score 1 requires all damage-control information to be simultaneously legible during active play. Score 0 if critical game state is hidden or unreadable. Score 0.5 at most for dense overlapping UI where key information is obscured."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Player actions produce immediate visible feedback: assigning crew shows movement or assignment indicators, closing doors changes door state, activating pumps shows water receding. Score 1 requires clear cause-and-effect between input and screen change. Score 0 if clicks produce no visible response. Score 0.5 at most if feedback is limited to log text or subtle number changes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "Leaks, repairs, pump activity, alarms, door states, sonar pings, and pressure changes have visible feedback across frames through animations, color shifts, or indicator movement. Score 1 requires ongoing system activity to be visually communicated without reading text logs. Score 0 if changes snap silently. Score 0.5 at most if feedback is only log text or static icons."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Urgency and danger states are visually distinct from stable states through color coding, pulsing, warning icons, or positional changes so the player can scan priority at a glance. Score 1 requires critical compartments to be visually distinguishable without reading numbers. Score 0 if all compartments look identical regardless of danger. Score 0.5 at most if distinction relies solely on small text or numbers."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Submarine art direction is coherent across hull, rooms, water, crew, alarms, sonar, HUD, and results at a publishable vertical-slice standard. Score 1 requires consistent palette, typography, iconography, spacing, and visual hierarchy. Score 0 if dominated by primitive shapes or default engine controls. Score 0.5 at most for sparse generic visuals without a unified style. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The hull cross-section feels authored with pipes, bulkheads, doors, meters, lights, and machinery that communicate a working submarine environment. Score 1 requires spatial composition that reads as an engineered vessel interior. Score 0 if it is an empty diagram or purely abstract grid. Score 0.5 at most for generic box layouts without environmental character. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Emergency atmosphere is supported by warning lights, water effects, sonar sweep animations, crew motion, pressure indicators, or impact transitions that reinforce tension. Score 1 requires visual effects to contribute to the sense of crisis. Score 0 if all screens are flat and static. Score 0.5 at most if effects are minimal or disconnected from gameplay state. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Title screen, briefing, transitions, and result screens are polished with themed art, consistent styling, and smooth navigation. Score 1 requires these frames to feel part of the same authored product as gameplay. Score 0 if no title or result screen exists. Score 0.5 at most for raw unstyled screens with default controls. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

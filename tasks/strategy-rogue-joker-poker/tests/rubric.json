@@ -1,0 +1,148 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5+D6)/6) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3",
+        "V4"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The poker round displays a hand of cards where every card shows rank and suit, and selected cards have a distinct visual state (highlight, lift, border, or tint). The player can select up to five cards and press a Play/Score Hand control; the selected cards are the ones evaluated for a poker hand type. Score 0 if cards are generic labels without rank/suit, if selection state is unreadable, or if the game auto-scores without player selection. Score 0.5 at most if only labels or static text communicate card identity without designed card objects. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The player can discard selected cards, the remaining discard count decreases, and replacement cards are drawn into the hand from the deck. Discarding visibly changes the hand composition and deck state. Score 0 if discard is missing, cosmetic only, or does not visibly change the hand. Score 0.5 at most if the mechanic exists but produces no observable state change beyond a counter decrement. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Scoring shows a readable calculation trail: the poker hand type is identified, base chips and multiplier are displayed, joker bonuses fire visibly, and the total score animates or increments toward the blind target. Card rank and suit matter to scoring: matching ranks, sequential ranks, or matching suits change the detected hand type or payout. Score 0 if the score jumps without explanation, if chips/multiplier are absent, or if scoring is unrelated to the actual selected cards. Score 0.5 at most if only a final number appears without showing the formula breakdown. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Round status is permanently visible during play: blind/target score, current score, hands remaining, discards remaining, money or reward value, and current ante or blind number. The player can always tell how close they are to the target and how many attempts remain. Score 0 if the player cannot determine the target or remaining attempts from the HUD. Score 0.5 at most if only some values are shown or if they overlap/disappear during key moments. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The full run loop is connected without restarting the executable: title -> blind selection/round setup -> poker round -> scoring -> shop/reward after a win -> next blind or result screen. Victory and defeat are both represented by styled result screens that halt play and offer retry or return-to-title navigation. Score 0 if any major transition is missing or broken, or if either result state is absent. Score 0.5 at most if the flow exists but transitions are only debug buttons or disconnected static scenes. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least four poker hand types are recognized and named in the UI across demos or scenarios (e.g. High Card, Pair, Two Pair, Straight, Flush, Full House, Four of a Kind, Straight Flush). Each type produces a different base chips/multiplier combination. Score 0 if all plays are scored as one generic hand or if hand type is hidden. Score 0.5 at most if hand types are only text labels with no observable scoring difference between them. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The run shows an active joker/modifier row containing at least three original jokers, each with a name, portrait/icon, and concise rule text. At least three jokers affect scoring in visibly different ways (e.g. flat chips, multiplier boost, suit-specific bonus, pair bonus, discard bonus, hand-size effect, or money conversion). Score 0 if jokers are absent, unnamed, or only decorative. Score 0.5 at most if jokers exist but all apply the same generic effect or their differences are not observable. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "After beating a non-boss blind, a styled shop or reward screen offers at least three purchasable or selectable choices, including at least one joker and one deck/card modification. Buying or selecting a reward changes later gameplay: the active joker row, deck composition, card enhancement, money, or scoring formula visibly updates and persists into the next round. Score 0 if the reward screen is missing, has fewer than three choices, or purchases are cosmetic/reset immediately. Score 0.5 at most if a shop exists but choices have no observable downstream effect. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The run escalates through multiple blinds or antes with increasing target scores, visible rewards, and a clear current/next challenge indicator. At least three distinct difficulty steps are observable across demos. Score 0 if every round has the same target and no run progression. Score 0.5 at most if targets increase but there is no visible indicator of progression or upcoming challenges. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A boss blind or final challenge has a special rule that changes decision-making, and that rule is visible before and during the round. Examples: disabled suits, discard tax, hand-size cap, odd-rank bonus, or a reversed joker. The rule must force the player to evaluate hands differently than in a normal round. Score 0 if the boss is only a higher score target with no special rule. Score 0.5 at most if a rule is mentioned in text but has no observable gameplay effect. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D6",
+      "agg": "max",
+      "description": "When a scoring hand triggers joker effects, the UI highlights or lists each triggered joker and shows how it changed chips, multiplier, or money. The player can connect each joker's contribution to the final score. Score 0 if joker math is hidden or impossible to connect to the final score. Score 0.5 at most if jokers are listed but their individual contributions are not shown numerically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen is present on normal startup with the game name, a clear Start Run button, a themed card-table or casino background, and at least one visible joker or deck identity element. The title establishes the game's visual identity. Score 0 if the game launches directly into a round, or if the title is plain default Godot UI. Score 0.5 at most if the title is functional but sparse, mostly text over a flat color. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "Card selection, discard/draw, and scoring actions produce clear multi-frame visual feedback: selected cards lift or highlight, discarded cards animate out and replacements animate in, scoring increments visibly with chips/multiplier appearing in sequence. Score 0 if all important changes snap instantly with no motion or feedback. Score 0.5 at most if only one of these moments (selection, discard, scoring) has feedback while others snap. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "HUD readability at 1280x720: target score, current score, hands remaining, discards remaining, money, blind name, hand type label, chips, multiplier, and joker row do not overlap each other or disappear behind cards. All critical information is readable at a glance without scrolling or hovering. Score 0 if important values are hidden, tiny, or visually ambiguous. Score 0.5 at most if values are present but overlap or require interaction to read. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Victory and defeat result screens are styled with themed panels, clear win/loss messaging, and retry/title navigation. Both screens halt gameplay and feel integrated with the game's visual language rather than debug popups. Score 0 if either result is missing, unstyled, or gameplay continues underneath. Score 0.5 at most if results exist but are plain floating text with no panel or themed presentation. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Overall art direction is coherent and original across title, table, cards, jokers, shop, HUD, boss blind, and results. All screens share a consistent palette, typography, iconography, and visual language. It should not read as a direct clone of a named commercial card game. Score 0 if most elements are default controls, unthemed rectangles, or copied lookalike UI. Score 0.5 at most when visuals are dominated by raw controls, primitive shapes, mismatched assets, noisy color choices, or layouts that feel assembled rather than art-directed. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Cards and jokers look like designed objects with frames, suit marks, rank typography, icons or portraits, readable text, and clear selected/disabled states. Cards communicate hierarchy at a glance even in a full hand. Score 0 if cards are plain text labels or raw buttons. Score 0.5 at most when visuals are dominated by raw controls, primitive shapes, mismatched assets, noisy color choices, or layouts that feel assembled rather than art-directed. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Table, shop, and HUD chrome use themed styling: custom panel backgrounds, icon buttons, illustrated frames, chip/coin motifs, or themed Godot StyleBox rather than raw unstyled defaults. Numeric counters use a custom or styled font. Score 0 if primary HUD elements are obviously unstyled default Godot widgets. Score 0.5 at most when visuals are dominated by raw controls, primitive shapes, mismatched assets, noisy color choices, or layouts that feel assembled rather than art-directed. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and polish are present: card selection, discard/draw, scoring increments, joker triggers, shop purchases, blind transitions, and result screens use smooth multi-frame motion, tweens, particles, or effects. Motion clarifies cause and effect rather than merely decorating. Score 0 if all important changes snap instantly or screens hard cut with no visual treatment. Score 0.5 at most when visuals are dominated by raw controls, primitive shapes, mismatched assets, noisy color choices, or layouts that feel assembled rather than art-directed. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

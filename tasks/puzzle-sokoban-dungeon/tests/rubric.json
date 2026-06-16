@@ -1,0 +1,100 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3)/3))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player moves one tile at a time on a grid with arrow keys, and pushing into a crate moves it one tile in the same direction. Crates stop at walls and cannot push other crates (or optionally can chain-push). Movement is turn-based: nothing moves until the player acts. Score 0 if movement is not grid-based or crates cannot be pushed. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Enemies move simultaneously when the player moves: each enemy takes one step toward the player or follows a patrol pattern on every player turn. Enemies block tiles and contact with an enemy causes damage or death. Score 0 if enemies are static, move in real-time, or do not respond to player turns. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Pressure plates and locked doors form the core puzzle: pushing crates onto plates opens corresponding doors. Color-coded keys unlock matching locked doors. Both mechanics gate progression through the room. Score 0 if no puzzle elements beyond basic movement exist. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The room has an exit staircase: reaching it completes the floor and generates the next procedural room. Death from enemy contact offers undo or retry. An undo system allows rewinding individual turns. Score 0 if there is no exit, no floor progression, or no undo/retry. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 3 enemy types exist with different movement behaviors: basic chaser (moves toward player), patrol guard (follows fixed path), and at least one special type (teleporter, diagonal mover, or mimic that copies player movement). Score 0 if only one enemy type exists. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Multiple crate types add puzzle variety: standard crates, ice crates that slide until hitting a wall, heavy crates requiring two pushes, and explosive crates that destroy adjacent walls on contact with enemies. At least 2 crate types exist. Score 0 if only one crate type exists. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Procedural room generation creates variety: rooms have different sizes, wall layouts, enemy compositions, crate placements, and puzzle configurations. At least 10 distinct room layouts are reachable across multiple floors. Score 0 if all rooms are identical or hand-crafted with fewer than 4 layouts. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Collectible items provide one-use abilities: at minimum freeze (stops all enemies for one turn), pull (pulls a crate toward the player), and teleport (warp to an empty tile). Items are found in chests within rooms. Score 0 if no items or abilities exist beyond basic push. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Room readability is clear: walls, floor, crates, pressure plates, doors, keys, enemies, items, player, and exit are all visually distinct at 1280x720. Enemy types are distinguishable by silhouette. Score 0 if elements blend together or enemy types look identical. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "HUD shows essential information: current floor number, player HP or lives, inventory of collected items, and turn counter. Enemy movement intent or threat indicators help the player plan. Score 0 if no floor or health information is visible. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Title screen, death screen with stats, and floor transition screens are present with styled navigation. The player can see their deepest floor reached. Undo has clear visual feedback showing the board rewinding. Score 0 if the game starts directly in gameplay with no navigation. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent dark-dungeon art direction: stone walls, torch-lit corridors, dungeon creatures, treasure chests, and UI share a consistent visual language with earthy tones and atmospheric lighting. Score 0 if visuals are raw default controls or unthemed rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The player character, enemies, crates, and dungeon tiles use real authored sprites with recognizable silhouettes and surface detail. Walls have stone texture, floors have tile patterns, and entities have distinct visual identity. Score 0 if everything is plain colored squares on a flat background. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Movement, pushing, enemy turns, item use, death, and floor transitions have polished animation: entities slide between tiles, crates have push impact, enemies telegraph movement, and screen transitions use fades or wipes. Score 0 if all state changes are instant snaps. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player can transform between three distinct forms (cube, sphere, triangle or equivalent) using button presses. Each form has visibly different physics: one is heavy/grippy, one is bouncy/elastic, one is light/floaty. Transformation is instant and works mid-air. Score 0 if fewer than 3 forms exist or transformation is not possible. Score 0.5 at most if forms exist but physics feel identical between them. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "The heavy form activates pressure plates and breaks fragile floors. These interactions are exclusive to this form — other forms cannot trigger them. Score 0 if no form-specific interactions exist. Score 0.5 at most if interactions exist but any form can trigger them. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The bouncy form ricochets off walls and surfaces, gaining height with each bounce. This form reaches elevated areas that other forms cannot access through normal jumping. Score 0 if no bounce mechanic exists. Score 0.5 at most if bouncing exists but does not provide meaningful traversal advantage. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The gliding form floats across wide horizontal gaps that other forms cannot cross. Gliding has limited duration or gradual descent, requiring timing. Score 0 if no glide mechanic exists. Score 0.5 at most if gliding exists but gaps are crossable by any form. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Puzzles require chaining transformations mid-air — launching as one form, switching to another mid-arc, and landing as a third. At least one level demonstrably requires a mid-air form switch to complete. Score 0 if all puzzles can be solved with a single form. Score 0.5 at most if mid-air switching is possible but never required. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 20 levels are present across 4 worlds. Each world focuses on teaching and then combining form abilities. Levels have unique puzzle layouts. Score 0 if fewer than 10 levels exist. Score 0.5 at most if levels exist but puzzles are trivially similar. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Worlds introduce forms progressively: World 1 teaches the heavy form, World 2 the bouncy form, World 3 the gliding form, World 4 combines all three. Each world has distinct puzzle elements tied to its form. Score 0 if all forms are available from the start with no teaching progression. Score 0.5 at most if worlds exist but do not focus on specific forms. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Optional collectible stars (at least 1 per level) reward creative form usage or difficult sequences. Stars are not required for progression but track completion percentage. Score 0 if no optional collectibles exist. Score 0.5 at most if collectibles exist but require no skill or creativity to obtain. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Environmental puzzle elements (pressure plates, fragile floors, updrafts, bounce surfaces, wide gaps) are present and require specific forms to interact with. At least 4 distinct puzzle element types exist. Score 0 if no environmental puzzle elements exist. Score 0.5 at most if elements exist but do not require specific forms. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Level completion shows time, stars collected, and form-switch count. A world-select screen shows overall progress and star totals. Score 0 if no completion tracking exists. Score 0.5 at most if only basic completion is shown with no detailed stats. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows the three forms and the game name with thematic art. A world-select menu is accessible. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The game flow connects title -> world select -> level -> completion -> back to select without restarting. Score 0 if transitions are missing. Score 0.5 at most if flow exists but is broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "During gameplay, the current form is indicated in the HUD, and form-switch buttons or indicators show available transformations. The goal crystal and collectible stars are clearly visible. Score 0 if no form indicator exists. Score 0.5 at most if indicators exist but are unclear. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: all three forms are visually distinct, puzzle elements are clearly identifiable by type, and the goal is obvious. Score 0 if forms or elements blend together. Score 0.5 at most if visuals are dominated by raw shapes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, worlds, forms, puzzle elements, and UI — a consistent colorful puzzle-platformer aesthetic. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The three forms have distinct, polished sprite art with visible personality. Transformation produces a satisfying visual morph animation. Environments use real tile art per world theme. Score 0 if forms are plain colored shapes or environments are uniform fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: form indicator, world select, level complete screen, and star display use styled themed widgets — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: form transformation has a morph effect, bouncing produces squash-and-stretch, gliding shows wind particles, pressure plates depress visibly, and level completion has a celebratory animation. Score 0 if all state changes snap silently. Score 0.5 at most if animation is minimal. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

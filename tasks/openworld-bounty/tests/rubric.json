@@ -1,0 +1,110 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The quest board is interactive: it displays at least three bounty cards each showing a target portrait, difficulty rating, and gold reward. Clicking a bounty adds it to the active quest slot with visible feedback (highlight, panel slide, or checkmark). Score 0 if there is no quest board, if fewer than 3 bounties exist, if cards lack portraits/rewards, or if clicking does nothing. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Combat is functional: the player has at least two distinct attack options (e.g., melee strike and ranged shot), each triggers a visible animation (weapon swing, projectile travel), deals damage shown via health bar depletion or floating number, and the target fights back with its own attacks. Reducing the target's HP to zero completes the bounty. Score 0 if there is only one attack, if attacks produce no animation, if there is no health bar, or if the target never retaliates. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The reward loop closes: returning to the quest giver or tavern after defeating a target triggers a payout sequence where gold is added to the player's purse with a visible counter update, a 'Bounty Complete' banner or popup appears, and the bounty card is marked done or removed from the board. Score 0 if there is no reward, if gold does not increase visibly, or if completing a bounty produces no feedback. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Target tracking works: once a bounty is active, a compass arrow or minimap marker points toward the target's location and updates as the player moves. The player can follow the marker and locate the target without wandering blindly. Score 0 if there is no navigation aid, if the marker is purely decorative and does not update, or if the target is invisible or indistinguishable from the environment. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The world has at least three visually distinct regions (e.g., frontier town, wild forest, bandit camp or rocky canyon). Each region has different ground textures, unique props, and readable boundaries. The player can move freely in 8 directions across all regions. Score 0 if there are fewer than 3 regions, if regions are indistinguishable, or if the player cannot move freely between them. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least two bounty targets have different sprites and different combat behaviors: one may be fast and evasive while another is slow and armored, or one uses melee while another uses ranged attacks. The differences are observable during combat. Score 0 if all targets share the same sprite and identical behavior. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Bounty cards show meaningful variety: targets differ in difficulty tier, reward amount, and description. At least three bounties are available with distinct portraits and escalating challenge. Score 0 if all bounties are identical in difficulty and reward, or if cards lack distinguishing information. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The town hub offers at least one additional interaction beyond the quest board: a shop selling gear or healing items, an NPC offering dialogue or tips, or a tavern counter for healing. This interaction produces visible state changes (inventory update, health restored, dialogue panel). Score 0 if the town contains only the quest board with no other interactive elements. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A progression layer exists beyond single bounties: earned gold can be spent on upgrades, new gear, or unlocking harder contracts. The player's capabilities or options visibly expand after completing bounties. Score 0 if gold accumulates with no way to spend it, or if the game offers no sense of advancement. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The HUD is readable during play: a gold counter, active bounty indicator, and health bar are visible in stable, non-overlapping UI regions. The compass or minimap updates in real time. Score 0 if any core counter is missing, hidden, or overlaps other UI. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Combat feedback is clear: attacks show projectile/impact/swing animations, damage is communicated through health bar depletion or floating numbers, and the player can distinguish their own attacks from the target's. Victory and defeat states are unmistakable. Score 0 if combat actions happen silently or only counters change with no visual response. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected and navigable: Title -> Pick Bounty -> Track Target -> Defeat Target -> Claim Reward. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent art direction: title screen, town, wilderness regions, combat, quest board, and HUD share a consistent visual style and palette evoking a gritty western-fantasy tone. Screenshots read as an authored vertical slice. Score 0 if the game relies on raw ColorRect shapes, default Godot grey controls, mismatched asset packs, or bright placeholder colors with no unifying theme. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Environment art is finished: terrain tiles have texture or surface detail, regions look like real places (forest canopy, dusty town streets, rocky outcrops), and boundaries between regions are integrated into the art. Score 0 if the map is flat fills, plain rectangles, or uniform color. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Character and target sprites are real game art with readable silhouettes: the player avatar, bounty targets, and any NPCs are distinct recognizable sprites, not primitives. Quest cards include portrait art and styled frames. Score 0 if characters are plain boxes/circles or undifferentiated shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "UI and motion polish meet a shippable bar: title screen, quest board cards, combat animations, reward banners, health bar depletion, and scene transitions use custom styling and multi-frame animation or tweening. No element snaps to its new state in a single frame; scene transitions use fades, slides, or wipes rather than instant cuts. Score 0 if major screens use naked default widgets or hard-cut without authored motion. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

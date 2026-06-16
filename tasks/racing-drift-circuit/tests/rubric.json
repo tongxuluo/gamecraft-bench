@@ -1,0 +1,118 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The car accelerates smoothly with a visible speed curve, brakes with deceleration, and steers with momentum (the car does not snap direction instantly). The car sprite rotates or tilts when turning. A speedometer or speed indicator updates in real time. Score 0 if movement is instantaneous, if there is no acceleration curve, or if the car does not visually rotate when turning. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Holding a drift key while turning initiates a drift: the car slides sideways with visible tyre smoke or skid-mark particles. Maintaining the drift builds a boost meter. Releasing the drift at the right moment grants a speed burst with a visible flame or trail effect. Score 0 if there is no drift mechanic, if drifting produces no visual trail, or if there is no boost on release. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A lap timer starts at the start line and records split times. Best lap time is shown on the HUD. Completing a track awards Gold/Silver/Bronze medals based on time thresholds displayed before the race. A ghost replay of the player's best run drives alongside them in real time (translucent or differently coloured). Score 0 if there is no timer, if medals are missing, or if there is no ghost replay. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 10 distinct tracks with different layouts (varying corner types, widths, and lengths). Tracks are selectable from a track-select screen showing preview thumbnails and medal status. Score 0 if there are fewer than 10 tracks, if tracks share the same layout, or if there is no track selection screen. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Tracks span at least 4 visual themes (city, desert, forest, night/neon) with different tile sets, background art, and colour palettes. Each theme is immediately distinguishable. Score 0 if there are fewer than 4 themes, if themes are indistinguishable, or if all tracks use the same art. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Track difficulty escalates: early tracks have wide roads and gentle curves; later tracks have tight hairpins, narrow sections, and faster medal thresholds. The player perceives clear progression in challenge. Tracks unlock sequentially by earning at least bronze. Score 0 if all tracks feel equally difficult, if there is no unlock progression, or if medal thresholds are identical. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A progress/garage screen shows the player's medal collection across all tracks, total medals earned, and best times. The player can review which tracks are completed, locked, or need improvement. Score 0 if there is no progress overview, if medals are not tracked, or if the player cannot see overall status. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The racing HUD shows: speedometer, current lap time, best lap time, and medal target times. All elements are readable and non-overlapping at 1280x720. The ghost car is clearly distinguishable from the player's car. Score 0 if any core HUD element is missing or if the ghost is indistinguishable from the player. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Speed feedback is clear: drift skid marks appear on the track surface, the boost meter fills visibly during drift, and the speed burst on release produces a visible flame or trail change. The player can perceive their drift state from any single frame. Score 0 if drift produces no visual trail, if the boost meter is hidden, or if the speed burst has no visual effect. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title -> Track select -> Race -> Finish -> Medal award -> Return to track select -> Unlock next. The player can experience every node without restarting. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a play button that is interactive and transitions to track select, and uses a non-default background (speed lines, drifting car, or track vista) \u2014 not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element \u2014 car sprite, track tiles, barriers, background scenery, UI panels \u2014 belongs to a single consistent visual language. The palette is vibrant and energetic; no clashing neon or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "The car is a detailed recognisable sprite (not a rectangle); tracks use textured road surfaces with visible lane markings or edges; barriers and scenery props are illustrated; the HUD uses styled themed widgets with custom fonts. Score 0 if the car is a solid-colour primitive, if the track is a uniform fill, or if UI elements are unstyled defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: car turning tilt, drift smoke particles, boost flame, speedometer needle, medal award popup, ghost car transparency, and scene transitions each play as smooth multi-frame tweens or sprite animations. No element snaps to its new state in a single frame. Transitions use fades or wipes. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

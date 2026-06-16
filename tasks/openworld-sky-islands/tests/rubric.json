@@ -1,0 +1,83 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2)/2) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics", "items": ["M1", "M2", "M3"]},
+    {"name": "Content Depth", "items": ["D1", "D2", "D3", "D4"]},
+    {"name": "Functional Visuals", "items": ["V1", "V2"]},
+    {"name": "Presentation & Art", "items": ["A1", "A2", "A3", "A4"]}
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player can jump from island edges and glide using a stamina-based wing mechanic. A stamina bar depletes during flight and refills on landing. Wind currents (visible as particle streams) boost altitude when entered. Falling below all islands results in respawn at the last island. Score 0 if there is no glide mechanic, if stamina does not deplete, or if wind currents have no effect."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Mini-dungeons exist on islands with platforming challenges, enemies, and a wind crystal reward at the end. Dungeons have themed hazards (fire jets, moving platforms, spike traps). The player must navigate hazards to reach the crystal. Score 0 if there are no dungeons, if dungeons have no hazards, or if there is no reward for completion."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Boss guardians exist on larger islands with attack patterns the player must learn and dodge. Bosses have visible health bars and distinct attack telegraphs. Defeating a boss unlocks access to a new cluster of islands with a visible unlock effect. Score 0 if there are no bosses, if bosses have no attack patterns, or if defeating them does not unlock new areas."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least three island clusters exist with distinct visual themes (forest islands, crystal islands, volcanic islands). Each cluster has multiple islands to explore. Clusters are progressively harder with tougher enemies and longer glide distances. Score 0 if there are fewer than 3 clusters, if clusters look identical, or if difficulty does not progress."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Wind crystals serve as both collectible currency and power source. Spending crystals unlocks abilities (dash, double-jump, updraft creation). A crystal counter is always visible. At least three unlockable abilities exist. Score 0 if there are no crystals, if crystals cannot unlock abilities, or if fewer than 3 abilities exist."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least three distinct dungeon types exist with different hazard themes and layouts. Each dungeon has a unique visual identity matching its island cluster. Dungeons increase in complexity across clusters. Score 0 if there are fewer than 3 dungeons, if all dungeons look identical, or if complexity does not increase."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Islands have environmental variety: some have NPCs with hints, some have hidden platforms only reachable with unlocked abilities, and some have collectible lore items. The world feels populated and rewarding to explore beyond the critical path. Score 0 if islands are empty besides dungeons, if there are no NPCs or secrets, or if exploration is not rewarded."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "The full exploration loop is connected: Glide to island, enter dungeon, navigate hazards, collect crystal, unlock ability, use ability to reach new islands. Each step produces visible state changes. Score 0 if any step in the chain is missing or broken."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen, hub island, glide to cluster, explore dungeons, defeat boss, unlock next cluster, repeat with new abilities. The player can experience every node without restarting the application. Score 0 if any transition in the chain is missing or broken."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a themed font, has at minimum a play button that is interactive and transitions to the game world, and uses a non-default background (floating islands in a bright sky with clouds) — not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element — islands, sky, player character, enemies, crystals, UI — belongs to a single consistent visual language. The palette is bright and airy; no clashing dark or unrelated photorealistic assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Environment, character, and UI art quality: islands use textured or illustrated surfaces; the player character is a recognisable sprite with glide animation; enemies and bosses are distinct; UI elements use styled, themed widgets — not raw unstyled Godot defaults. Score 0 if islands are uniform colour fills, if the player is a solid-colour primitive, or if primary UI elements are obviously unstyled default widgets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: gliding, wind current boost, dungeon hazards, crystal collection, boss attacks, ability activation, and cluster unlock each play as a smooth multi-frame tween or sprite animation — no element snaps to its new state in a single frame. Scene transitions use a brief fade rather than an instant cut. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts with no tween."
+    }
+  ]
+}

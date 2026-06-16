@@ -1,0 +1,16 @@
+{
+  "scenario": "late_game",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30, "type": "wait"},
+    {"frame": 60, "type": "mouse_click", "button": "left", "x": 130, "y": 155},
+    {"frame": 90, "type": "mouse_click", "button": "left", "x": 155, "y": 385},
+    {"frame": 120, "type": "mouse_click", "button": "left", "x": 370, "y": 155},
+    {"frame": 150, "type": "mouse_click", "button": "left", "x": 305, "y": 385},
+    {"frame": 200, "type": "mouse_click", "button": "left", "x": 1200, "y": 555},
+    {"frame": 280, "type": "wait"},
+    {"frame": 380, "type": "wait"},
+    {"frame": 480, "type": "wait"},
+    {"frame": 560, "type": "wait"}
+  ]
+}

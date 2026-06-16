@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The mech moves in a top-down view with WASD (with momentum and weight feel) and rotates the torso independently toward the mouse cursor for aiming. Score 0 if there is no movement or aiming. Score 0.5 at most if movement exists but the torso cannot aim independently of movement direction. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Multiple weapons can be equipped on hardpoint slots (arms, shoulders, back) and fired with different inputs, each with distinct behavior (autocannon, missiles, laser, shotgun). Score 0 if only one weapon exists or there are no hardpoints. Score 0.5 at most if multiple weapons exist but cannot be independently equipped to slots. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A hangar screen allows dragging weapons onto hardpoint slots with weight and energy constraints displayed, and the equipped loadout visibly changes the mech's appearance. Score 0 if no customization screen exists. Score 0.5 at most if weapons can be selected but there are no constraints or visual changes. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Destroying enemies drops salvage crates that are collected on contact and serve as currency for new weapons and upgrades. Score 0 if no salvage or economy system exists. Score 0.5 at most if enemies drop items but they have no use in progression. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The mech has armor/health that depletes when hit, with visible damage states (smoke, sparks, limping) and mission failure when destroyed. Score 0 if the mech is invincible. Score 0.5 at most if health exists but damage has no visual progression. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 8 missions with different terrain, objectives (destroy all, defend, escort, eliminate target), and enemy compositions. Score 0 if only one mission exists. Score 0.5 at most if missions differ only in enemy count with identical terrain and objectives. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 5 distinct enemy types: infantry, light vehicles, turret emplacements, rival mechs, and heavy armor, each requiring different engagement tactics. Score 0 if only one enemy type exists. Score 0.5 at most if enemies look different but behave identically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least 6 distinct weapons available for purchase with different firing patterns, ranges, and tactical roles. Score 0 if fewer than 3 weapons exist. Score 0.5 at most if weapons exist but differ only in damage numbers. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "A final boss mission features a rival mech with multiple attack phases, requiring the player to exploit loadout strengths. Score 0 if no boss mission exists. Score 0.5 at most if a boss exists but has only one attack pattern. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A mission debrief shows salvage earned, damage taken, accuracy stats, enemies destroyed by type, and mission rating. Score 0 if missions end abruptly with no summary. Score 0.5 at most if only salvage earned is shown. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "Normal startup shows a styled hangar screen with the mech displayed, hardpoints labeled, and a mission-select interface with military-industrial theming. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse text on a blank background. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The flow connects hangar to mission select to deployment to combat to debrief without restarting the executable. Score 0 if major transitions are missing. Score 0.5 at most if transitions exist but break visually. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "mean",
+      "description": "The HUD clearly shows mech health, weapon ammo/heat, objective status, and salvage collected in readable non-overlapping regions. Score 0 if the player cannot determine mech or mission state. Score 0.5 at most if information is present but overlapping or unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Player actions produce visible feedback: weapon fire shows muzzle flash and projectiles, hits show impact sparks, salvage collection flashes, damage shows armor degradation, and objectives update visibly. Score 0 if actions happen silently. Score 0.5 at most if only one feedback type exists. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "Art direction is coherent across hangar, battlefields, mechs, enemies, HUD, and menus with a consistent military-industrial palette and style. Score 0 if mostly default controls or mismatched placeholders dominate. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "The player mech, enemy units, weapons, terrain, and salvage crates use real sprite art with distinct mechanical designs. Score 0 if primary gameplay elements are unstyled rectangles. Score 0.5 at most if sprites exist but are inconsistent in style. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Animation brings combat to life: mech walking animation, weapon firing effects, explosion sequences, damage smoke, and enemy movement cycles. Score 0 if all elements are static. Score 0.5 at most if only one element animates. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "HUD and UI panels use styled themed widgets with industrial frames, custom fonts, or mech-cockpit-styled elements rather than raw Godot defaults. Score 0 if all UI is default Label/Button. Score 0.5 at most if some panels are styled but others remain raw defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

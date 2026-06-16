@@ -1,0 +1,100 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3)/3))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Portals can be placed on valid wall surfaces: the player clicks to place an entry portal and an exit portal on designated surfaces. Objects and the player passing through one emerge from the other. Invalid surfaces reject placement with feedback. Score 0 if portals cannot be placed or do not transport objects. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Momentum is conserved through portals: objects entering a portal at speed exit the other portal with equivalent velocity in the exit direction. Falling into a floor portal and exiting a wall portal converts vertical momentum to horizontal launch. Score 0 if objects teleport without preserving speed or direction. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Lasers can be redirected through portals: laser beams entering a portal exit the other portal continuing in the exit direction. Lasers hitting target sensors activate switches that open doors or trigger mechanisms. Score 0 if lasers do not exist or cannot pass through portals. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "The chamber has a locked exit that opens when all targets/sensors are activated. The player must use portal placement to solve the spatial puzzle and reach the unlocked exit. Completion advances to the next chamber. Score 0 if there is no exit condition or puzzles have no solution requirement. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "The campaign contains at least 12 test chambers with escalating complexity: basic portal traversal, momentum launches, laser redirection, cube-on-button puzzles, and multi-mechanic combinations. Score 0 if fewer than 4 chambers exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Multiple puzzle elements interact: weighted cubes that can be portaled onto pressure plates, laser grids requiring multiple redirections, timed sequences, and moving platforms. At least 3 distinct interactive element types beyond portals exist. Score 0 if only basic portal traversal is available. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Hazards and constraints add challenge: energy fields that destroy objects, turrets that fire at the player, limited portal surfaces forcing specific solutions, and timed doors. At least 2 hazard types appear. Score 0 if chambers have no hazards or constraints beyond walls. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Portal placement can be repositioned: the player can move existing portals to new surfaces mid-puzzle, enabling multi-step solutions where the same portal pair is used in different configurations sequentially. Score 0 if portals are permanent once placed. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Chamber readability is clear: walls, valid portal surfaces, lasers, targets, cubes, buttons, hazards, and the exit are all visually distinct at 1280x720. Portal entry and exit are color-coded and directional. Score 0 if elements blend together or portal directions are ambiguous. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Portal placement shows a preview before confirming: trajectory lines indicate where objects will exit, and momentum arrows show expected launch direction. Active targets glow differently from inactive ones. Score 0 if no placement preview or target state feedback exists. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Title screen, chamber select, and completion screens are present with styled navigation. The player can see chamber progression and replay completed chambers. Score 0 if the game starts directly in gameplay with no navigation. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent clean-laboratory art direction: test chamber walls, floors, portals, lasers, cubes, and UI share a consistent visual language with sterile whites, accent colors, and scientific aesthetics. Score 0 if visuals are raw default controls or unthemed rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Portals have distinctive visual effects: swirling energy, color-coded rings, and visible event horizons. Lasers are bright beams with glow effects. Cubes and buttons have surface detail and material texture. Score 0 if portals are plain circles and lasers are thin lines without effects. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Portal traversal, momentum launches, laser activation, and level transitions have polished animation: objects stretch entering portals, momentum trails show trajectory, targets light up with energy effects, and doors slide open with mechanical animation. Score 0 if all state changes are instant snaps. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

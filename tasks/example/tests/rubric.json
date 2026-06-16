@@ -1,0 +1,22 @@
+{
+  "score_formula": "",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {"name": "Core Mechanics",     "items": ["M1"]},
+    {"name": "Content Depth",      "items": ["D1"]},
+    {"name": "Functional Visuals",        "items": ["V1"]},
+    {"name": "Presentation & Art",         "items": ["A1"]}
+  ],
+  "requirements": [
+    {"id": "M1", "agg": "max", "description": "Example"},
+    {"id": "D1", "agg": "max", "description": "Example"},
+    {"id": "V1", "agg": "max", "description": "Example"},
+    {"id": "A1", "agg": "mean", "description": "Example"}
+  ]
+}

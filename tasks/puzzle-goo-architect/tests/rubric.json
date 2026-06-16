@@ -1,0 +1,100 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3)/3))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Goo blobs can be dragged from a supply area and attached to existing structure nodes. Elastic bonds form automatically between the placed blob and nearby attachment points, creating a connected structure. Score 0 if blobs cannot be placed or do not form connections. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Physics simulation is active: the structure sways under gravity, bonds stretch elastically, overloaded bonds can snap, and the structure settles into equilibrium after each placement. Score 0 if the structure is static or blobs snap to fixed positions without physics. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "The level has a goal pipe or target area: when goo blobs reach or touch the goal, they are collected with visual feedback and the level progresses toward completion. A minimum collection quota defines success. Score 0 if there is no goal or completion condition. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Goo supply is limited per level: the player has a finite number of blobs and must build efficiently. Using fewer blobs than required for completion is tracked as a bonus metric. Score 0 if supply is unlimited or the constraint has no gameplay effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least three distinct goo types exist with different physical properties: standard flexible goo, rigid structural goo, and at least one special type (balloon/lift goo, flammable goo, or liquid goo). Each type visibly behaves differently in the physics simulation. Score 0 if only one goo type exists. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The campaign contains at least 10 levels across multiple themed worlds, with different terrain layouts, goal positions, hazards, and required goo types. Score 0 if fewer than 3 levels exist. Score 0.5 if levels exist but all use identical terrain and mechanics. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Environmental hazards and obstacles create variety: at minimum, terrain gaps requiring bridges, wind zones that push structures, spike hazards that destroy blobs, or fire that ignites flammable goo. At least two distinct hazard types appear across levels. Score 0 if levels have no hazards or obstacles beyond basic terrain. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Level design requires different structural strategies: some levels need tall towers, others need horizontal bridges, others need lightweight structures with balloon goo, and others need demolition of obstacles. Score 0 if all levels solve with the same vertical stacking approach. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Structure readability is clear: goo blobs, bonds between them, attachment points, terrain, goal pipe, and hazards are all visually distinct at 1280x720. The player can see where to attach and what is connected. Score 0 if elements blend together or connections are invisible. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "HUD shows essential information: goo supply count by type, blobs collected toward quota, and level identity. A drag preview shows where the blob will attach before releasing. Score 0 if no supply or progress information is visible. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Title screen, level select with world grouping, and completion screens are present with styled navigation. Level completion shows blobs saved and offers next level. Score 0 if the game starts directly in gameplay with no navigation. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent whimsical-organic art direction: terrain, goo creatures, bonds, UI, and backgrounds share a consistent visual language with soft colors and playful shapes. Score 0 if visuals are raw default controls or unthemed rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Goo blobs are animated characters with personality: they have faces or expressions, stretch visibly when bonds are stressed, and react to placement and collection. Terrain has textured surfaces and the goal pipe has mechanical detail. Score 0 if blobs are plain circles and terrain is flat fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Physics interactions have polished visual feedback: bonds stretch and wobble, structures sway with weight, collection into the goal pipe has suction animation, and hazard destruction has particle effects. Scene transitions are animated. Score 0 if all state changes are instant snaps. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "A 30-second countdown timer governs each loop. When it expires, time rewinds and the player restarts at the spawn point. The timer is visible and counts down during gameplay. Score 0 if no time loop mechanic exists. Score 0.5 at most if a timer exists but does not trigger a rewind/restart. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "After a loop ends, a ghost of the previous loop replays simultaneously during the next loop. The ghost physically interacts with the world — pressing buttons, holding doors, blocking lasers. Multiple ghosts (up to 4) can be layered from successive loops. Score 0 if no ghost replay exists. Score 0.5 at most if ghosts replay but do not physically interact with the world. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Switches, pressure plates, and doors require sustained activation — a ghost standing on a plate keeps it pressed for the duration of its replay. The player must coordinate timing across loops so ghosts hold switches at the right moments. Score 0 if no sustained-activation elements exist. Score 0.5 at most if switches exist but do not require ghost cooperation. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Reaching the exit crystal with all required conditions met (switches held, paths cleared) completes the level. The exit is only accessible when ghost cooperation enables it. Score 0 if no exit condition exists or exit is always accessible. Score 0.5 at most if an exit exists but ghost cooperation is never required. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "A reset button clears all recorded ghosts to start a level fresh. A timeline bar shows all active ghosts and their current positions within the 30-second window. Score 0 if no reset or timeline visualization exists. Score 0.5 at most if reset exists but no timeline visualization shows ghost positions. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 16 levels across 4 chapters are present. Early levels require only 1-2 ghosts, later levels require 3-4 ghost layers with precise timing coordination. Score 0 if fewer than 8 levels exist. Score 0.5 at most if levels exist but all require the same number of ghosts. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Multiple interactive element types exist: pressure plates, toggle switches, timed doors, laser blockers, moving platforms activated by switches, and conveyor belts. At least 4 distinct element types. Score 0 if only one interactive element type exists. Score 0.5 at most if elements exist but fewer than 4 types are present. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Chapters introduce mechanics progressively: Chapter 1 teaches single-ghost cooperation, Chapter 2 adds timing-critical elements, Chapter 3 introduces multi-ghost puzzles, Chapter 4 combines everything. Score 0 if no progressive difficulty exists. Score 0.5 at most if chapters exist but do not introduce new concepts. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Some levels have multiple valid solutions using different ghost configurations. Optional challenges exist for completing levels in fewer loops than the minimum required. Score 0 if all levels have exactly one solution. Score 0.5 at most if multiple solutions exist but no optional challenges reward efficiency. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Level completion shows loops used, time of exit within the final loop, and a rating. A chapter-select screen shows progress and ratings per level. Score 0 if no completion tracking exists. Score 0.5 at most if only basic completion is shown. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows overlapping clock imagery and ghost silhouettes with the game name. A chapter menu is accessible. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The game flow connects title -> chapter select -> level -> loop cycles -> completion -> back to select without restarting. Score 0 if transitions are missing. Score 0.5 at most if flow exists but is broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "During gameplay, the 30-second countdown, timeline bar with ghost positions, active ghost count, and interactive element states (on/off) are clearly visible. Score 0 if no HUD exists. Score 0.5 at most if HUD is incomplete or overlaps gameplay. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: the player, ghosts (each visually distinct or numbered), switches, doors, lasers, and exit crystal are all clearly distinguishable. Score 0 if elements blend together. Score 0.5 at most if visuals are dominated by raw shapes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, levels, ghosts, interactive elements, and UI — a consistent temporal/clockwork aesthetic with unified palette. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Level environments use real sprite or tile art for platforms, switches, doors, and backgrounds — not plain ColorRect fills. Ghosts have a distinct translucent or temporal visual treatment. Score 0 if environments are uniform color fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: countdown timer, timeline bar, chapter select, and completion screens use styled themed widgets — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: time rewind has a visual rewind effect, ghosts shimmer or pulse, switches animate on activation, the exit crystal glows when accessible, and loop transitions have temporal distortion effects. Score 0 if all state changes snap silently. Score 0.5 at most if animation is minimal. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

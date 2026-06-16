@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The knight has a melee attack with a three-hit combo — pressing attack repeatedly chains strikes with increasing damage or range on the final hit. The combo is visually distinct per hit. Score 0 if no melee attack exists or only a single strike is available. Score 0.5 at most if attack exists but has no combo chain or hits feel identical. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Sub-weapons (at least 3 types: throwing axe, boomerang, holy water, or similar) consume a shared ammo resource and provide ranged or area attacks distinct from the melee combo. Switching between sub-weapons is possible. Score 0 if no sub-weapons exist. Score 0.5 at most if only one sub-weapon exists or ammo is unlimited. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A village hub serves as the central area between stages, containing a shop NPC and a stage-select mechanism (gate, portal, or map). The player returns here after completing or failing a stage. Score 0 if no hub exists or stages are accessed only sequentially. Score 0.5 at most if a hub exists but has no shop or meaningful interaction. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Each stage ends with a boss that has a visible health bar, telegraphed attack patterns, and a distinct defeat condition. The boss fight feels meaningfully different from regular enemy encounters. Score 0 if no boss encounters exist. Score 0.5 at most if a boss exists but has no health bar, no telegraphs, or is trivially easy. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "The shop sells health upgrades, sub-weapon ammo, and at least one other category (damage boost, armor, special item). Purchases cost gems collected from enemies and persist between stages. Score 0 if no shop exists. Score 0.5 at most if a shop exists but offers fewer than 3 item categories or purchases have no effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 4 distinct themed stages are present (e.g., crypt, volcano, ice, swamp) each with unique tileset, enemy types, and platforming challenges. Stages feel visually and mechanically distinct. Score 0 if fewer than 3 stages exist or all share the same theme. Score 0.5 at most if stages exist but are visually identical or offer no unique challenges. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 5 distinct enemy types appear across stages with different behaviors (melee chargers, ranged shooters, flying enemies, shielded foes, spawners). Different enemies require different combat approaches. Score 0 if fewer than 3 enemy types exist. Score 0.5 at most if enemies exist but all behave identically. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Stages contain optional treasure chests hidden behind skill challenges (tricky jumps, hidden walls, timed sequences) that reward gems or unique items. At least some chests require deviating from the main path. Score 0 if no optional content exists. Score 0.5 at most if chests exist but are all on the main path with no challenge. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Boss encounters (at least 3) each have unique attack patterns and require different strategies. Bosses telegraph attacks with visible wind-up animations and have multiple attack phases or patterns. Score 0 if bosses are identical or have no distinct patterns. Score 0.5 at most if bosses exist but share the same attack pattern. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "A victory or completion screen shows stats (stages cleared, gems collected, deaths, time) after completing available content. Progress is saved between sessions. Score 0 if no completion tracking exists. Score 0.5 at most if only a generic win message appears with no stats. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows the game name, the knight character, and Start/Continue options with thematic art. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse or mostly placeholder text. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The game flow connects title -> hub -> stage -> boss -> hub -> next stage without restarting. The shop, stage select, and gameplay are all reachable through in-game navigation. Score 0 if transitions are missing or require relaunch. Score 0.5 at most if flow exists but is broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "During gameplay, health bar, gem count, sub-weapon indicator with ammo count, and boss health bar (during boss fights) are visible in a clear HUD. Score 0 if no HUD is displayed. Score 0.5 at most if HUD exists but is incomplete or overlaps gameplay. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: the knight, enemies, platforms, hazards, collectibles, and background layers are all clearly distinguishable. Score 0 if elements blend together. Score 0.5 at most if visuals are dominated by raw shapes. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, hub, stages, bosses, and UI — a consistent retro action-platformer aesthetic with chunky pixel art and unified palette. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Stage environments use real sprite or tile art for platforms, backgrounds, enemies, and the knight — not plain ColorRect fills. Different stages have visually distinct tilesets and palettes. Score 0 if environments are uniform color fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: health bar, gem counter, sub-weapon panel, shop interface, and boss health bar use styled themed widgets — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: melee combo has distinct swing animations per hit, sub-weapons have projectile animations, enemies flash on hit, bosses have wind-up animations, and death/victory have transition effects. Score 0 if all actions snap silently. Score 0.5 at most if animation is minimal. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

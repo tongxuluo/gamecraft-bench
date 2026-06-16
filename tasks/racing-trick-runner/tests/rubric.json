@@ -1,0 +1,118 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The character automatically moves downhill in a side-scrolling view. The player controls jump timing (press to jump, hold for higher) and landing angle (tilt with directional keys). Landing cleanly on a slope continues momentum; landing at a bad angle causes a stumble that costs speed. Score 0 if there is no automatic movement, if jumping has no height control, or if landing angle has no effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "While airborne, the player inputs trick commands (flip, spin, grab) using directional keys. Each trick has a point value and takes time to complete. Landing before a trick finishes causes a crash. Successful trick landings award points and refill a boost meter. The boost meter is displayed and activating boost increases speed with a visible trail effect. Score 0 if there is no trick system, if tricks have no risk/reward, or if there is no boost mechanic. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Obstacles (rocks, trees, crevasses) appear on the slope and end the run on collision. The terrain varies between smooth slopes, mogul fields, cliff drops, and ramp sequences. The run is endless with procedurally increasing difficulty. Distance and score are tracked as persistent high scores. Score 0 if there are no obstacles, if terrain never varies, or if the run has a fixed end point. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 5 unlockable characters with unique sprites, trick animation styles, and one special ability each (higher jumps, longer boost, extra hit point, score multiplier, slow-motion). Characters unlock by reaching distance or score milestones. Score 0 if there are fewer than 5 characters, if they look identical, or if they have no unique abilities. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Weather conditions change during a run: clear skies, fog (reduced visibility), snow (slippery terrain), blizzard (both effects). Each condition has distinct visual effects (particles, colour shifts, visibility changes) and gameplay impact. Score 0 if weather never changes, if conditions have no visual effect, or if weather does not affect gameplay. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "A day/night cycle shifts lighting and visibility during the run. Night reduces visibility with a spotlight or lantern effect around the character. Dawn and dusk have distinct colour palettes. The cycle affects gameplay by making obstacles harder to see at night. Score 0 if there is no day/night cycle, if lighting never changes, or if night has no gameplay effect. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "At least 4 distinct trick types with different animations, point values, and execution times. Tricks can be chained in a single jump for combo multipliers. A trick list or collection screen shows all available tricks and their requirements. Score 0 if there are fewer than 4 tricks, if tricks cannot be chained, or if there is no trick reference. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The gameplay HUD shows: current score, distance, boost meter, and trick combo indicator. All elements are readable and non-overlapping at 1280x720. The boost meter is prominent and clearly shows fill level. Score 0 if any core HUD element is missing or unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Trick execution is visually clear: the character performs distinct animations for each trick type, landing quality is communicated (clean landing sparkle vs stumble shake), and boost activation produces a dramatic speed trail. The player can assess their state from any frame. Score 0 if tricks have no animation, if landing quality is not communicated, or if boost has no visual effect. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title -> Character select -> Run (tricks, obstacles, weather) -> Crash/game over -> Results (score, distance, unlocks) -> Return to menu. The player can experience every node without restarting. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a custom or themed font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (snowy mountain, rider silhouette, or illustrated landscape) \u2014 not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element \u2014 character sprite, terrain, obstacles, weather particles, background mountains, UI panels \u2014 belongs to a single consistent visual language. The palette is cool and adventurous; no clashing styles or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "The character is a detailed animated sprite; terrain has textured snow/ice/rock surfaces; obstacles are illustrated props (trees, rocks with detail); backgrounds have parallax mountain layers; UI uses styled themed widgets. Score 0 if the character is a solid-colour primitive, if terrain is a flat line, or if UI is unstyled defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: character trick rotations, landing impacts, boost trail, weather particle systems, day/night colour transitions, obstacle approach, and scene transitions each play as smooth multi-frame tweens or sprite animations. No element snaps to its new state in a single frame. Transitions use fades or slides. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

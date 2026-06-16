@@ -1,0 +1,13 @@
+{
+  "scenario": "level_0",
+  "duration_frames": 400,
+  "events": [
+    {"frame": 30, "type": "wait"},
+    {"frame": 60, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 120, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 180, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 240, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 300, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 360, "type": "wait"}
+  ]
+}

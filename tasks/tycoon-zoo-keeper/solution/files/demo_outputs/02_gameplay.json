@@ -1,0 +1,14 @@
+{
+  "scenario": "building",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 90,  "type": "mouse_click", "button": "left", "x": 400, "y": 350},
+    {"frame": 180, "type": "mouse_click", "button": "left", "x": 600, "y": 350},
+    {"frame": 270, "type": "mouse_click", "button": "left", "x": 800, "y": 400},
+    {"frame": 360, "type": "wait"},
+    {"frame": 450, "type": "mouse_click", "button": "left", "x": 640, "y": 500},
+    {"frame": 540, "type": "wait"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

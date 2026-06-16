@@ -1,0 +1,120 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4+M5)/5) + 0.35*((D1+D2+D3+D4+D5)/5) + 0.15*((V1+V2+V3+V4)/4) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4", "M5"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4", "D5"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3", "V4"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3", "A4"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "The player character clings to walls on contact and slides slowly downward. Pressing jump while clinging launches the character away from the wall with directional control. Score 0 if wall interaction is absent or the character passes through walls. Score 0.5 at most if wall-cling exists but has no directional launch or feels unresponsive. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "A directional dash consumes a single charge, propelling the character at high speed in the aimed direction. The charge resets on landing or wall-grab, creating a commit-recover rhythm. Score 0 if no dash exists or dash has no resource cost. Score 0.5 at most if dash exists but charge does not reset contextually or direction cannot be aimed. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Hazards (spikes, pits, moving obstacles) kill the player instantly on contact and respawn them at the room entrance with no loading delay. The death-respawn loop is near-instantaneous. Score 0 if hazards do not kill or respawn has significant delay. Score 0.5 at most if death exists but respawn is slow or requires menu interaction. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Rooms are screen-sized and clearing one scrolls or transitions the camera to the next room seamlessly. Progression through rooms is linear within a chapter. Score 0 if rooms do not transition or the game is a single continuous level. Score 0.5 at most if transitions exist but are jarring, require manual triggers, or break flow. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M5",
+      "agg": "max",
+      "description": "Multiple chapters (at least 3) are present, each introducing distinct hazard types (e.g., wind, crumbling walls, gravity flips, timed gates). Completing a chapter unlocks the next. Score 0 if only one chapter or hazard type exists. Score 0.5 at most if chapters exist but introduce no new mechanics or hazards. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "Each chapter contains at least 5 distinct rooms with unique layouts that test wall-climb and dash in different configurations. Rooms within a chapter feel varied, not repetitive. Score 0 if fewer than 5 rooms exist or all rooms share identical layouts. Score 0.5 at most if rooms exist but layouts are trivially similar with only minor repositioning. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "At least 4 distinct hazard types are present across the game (spikes, moving saws, crumbling platforms, wind currents, timed gates, gravity zones, etc.) each requiring different player responses. Score 0 if only one hazard type exists. Score 0.5 at most if hazards exist but behave identically or require the same avoidance strategy. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "A chapter-select or hub screen allows replaying completed chapters. Death counter and best-time tracking per chapter are visible and persist between sessions. Score 0 if no chapter select or tracking exists. Score 0.5 at most if selection exists but no stats are tracked or displayed. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Final rooms in chapters combine multiple hazard types from that chapter into a culminating challenge that tests mastery. These rooms are noticeably harder and more complex than earlier rooms. Score 0 if no difficulty escalation exists within chapters. Score 0.5 at most if a final room exists but does not combine hazards or feel distinct from regular rooms. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D5",
+      "agg": "max",
+      "description": "Chapter completion shows a results screen with death count, time taken, and a rating or grade. The results reflect actual performance during that chapter. Score 0 if no results screen exists. Score 0.5 at most if results show but contain only generic text with no performance data. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "max",
+      "description": "A styled title screen shows the game name, chapter-select option, and thematic art before gameplay begins. Score 0 if the game starts directly in gameplay or uses raw default UI. Score 0.5 at most if a title exists but is sparse or mostly placeholder text. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "max",
+      "description": "The game flow connects title -> chapter select -> rooms -> chapter complete -> back to select without restarting the executable. All transitions are reachable through in-game UI. Score 0 if major transitions are missing or require relaunch. Score 0.5 at most if flow exists but transitions are broken or require workarounds. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "During gameplay, dash charge state, death counter, and current room/chapter indicators are visible in a clear HUD that does not obstruct the play area. Score 0 if no HUD information is displayed during gameplay. Score 0.5 at most if HUD exists but overlaps the play area or is unreadable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V4",
+      "agg": "mean",
+      "description": "Readability at 1280x720 is strong: the player character, walls, hazards, and safe platforms are all clearly distinguishable. Hazard types are visually distinct from each other and from safe geometry. Score 0 if elements blend together or hazards are indistinguishable from platforms. Score 0.5 at most if visuals are dominated by raw shapes or layouts that feel assembled rather than designed. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The art direction is coherent across title, rooms, hazards, character, and UI — a consistent crystalline-cavern or precision-platformer aesthetic with unified palette, typography, and visual hierarchy. Score 0 if mostly default UI or mismatched placeholders dominate. Score 0.5 at most if visuals are sparse or generic. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Room environments use real sprite or tile art for walls, platforms, backgrounds, and hazards — not plain ColorRect fills or default Godot primitives. Different chapters have visually distinct themes. Score 0 if environments are uniform color fills or unstyled rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "HUD and UI chrome: death counter, timer, chapter select, and results screens use styled themed widgets with custom panels, icon buttons, or themed StyleBox — not raw unstyled Godot defaults. Score 0 if primary UI elements are obviously unstyled default Godot widgets. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation and feedback: dash produces a trail or flash, death has a particle burst or screen shake, wall-cling shows sliding particles, and room transitions use motion rather than instant cuts. Score 0 if all state changes snap silently. Score 0.5 at most if animation is minimal or limited to a single element. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

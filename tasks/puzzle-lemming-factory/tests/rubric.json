@@ -1,0 +1,100 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3+M4)/4) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3)/3))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": ["M1", "M2", "M3", "M4"]
+    },
+    {
+      "name": "Content Depth",
+      "items": ["D1", "D2", "D3", "D4"]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": ["V1", "V2", "V3"]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": ["A1", "A2", "A3"]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Creatures march autonomously: they emerge from an entrance hatch, walk in a straight line, turn at walls, fall off ledges, and continue marching without player input. The stream is continuous at a configurable release rate. Score 0 if creatures are static, player-controlled directly, or do not march autonomously. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Jobs can be assigned by clicking a creature and selecting from a toolbar: at minimum digger (carves downward through terrain), builder (constructs diagonal staircase), and blocker (becomes impassable wall redirecting others). Each job visibly changes the creature's behavior immediately. Score 0 if fewer than 3 job types work or jobs have no effect. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "Terrain is destructible and constructible: diggers remove terrain tiles creating downward passages, builders add terrain tiles creating upward staircases. Modified terrain persists and affects all subsequent creature pathing. Score 0 if terrain cannot be modified or modifications do not affect pathing. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M4",
+      "agg": "max",
+      "description": "Win and loss conditions are enforced: a save quota specifies how many creatures must reach the exit door. The level succeeds when quota is met and fails when too many creatures have died to hazards for quota to be reachable. Results are shown with retry navigation. Score 0 if there is no quota, no exit, or no failure condition. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 5 distinct job types exist: digger, builder, blocker, climber (scales vertical walls), and at least one more (floater for safe falls, bomber for area destruction, or miner for horizontal digging). Each has unique behavior and visual identity. Score 0 if fewer than 3 job types exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "The campaign contains at least 12 levels with different terrain layouts, hazard placements, entrance/exit positions, and required job combinations. Levels are grouped into difficulty tiers. Score 0 if fewer than 4 levels exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "Environmental hazards create variety: at minimum pits, liquid pools (water/lava), mechanical traps (saws, crushers), and height-based fall damage. At least 3 distinct hazard types appear across levels. Score 0 if no hazards exist beyond simple pits. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Job supplies are limited per level and vary by level design: some levels give many diggers but no builders, forcing specific strategies. The toolbar shows remaining counts that deplete as jobs are assigned. Score 0 if all jobs are unlimited or supply does not vary between levels. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "Level readability is clear: terrain, hazards, entrance hatch, exit door, marching creatures, and assigned-job creatures are all visually distinct at 1280x720. The player can identify creature states and terrain boundaries at a glance. Score 0 if elements blend together or creature states are indistinguishable. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "HUD shows essential information: job toolbar with remaining counts, creatures saved vs quota, creatures currently alive, release rate control, and level identity. All information is persistent and readable during gameplay. Score 0 if no toolbar or progress information is visible. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "Title screen, level select, and results screens are present with styled navigation. Results show save percentage and star rating. Pause functionality allows planning without time pressure. Score 0 if the game starts directly in gameplay with no navigation. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "mean",
+      "description": "The game has a coherent factory-industrial art direction: terrain, creatures, hazards, UI, and backgrounds share a consistent visual language with mechanical textures and a warm industrial palette. Score 0 if visuals are raw default controls or unthemed rectangles. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Creatures are animated characters with walking cycles, job-specific animations (digging motion, building motion, blocking pose), and death reactions. Terrain has textured tiles and hazards have mechanical detail. Score 0 if creatures are plain circles and terrain is flat fills. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Creature actions, terrain modification, hazard triggers, and level transitions have polished animation: digging shows debris particles, building shows tile placement, death has reaction effects, and screen transitions are smooth. Score 0 if all state changes are instant snaps. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "scenario": "station",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 90,  "type": "mouse_click", "button": "left", "x": 290, "y": 355},
+    {"frame": 150, "type": "mouse_click", "button": "left", "x": 270, "y": 545},
+    {"frame": 240, "type": "mouse_click", "button": "left", "x": 350, "y": 355},
+    {"frame": 300, "type": "mouse_click", "button": "left", "x": 270, "y": 545},
+    {"frame": 390, "type": "mouse_click", "button": "left", "x": 430, "y": 355},
+    {"frame": 450, "type": "mouse_click", "button": "left", "x": 270, "y": 545},
+    {"frame": 540, "type": "wait"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

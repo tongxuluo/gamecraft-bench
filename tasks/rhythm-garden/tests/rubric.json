@@ -1,0 +1,118 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Each minigame has a timing mechanic where the player presses keys in sync with a visual or audio beat cue. Timing accuracy is evaluated (Perfect/Good/Miss) with distinct visual feedback per grade. The core interaction requires rhythmic precision rather than reaction speed alone. Score 0 if minigames have no timing component, if there is no accuracy grading, or if feedback does not distinguish timing quality. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Each minigame scores the player with a star rating (1-3 stars) based on accuracy. Stars are awarded at clear thresholds. Visual feedback during play shows timing quality with particle effects for perfect hits and negative effects for misses. The scoring feels fair and responsive. Score 0 if there is no scoring system, if stars are not awarded, or if there is no in-game timing feedback. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A garden hub overworld connects all minigames. The player navigates between garden plots (each representing a minigame) by clicking. Completed games show visual bloom/growth; locked games show wilted or greyed-out indicators. Stars earned unlock later minigames with clear threshold requirements. Score 0 if there is no hub, if minigames are accessed from a plain list, or if progression is not gated by stars. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 8 distinct minigames exist, each with a different timing mechanic (steady beat tapping, hold-and-release, call-and-response, syncopation, polyrhythm, speed ramp, pattern memory, free-form). Each minigame has unique visuals and a different interaction pattern. Score 0 if there are fewer than 8 minigames, if they all use the same mechanic, or if they are visually identical. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "Each minigame has a unique garden theme (watering flowers, swatting bugs, conducting birds, bouncing seeds, etc.) with corresponding visual assets and animations. The theme is reflected in both the gameplay visuals and the hub representation. Score 0 if minigames share the same theme, if themes are only text labels, or if the hub does not reflect individual game themes. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "A final Remix stage unlocks after completing all 8 minigames. The Remix combines mechanics from multiple minigames into one extended performance, transitioning between styles every few measures. It feels climactic and tests mastery of all learned skills. Score 0 if there is no final stage, if it does not combine multiple mechanics, or if it is identical to a regular minigame. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "The garden hub visibly grows and blooms as the player progresses: new flowers, butterflies, decorations, or colour changes appear with each milestone. The visual state of the hub reflects total progress. A gallery or results screen shows total stars and best scores per minigame. Score 0 if the hub never changes, if there is no progress visualization, or if no gallery exists. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "During each minigame, the timing cue is clearly visible and readable: the player can see exactly when to press. Accuracy feedback is immediate (within the same frame or next). Star progress or score is shown during play. Score 0 if timing cues are unclear, if feedback is delayed, or if score is hidden during play. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "The hub overworld clearly communicates: which minigames are available, which are locked, which are completed (with star count), and what the unlock requirements are. Navigation is intuitive with clickable garden plots. Score 0 if the hub is confusing, if lock/unlock status is unclear, or if navigation is broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title screen -> Garden hub -> Select minigame -> Play -> Score/stars -> Return to hub -> Unlock next -> Final remix. The player can experience every node without restarting. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a playful or hand-drawn font, has at minimum a play button that is interactive and transitions to the hub, and uses a non-default background (garden scene, flowers, or illustrated landscape) \u2014 not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element \u2014 garden hub, minigame visuals, UI panels, characters, effects \u2014 belongs to a single consistent visual language. The palette is pastel and whimsical with a garden/nature theme; no clashing styles or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Garden hub art, minigame backgrounds, interactive elements (flowers, bugs, birds), and UI use authored art with visible detail and theming. The hub has textured garden terrain; minigames have illustrated themed assets; UI elements use styled widgets with custom fonts. Score 0 if the hub is a plain colour, if minigame elements are basic shapes, or if UI is unstyled defaults. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: timing cue animations, hit feedback particles, star award celebrations, garden growth transitions, hub navigation, and screen transitions each play as smooth multi-frame tweens or sprite animations. No element snaps to its new state in a single frame. Transitions use fades or slides. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}

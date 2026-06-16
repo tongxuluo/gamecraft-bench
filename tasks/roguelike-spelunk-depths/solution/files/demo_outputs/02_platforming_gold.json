@@ -1,0 +1,26 @@
+{
+  "scenario": "cave",
+  "duration_frames": 600,
+  "events": [
+    {"frame": 30,  "type": "wait"},
+    {"frame": 60,  "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 90,  "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 120, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 150, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 180, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 210, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 240, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 270, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 300, "type": "key_press", "keycode": "SPACE"},
+    {"frame": 330, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 360, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 390, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 420, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 450, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 480, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 510, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 540, "type": "key_press", "keycode": "RIGHT"},
+    {"frame": 570, "type": "key_press", "keycode": "DOWN"},
+    {"frame": 600, "type": "wait"}
+  ]
+}

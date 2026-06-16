@@ -1,0 +1,118 @@
+{
+  "score_formula": "BUILD * (0.15*((M1+M2+M3)/3) + 0.35*((D1+D2+D3+D4)/4) + 0.15*((V1+V2+V3)/3) + 0.35*((A1+A2+A3+A4)/4))",
+  "max_demos": 10,
+  "max_demo_seconds": 20,
+  "build_check": {
+    "id": "BUILD",
+    "cmd": "godot --headless --path /workspace/game --quit-after 5",
+    "description": "The project launches with the headless command, exits with code 0, and produces no fatal errors. Returns 0 or 1; the rest of the score is multiplied by this gate."
+  },
+  "categories": [
+    {
+      "name": "Core Mechanics",
+      "items": [
+        "M1",
+        "M2",
+        "M3"
+      ]
+    },
+    {
+      "name": "Content Depth",
+      "items": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ]
+    },
+    {
+      "name": "Functional Visuals",
+      "items": [
+        "V1",
+        "V2",
+        "V3"
+      ]
+    },
+    {
+      "name": "Presentation & Art",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1",
+      "agg": "max",
+      "description": "Cards are played from hand into a 4-lane grid battlefield. Each card has attack power, health, a blood cost (0-3), and zero or more sigils. To play a card costing blood, the player must first sacrifice that many of their own creatures already on the field. Sacrificed creatures die with a visible effect. Score 0 if there is no lane grid, if cards have no blood cost, or if sacrifice is not required for costly cards. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M2",
+      "agg": "max",
+      "description": "Cards bear sigils (passive abilities) shown as icons on the card. Sigils trigger automatically based on conditions (on attack, on death, start of turn). At least 8 distinct sigils exist with unique gameplay effects. Sigil interactions create emergent combinations. Score 0 if there are no sigils, if fewer than 8 exist, or if sigils have no visible icons. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "M3",
+      "agg": "max",
+      "description": "A damage scale tips as damage is dealt to either side. When one side takes 5 more total damage than the other, that side loses. The scale visually tips with each hit, creating tension as it approaches the tipping point. The scale is the win condition rather than destroying all enemy cards. Score 0 if there is no damage scale, if the win condition is different, or if the scale does not visually tip. Score 1 requires the mechanic to be presented in a visually authored context with real sprites or illustrated assets. Score 0.5 at most if the mechanic works but is represented entirely by programmatic shapes, solid-color fills, or default Godot widgets."
+    },
+    {
+      "id": "D1",
+      "agg": "max",
+      "description": "At least 15 distinct creature cards with different stat combinations, blood costs, and sigil assignments. Cards have unique names and illustrated art showing the creature. The card pool provides meaningful deck-building variety. Score 0 if there are fewer than 15 cards, if cards share identical stats, or if cards have no art. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D2",
+      "agg": "max",
+      "description": "An overworld map with branching paths connects encounters. Node types include: card battles, totem poles (add a sigil to a card), campfires (merge two cards), and traders (buy/sell). The player chooses their route with at least 2 path options at each fork. Score 0 if there is no map, if the path is linear, or if fewer than 3 node types exist. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D3",
+      "agg": "max",
+      "description": "At least 3 distinct opponent encounters with different deck strategies and difficulty levels. Later opponents use more powerful cards and sigil combinations. A final boss encounter has unique mechanics not seen in regular battles. Score 0 if there is only one opponent type, if difficulty does not escalate, or if there is no boss. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "D4",
+      "agg": "max",
+      "description": "Card modification events exist: totem poles let the player add a sigil to any card; campfires let the player merge two cards (combining stats); traders offer new cards for purchase. These events meaningfully change the player's deck between battles. Score 0 if there are no modification events, if the deck never changes between battles, or if events have no effect. Score 1 requires content variants to be visually distinct with real authored art (different sprites, illustrated elements). Score 0.5 at most if variants exist but are represented by programmatic shapes, color swaps, or text labels without real asset differences."
+    },
+    {
+      "id": "V1",
+      "agg": "mean",
+      "description": "The battle screen clearly shows: the 4-lane grid with cards placed, the damage scale with current tilt, the player's hand, and card details (attack, health, sigils) readable at 1280x720. The scale's tilt direction and proximity to losing are immediately apparent. Score 0 if any core element is missing or if the scale state is unclear. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V2",
+      "agg": "mean",
+      "description": "Combat actions are visually clear: attacks show damage dealt with hit animations, sigil triggers show their icon activating, sacrifice shows the creature dying, and the scale tips with each damage event. The player can follow the combat flow from visual cues alone. Score 0 if attacks have no animation, if sigils trigger invisibly, or if the scale does not animate. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "V3",
+      "agg": "max",
+      "description": "The full game loop is connected: Title -> Start run -> Map navigation -> Battle -> Card rewards/events -> Next battle -> Boss -> Win or lose. The player can experience every node without restarting. Score 0 if any transition in the chain is missing or broken. Score 1 requires the information to be presented through themed, styled UI with real assets. Score 0.5 at most if readability relies on plain text, unstyled labels, or raw geometric shapes."
+    },
+    {
+      "id": "A1",
+      "agg": "max",
+      "description": "A title screen is present and styled: it shows the game name in a rough or hand-scratched font, has at minimum a play button that is interactive and transitions to the game, and uses a non-default background (dim wooden table, flickering candle, or dark cabin) \u2014 not plain Godot grey or a solid-colour fill. Score 0 if the game launches directly into gameplay with no title screen, or if the start button is non-functional. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A2",
+      "agg": "mean",
+      "description": "Overall art-style coherence: every visible element \u2014 cards, battlefield, map, opponent, UI panels \u2014 belongs to a single consistent visual language. The palette is dark, muted, and atmospheric (browns, deep greens, candlelight yellows); no clashing bright colours or unrelated assets. Score 0 if the screen mixes incompatible styles, or if elements are obviously unthemed placeholder shapes. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A3",
+      "agg": "mean",
+      "description": "Cards have hand-drawn or parchment-style illustrated creature art; the battlefield has a textured wooden table surface; the damage scale is an illustrated prop; the map uses themed node icons; sigil icons are distinct illustrated symbols. Score 0 if cards are plain text, if the table is a solid colour, or if sigils have no icons. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    },
+    {
+      "id": "A4",
+      "agg": "mean",
+      "description": "Animation continuity and polish: card placement, sacrifice death effect, attack animations, scale tipping, sigil trigger flashes, map transitions, and screen changes each play as smooth multi-frame tweens or sprite animations. Ambient effects (candle flicker, dust motes) add atmosphere. No element snaps to its new state in a single frame. Score 0 if any of these moments is instantaneous, or if transitions are hard cuts. Score 0.5 at most if the game uses programmatic shapes (ColorRect, solid fills, or untextured geometry) instead of real illustrated or pixel-art assets."
+    }
+  ]
+}
