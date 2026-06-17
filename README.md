@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://tongxuluo.github.io/gamecraft-bench-website">Website</a> •
-  <a href="https://tongxuluo.github.io/gamecraft-bench-website/#citation">Paper</a> •
+  <a href="https://arxiv.org/abs/2606.17861">Paper</a> •
   <a href="https://tongxuluo.github.io/gamecraft-bench-website/#demos">Demos</a>
 </p>
 
@@ -218,11 +218,11 @@ We thank the open-source communities behind these projects for making reproducib
 If you find GameCraft-Bench useful, please cite us:
 
 ```bibtex
-@misc{luo2026gamecraftbench,
-  title = {GameCraft-Bench: Can Agents Build Playable Games End-to-End in a Real Game Engine?},
-  author = {Tongxu Luo and Rongsheng Wang and Jiaxi Bi and Chenming Xu and Zhengyang Tang and Jianlong Chen and Juhao Liang and Ke Ji and Shuqi Guo and Yuhao Du and Fan Bu and Wenyu Du and Xiaotong Zhang and Kyle Li and Shaobo Wang and Linfeng Zhang and Yuxuan Liu and Xin Lai and Chenxin Li and Yiduo Guo and Zhexin Zhang and Xinyuan Wang and Tianyi Bai and Ziniu Li and Benyou Wang},
-  year = {2026},
-  url = {https://github.com/tongxuluo/gamecraft-bench}
+@article{luo2026gamecraft,
+  title={GameCraft-Bench: Can Agents Build Playable Games End-to-End in a Real Game Engine?},
+  author={Luo, Tongxu and Wang, Rongsheng and Bi, Jiaxi and Xu, Chenming and Tang, Zhengyang and Chen, Jianlong and Liang, Juhao and Ji, Ke and Guo, Shuqi and Du, Yuhao and Bu, Fan and Du, Wenyu and Zhang, Xiaotong and Li, Kyle and Wang, Shaobo and Zhang, Linfeng and Liu, Yuxuan and Lai, Xin and Li, Chenxin and Guo, Yiduo and Zhang, Zhexin and Wang, Xinyuan and Bai, Tianyi and Li, Ziniu and Wang, Benyou},
+  journal={arXiv preprint arXiv:2606.17861},
+  year={2026}
 }
 ```
 
